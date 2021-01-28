@@ -8,7 +8,7 @@ test("Function return 26 when parameter is XXVI", ()=>{
 })
 
 test("Function return false when parameter is MCXVV", ()=>{
-    expect(convertFromRomans("MCXCC")).toBe(false)
+    expect(convertFromRomans("MCXVV")).toBe(false)
 })
 
 
@@ -18,4 +18,12 @@ test("Function return 1954 when parameter is MCMLIV", ()=>{
 
 test("Function return false when parameter is MZMLIV", ()=>{
     expect(convertFromRomans("MZMLIV")).toBe(false)
+})
+
+test("Function return false when parameter is CDC", ()=>{
+    expect(convertFromRomans("CDC")).toBe(false)
+})
+
+test("Function return false when parameter is XXXX", ()=>{
+    expect(convertFromRomans("XXXX")).toBe(false)
 })

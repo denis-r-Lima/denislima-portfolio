@@ -62,6 +62,9 @@ export function convertToRomans(num: number): string {
 export function convertFromRomans(num: string): number | boolean {
   if (/(?=.*[^IVXLCDM])/.test(num)) return false
   if (/(?=.*(VV)|(LL)|(DD))/.test(num)) return false
+  if (/(?=.*(I){4,}|(X){4,}|(C){4,}|(M){4,})/.test(num)) return false
+  if (/(?=.*(IVI)|(XLX)|(CDC))/.test(num)) return false
+
 
   let romanNumArr = ["I", "V", "X", "L", "C", "D", "M"]
 
