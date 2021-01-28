@@ -9,6 +9,7 @@ interface RomNumObj {
 }
 
 export function convertToRomans(num: number): string {
+  if(num >= 4000) return ""
   let result: string = ""
   let RomNum: RomNumObj = {
     "1": "I",
@@ -23,6 +24,8 @@ export function convertToRomans(num: number): string {
   let RegExp: RegExp = /[0-9]/g
 
   let numberStr: string = `${num}`
+
+  if(/[^0-9]/.test(numberStr)) return ""
 
   let numArr: string[] = numberStr.match(RegExp)
 
