@@ -25,7 +25,7 @@ export function convertToRomans(num: number): string {
 
   let numberStr: string = `${num}`
 
-  if(/[^0-9]/.test(numberStr)) return ""
+  if(/[^0-9]/g.test(numberStr)) return ""
 
   let numArr: string[] = numberStr.match(RegExp)
 
@@ -33,8 +33,6 @@ export function convertToRomans(num: number): string {
     let length: number = numArr.length
 
     let factor: number
-
-    if (length > 4) return ""
 
     numArr.map((num, index) => {
       factor = Math.pow(10, length - index - 1)

@@ -26,3 +26,6 @@ test("Function return '' for num 21776", ()=>{
     expect(convertToRomans(21776)).toBe("")
 })
 
+test("Function return '' for num 35.3", ()=>{
+    expect(convertToRomans(35.3)).toBe("")
+})
