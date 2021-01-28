@@ -1,7 +1,6 @@
 import React from "react"
 
-
-import { convertFromRomans , convertToRomans} from "../../controlers/functions"
+import { convertFromRomans, convertToRomans } from "../../controlers/functions"
 // import { Container } from './styles';
 
 const RomanNumbers: React.FC = () => {
@@ -11,7 +10,7 @@ const RomanNumbers: React.FC = () => {
   return (
     <div>
       <h1>Numeros Romanos</h1>
-      <br/>
+      <br />
       <label>Roman numerals to Decimal</label>
       <input
         type='text'
@@ -20,6 +19,8 @@ const RomanNumbers: React.FC = () => {
         }}
       />
       {convertFromRomans(numRom)}
+      <br />
+      <br />
       <label>Decimal to Roman numerals</label>
       <input
         type='text'
