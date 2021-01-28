@@ -27,3 +27,7 @@ test("Function return false when parameter is CDC", ()=>{
 test("Function return false when parameter is XXXX", ()=>{
     expect(convertFromRomans("XXXX")).toBe(false)
 })
+
+test("Function return false when parameter is XDL", ()=>{
+    expect(convertFromRomans("XDL")).toBe(false)
+})

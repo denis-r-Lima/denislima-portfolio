@@ -66,29 +66,28 @@ export function convertFromRomans(num: string): number | boolean {
   if (/(?=.*(IVI)|(XLX)|(CDC))/.test(num)) return false
 
 
-  let romanNumArr = ["I", "V", "X", "L", "C", "D", "M"]
+  let refRomanNumArr = ["I", "V", "X", "L", "C", "D", "M"]
 
-  let decNumArr = [1, 5, 10, 50, 100, 500, 1000]
+  let refDecNumArr = [1, 5, 10, 50, 100, 500, 1000]
 
   let result: number = 0
 
   let romNumArr = num.match(/[IVXLCDM]/g)
 
   if (romNumArr) {
-    romNumArr.map((num, index) => {
-      let romNumIndex = romanNumArr.indexOf(num)
-
-      if (romNumArr[index + 1]) {
-        if (romanNumArr.indexOf(romNumArr[index + 1]) <= romNumIndex) {
-          result += decNumArr[romNumIndex]
+    for(let i = 0; i < romNumArr.length; i++){
+      let romNumIndex = refRomanNumArr.indexOf(romNumArr[i])
+      if (romNumArr[i + 1]) {
+        if(refRomanNumArr.indexOf(romNumArr[i + 1]) > romNumIndex + 2) return false
+        if (refRomanNumArr.indexOf(romNumArr[i + 1]) <= romNumIndex) {
+          result += refDecNumArr[romNumIndex]
         } else {
-          result -= decNumArr[romNumIndex]
+          result -= refDecNumArr[romNumIndex]
         }
       } else {
-        result += decNumArr[romNumIndex]
+        result += refDecNumArr[romNumIndex]
       }
-    })
+    }
   }
-
   return result
 }
