@@ -1,4 +1,4 @@
-import {convertFromRomans} from "../controlers/functions"
+import {convertFromRomans} from "../controlers/roman"
 
 
 //Testing Convert from Roman numeral Function

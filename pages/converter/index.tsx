@@ -1,6 +1,6 @@
 import React from "react"
 
-import { convertFromRomans, convertToRomans } from "../../controlers/functions"
+import { convertFromRomans, convertToRomans } from "../../controlers/roman"
 // import { Container } from './styles';
 
 const RomanNumbers: React.FC = () => {
