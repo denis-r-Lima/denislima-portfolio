@@ -12,7 +12,7 @@ const HeaderComponent: React.FC = () => {
   }, [])
 
   return (
-    <HeaderFrame id="TopPage">
+    <HeaderFrame>
       <ImgFrame />
       <TextCloud id='CloudText' />
     </HeaderFrame>

@@ -8,12 +8,12 @@ export const Container = styled.div`
       width: 0;
       background-color: transparent;
       transition: width linear 0.8s;
-      &>.Menu{
+      &>#Menu{
         width: 0;
         transition: width linear 0.3s;
     }
   }
-  position: absolute;
+  position: fixed;
   top:0;
   width:100vw;
   right:0;
@@ -51,7 +51,7 @@ export const MenuCall = styled.div`
       opacity: 0;
     }
   }
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
   width: 4rem;

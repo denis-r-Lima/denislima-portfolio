@@ -29,7 +29,7 @@ const SideMenu: React.FC = () => {
       burguerEle.classList.remove("Selected")
     }
   }
-  
+
   return (
     <>
       <Container
@@ -39,7 +39,7 @@ const SideMenu: React.FC = () => {
           ClickOutMenu(e, burguer.current as HTMLDivElement)
         }
       >
-        <Menu className='Menu'></Menu>
+        <Menu id='Menu'></Menu>
       </Container>
       <MenuCall
         ref={burguer}

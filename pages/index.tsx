@@ -12,7 +12,7 @@ import { Container , BackUp} from "../styles/index/styles"
 
 export default function Home() {
   return (
-    <div>
+    <div id="TopPage">
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel='icon' href='/img/me_60px.ico' />
