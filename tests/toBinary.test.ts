@@ -1,4 +1,4 @@
-import { toBinary } from "../controlers/binary"
+import { toBinary } from "../controlers/numbersConvertion/binary"
 
 test("Return false for '132aB9'", () => {
   expect(toBinary("132aB9")).toBe(false)

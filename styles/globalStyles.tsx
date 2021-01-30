@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
   html{
     box-sizing: border-box;
     font-size: 62.5%; 
-
     @media only screen and (max-width: 700px){
       font-size: 50%
     }
@@ -21,8 +20,9 @@ const GlobalStyle = createGlobalStyle`
     @media only screen and (max-width: 450px){
       background: #FCF7F8;
     }
+    width: 100vw;
     background: #E5E5EA;
-    font-family: Open-Sans, Helvetica, Sans-Serif;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   a {

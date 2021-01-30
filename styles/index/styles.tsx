@@ -5,59 +5,33 @@ export const Container = styled.div`
     width: 100vw;
     margin: 0;
     border: none;
+    position: static;
   }
-
-  width: calc(100vw - 6rem);
-  padding: 3rem 5rem;
-  margin: 2rem 3rem;
-  border: 0.15rem dashed #5B616A;
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+  right: 3rem;
+  padding: 3rem 0rem;
+  border: 0.15rem dashed #5b616a;
   border-radius: 1rem;
-  background-color: #FCF7F8;
+  background-color: #fcf7f8;
   display: flex;
   flex-direction: column;
+  font-size: 1.5rem;
 `
-
-export const HeaderFrame = styled.div`
-  @media only screen and (max-width: 450px) {
-    flex-direction: column;
+export const BackUp = styled.div`
+@media only screen and (max-width: 450px) {
+  bottom: 1rem;
+  right: 1rem;
   }
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`
-
-export const ImgFrame = styled.div`
-  background-image: url("/img/myself.jpeg");
-  background-size: 100% 100%;
-  margin: 5rem 0 0 0;
-  padding: 0;
-  border: 0.5rem solid #5B616A;
-  width: 19rem;
-  height: 19rem;
-  border-radius: 50%;
-  overflow: hidden;
-`
-
-export const TextCloud = styled.div`
-  @media only screen and (max-width: 450px) {
-    background-image: url("/img/cloud_text_reverse.png");
-    padding: 5.5rem 1.5rem 1.5rem 2rem;
-    top: -4.5rem;
-    left: 0rem;
-  }
-
-  background-image: url("/img/cloud_text.png");
-  background-size: 100% 100%;
-  padding: 1.5rem 1.5rem 5.5rem 2rem;
-  height: 17rem;
-  width: 34rem;
   display: grid;
   place-items: center;
-  position: relative;
-  top: -6rem;
-  left: 2rem;
-  font-size: 1.2rem;
+  position: fixed;
+  bottom: 3rem;
+  right: 4rem;
+  background-color: #5b616a;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  font-size: 3rem;
 `

@@ -1,21 +1,16 @@
 import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
+import { FaAngleUp } from "react-icons/fa"
 
-import {
-  Container,
-  ImgFrame,
-  TextCloud,
-  HeaderFrame,
-} from "../styles/index/styles"
-import typeText from "../controlers/typeText/typeText"
-import { useEffect } from "react"
+import HeaderComponent from "../components/HeaderComponent/index"
+import TopMenu from "../components/TopMenu"
+import AboutMe from "../components/AboutMe"
+import SideMenu from "../components/SideMenu"
+import { Container , BackUp} from "../styles/index/styles"
+
 
 export default function Home() {
-  useEffect(()=>{
-    typeText("Hi! I am Denis, and I am a full stack JavaScript developer!", "CloudText")
-  }, [])
-
   return (
     <div>
       <Head>
@@ -23,21 +18,15 @@ export default function Home() {
         <link rel='icon' href='/img/me_60px.ico' />
       </Head>
       <Container>
-        <HeaderFrame>
-          <ImgFrame>
-            {/* <Image
-              src='/img/my8biticon.jpg'
-              height={250}
-              width={250}
-              alt='Me in 8 bits'
-            /> */}
-          </ImgFrame>
-          <TextCloud id='CloudText' />            
-        </HeaderFrame>
-        {/* <Link href="/converter" >
-         <a>Unit Converter</a>
-       </Link> */}
+        <HeaderComponent />
+        <TopMenu />
+        <AboutMe id="AboutMe" />
+        <Link href='/converter'>
+          <a>Refresh the right way</a>
+        </Link>
+        <BackUp><a href="#TopPage"><FaAngleUp color="#FFFFFF" /> </a> </BackUp>
       </Container>
+      <SideMenu />
     </div>
   )
 }

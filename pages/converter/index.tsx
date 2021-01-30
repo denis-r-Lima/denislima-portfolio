@@ -1,6 +1,8 @@
 import React from "react"
+import Link from "next/link"
 
-import { convertFromRomans, convertToRomans } from "../../controlers/roman"
+
+import { convertFromRomans, convertToRomans } from "../../controlers/numbersConvertion/roman"
 // import { Container } from './styles';
 
 const RomanNumbers: React.FC = () => {
@@ -29,6 +31,10 @@ const RomanNumbers: React.FC = () => {
         }}
       />
       {convertToRomans(parseInt(numDec))}
+      <br/>
+      <Link href="/" >
+         <a>Refresh the right way</a>
+       </Link>
     </div>
   )
 }

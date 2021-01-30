@@ -3,6 +3,7 @@ export default function typeText(text: string, target: string) {
   let textLength = text.length
 
   let div = document.getElementById(target) as HTMLDivElement
+  div.innerHTML = ""
 
   function type() {
     if (i < textLength) {
