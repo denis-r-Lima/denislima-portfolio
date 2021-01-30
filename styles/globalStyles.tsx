@@ -15,13 +15,13 @@ const GlobalStyle = createGlobalStyle`
       font-size: 50%
     }
 
-    @media only screen and (max-width: 450px){
-      font-size: 32%
-    }
   }
 
   body {
-    background:  #f5f5dc;
+    @media only screen and (max-width: 450px){
+      background: #fbfbf3;
+    }
+    background: #f5fafc;
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }
 
