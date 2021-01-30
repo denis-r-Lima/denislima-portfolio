@@ -34,4 +34,5 @@ export const BackUp = styled.div`
   width: 4rem;
   height: 4rem;
   font-size: 3rem;
+  z-index:2;
 `

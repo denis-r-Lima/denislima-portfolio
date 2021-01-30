@@ -4,6 +4,9 @@ export const Container = styled.div`
  @media only screen and (max-width: 450px) {
     padding: 2rem;
   }
+  &>p{
+      text-indent: 2rem;
+  }
   position: relative;
   padding: 8rem;
   background-color: #415f8c;
