@@ -8,8 +8,14 @@ import {
   TextCloud,
   HeaderFrame,
 } from "../styles/index/styles"
+import typeText from "../controlers/typeText/typeText"
+import { useEffect } from "react"
 
 export default function Home() {
+  useEffect(()=>{
+    typeText("Hi! I am Denis, and I am a full stack JavaScript developer!", "CloudText")
+  }, [])
+
   return (
     <div>
       <Head>
@@ -26,9 +32,7 @@ export default function Home() {
               alt='Me in 8 bits'
             />
           </ImgFrame>
-          <TextCloud id='CloudText'>
-            Hi! I am Denis, and I am a full stack JavaScript developer!
-          </TextCloud>
+          <TextCloud id='CloudText' />            
         </HeaderFrame>
         {/* <Link href="/converter" >
          <a>Unit Converter</a>

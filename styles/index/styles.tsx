@@ -12,7 +12,7 @@ export const Container = styled.div`
   margin: 2rem 3rem;
   border: 0.15rem dashed #909090;
   border-radius: 1rem;
-  background-color: #fbfbf3;
+  background-color: #fbfbfb;
   display: flex;
   flex-direction: column;
 `
