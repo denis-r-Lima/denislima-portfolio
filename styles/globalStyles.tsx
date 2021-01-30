@@ -19,9 +19,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     @media only screen and (max-width: 450px){
-      background: #fbfbfb;
+      background: #FCF7F8;
     }
-    background: #e5fce5;
+    background: #E5E5EA;
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }
 

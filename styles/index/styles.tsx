@@ -10,9 +10,9 @@ export const Container = styled.div`
   width: calc(100vw - 6rem);
   padding: 3rem 5rem;
   margin: 2rem 3rem;
-  border: 0.15rem dashed #909090;
+  border: 0.15rem dashed #5B616A;
   border-radius: 1rem;
-  background-color: #fbfbfb;
+  background-color: #FCF7F8;
   display: flex;
   flex-direction: column;
 `
@@ -30,9 +30,11 @@ export const HeaderFrame = styled.div`
 `
 
 export const ImgFrame = styled.div`
+  background-image: url("/img/myself.jpeg");
+  background-size: 100% 100%;
   margin: 5rem 0 0 0;
   padding: 0;
-  border: 0.4rem solid #333;
+  border: 0.5rem solid #5B616A;
   width: 19rem;
   height: 19rem;
   border-radius: 50%;
@@ -48,7 +50,7 @@ export const TextCloud = styled.div`
   }
 
   background-image: url("/img/cloud_text.png");
-  background-size: cover;
+  background-size: 100% 100%;
   padding: 1.5rem 1.5rem 5.5rem 2rem;
   height: 17rem;
   width: 34rem;

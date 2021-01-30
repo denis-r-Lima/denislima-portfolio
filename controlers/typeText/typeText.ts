@@ -4,12 +4,11 @@ export default function typeText(text: string, target: string) {
 
   let div = document.getElementById(target) as HTMLDivElement
 
-  //console.log({ text, div , textLength})
   function type() {
     if (i < textLength) {
       div.innerHTML += text.charAt(i)
       i++
-      setTimeout(type, 70)
+      setTimeout(type, 60)
     }
   }
 

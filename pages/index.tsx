@@ -25,12 +25,12 @@ export default function Home() {
       <Container>
         <HeaderFrame>
           <ImgFrame>
-            <Image
+            {/* <Image
               src='/img/my8biticon.jpg'
               height={250}
               width={250}
               alt='Me in 8 bits'
-            />
+            /> */}
           </ImgFrame>
           <TextCloud id='CloudText' />            
         </HeaderFrame>
