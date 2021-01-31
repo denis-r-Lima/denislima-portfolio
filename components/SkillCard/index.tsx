@@ -33,7 +33,7 @@ const SkillCard: React.FC = () => {
             <DiDatabase color="#275DAD" />
             </h1>
             <h2>Back-end Devoloper</h2>
-            <p>I value simple and well built back end in which the front-end can relly on.</p>
+            <p>I value simple and well built back-end in which the front-end can relly on.</p>
             <br/>
             <br/>
             <h3>Technologies</h3>
