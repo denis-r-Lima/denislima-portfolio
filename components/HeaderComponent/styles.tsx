@@ -15,6 +15,11 @@ export const HeaderFrame = styled.div`
 `
 
 export const ImgFrame = styled.div`
+ @media only screen and (max-width: 450px) {
+    left: 0rem;
+  }
+  position: relative;
+  left: 7rem;
   background-image: url("/img/myself.jpeg");
   background-size: cover;
   margin: 5rem 0 0 0rem;
@@ -43,6 +48,6 @@ export const TextCloud = styled.div`
   place-items: center;
   position: relative;
   top: -6rem;
-  left: -5rem;
+  left: 1rem;
   font-size: 1.2rem;
 `

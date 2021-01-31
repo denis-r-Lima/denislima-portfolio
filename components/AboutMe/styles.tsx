@@ -7,15 +7,20 @@ export const Container = styled.div`
   &>p{
       text-indent: 2rem;
       line-height: 3rem;
-      text-align: justify;
   }
   position: relative;
   padding: 8rem;
   background-color: #415f8c;
-  color: #fff;
+  color: #fcf7f8;
   font-size: 2rem;
+  text-align: justify;
   &#AboutMe{
     padding-bottom: 30rem;
+  }
+  &#Contact{
+    &>p{
+      text-align: center;
+    }
   }
 `
 

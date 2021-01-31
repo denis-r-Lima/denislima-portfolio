@@ -27,7 +27,7 @@ export default function Home() {
         <SkillCard />
         <Portfolio id="Portfolio" />
         <Contact id="Contact"/>
-        <BackUp><a href="#TopPage"><FaAngleUp color="#FFFFFF" /> </a> </BackUp>
+        <BackUp><a href="#TopPage"><FaAngleUp color="#fcf7f8" /></a></BackUp>
       </Container>
       <SideMenu />
     </div>

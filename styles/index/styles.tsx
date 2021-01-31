@@ -38,4 +38,5 @@ export const BackUp = styled.div`
   height: 4rem;
   font-size: 3rem;
   z-index:2;
+  padding-top: 0.4rem;
 `
