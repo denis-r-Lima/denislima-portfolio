@@ -29,10 +29,10 @@ const Contact: React.FC<Props> = (props: Props) => {
       <p style={{textAlign: "center"}}>
         You can also find me on:</p>
         <p style={{textAlign: "center"}}>
-        <a href='https://www.linkedin.com/in/denis-roberto-alves-de-almeida-lima-1a122575/'>
+        <a href='https://www.linkedin.com/in/denis-roberto-alves-de-almeida-lima-1a122575/' target="_blank">
           <FaLinkedin size="3rem"  color="#000"  style={{marginRight:"1rem"}}/>
         </a>{" "}
-        <a href='https://github.com/denis-r-Lima'><FaGithub size="3rem" color="#000" /></a>
+        <a href='https://github.com/denis-r-Lima' target="_blank"><FaGithub size="3rem" color="#000" /></a>
       </p>
     </Container>
   )

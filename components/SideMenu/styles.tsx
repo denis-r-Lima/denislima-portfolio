@@ -83,7 +83,7 @@ export const MenuButton = styled.li`
   color: #fcf7f8;
   font-size: 2.5rem;
   padding: 1rem;
-  border-bottom: 0.1rem solid #fcf7f8;
+  border-bottom: 0.1rem solid rgba(252, 247, 248, 0.2);
   width: 100%;
   white-space: nowrap;
   display: flex;
