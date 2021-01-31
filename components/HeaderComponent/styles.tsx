@@ -29,7 +29,7 @@ export const ImgFrame = styled.div`
 export const TextCloud = styled.div`
   @media only screen and (max-width: 450px) {
     background-image: url("/img/cloud_text_reverse.png");
-    padding: 5.5rem 1.5rem 1.5rem 2rem;
+    padding: 4.5rem 1.5rem 2rem 2rem;
     top: -4.5rem;
     left: 0rem;
   }

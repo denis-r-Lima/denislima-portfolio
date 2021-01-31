@@ -14,6 +14,9 @@ export const Container = styled.div`
   background-color: #415f8c;
   color: #fff;
   font-size: 2rem;
+  &#AboutMe{
+    padding-bottom: 30rem;
+  }
 `
 
 export const AboutTitle = styled.h1`

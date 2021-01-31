@@ -1,5 +1,5 @@
 import React from "react"
-import { FaCode } from "react-icons/fa"
+import { DiCodeBadge } from "react-icons/di"
 
 import { Container, PortfolioTitle } from "./styles"
 
@@ -11,7 +11,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
   return (
     <Container id={props.id ? props.id : ""}>
       <PortfolioTitle>
-        <FaCode size='8rem' color='#275DAD' style={{ marginRight: "1rem" }} />
+        <DiCodeBadge size='8rem' color='#275DAD' style={{ marginRight: "1rem" }} />
         My Portfolio
       </PortfolioTitle>
     </Container>
