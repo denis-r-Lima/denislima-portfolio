@@ -11,7 +11,7 @@ const SkillCard: React.FC = () => {
             <h1>
             <MdDevices color="#275DAD" />
             </h1>
-            <h2>Front-end Devoloper</h2>
+            <h2>Front-end Developer</h2>
             <p>I like to build apps from scratch, and enjoy seeing ideas becoming reality.</p>
             <br/>
             <br/>
@@ -32,7 +32,7 @@ const SkillCard: React.FC = () => {
           <h1>
             <DiDatabase color="#275DAD" />
             </h1>
-            <h2>Back-end Devoloper</h2>
+            <h2>Back-end Developer</h2>
             <p>I value simple and well built back-end in which the front-end can relly on.</p>
             <br/>
             <br/>
