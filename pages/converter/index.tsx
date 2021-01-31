@@ -2,7 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 
-import { convertFromRomans, convertToRomans } from "../../controlers/numbersConvertion/roman"
+import { convertFromRomans, convertToRomans } from "../../controllers/numbersConvertion/roman"
 // import { Container } from './styles';
 
 const RomanNumbers: React.FC = () => {

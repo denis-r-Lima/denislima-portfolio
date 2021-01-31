@@ -1,4 +1,4 @@
-import { fromBinary } from "../controlers/numbersConvertion/binary"
+import { fromBinary } from "../controllers/numbersConvertion/binary"
 
 test("Should return 14 for 1110", () => {
   expect(fromBinary("1110")).toBe(14)
