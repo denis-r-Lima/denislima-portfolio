@@ -1,22 +1,18 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Container = styled.div`
- @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 450px) {
     padding: 2rem;
-  }
-  &>p{
-      text-indent: 2rem;
-      line-height: 3rem;
-      text-align: justify;
   }
   position: relative;
   padding: 8rem;
-  background-color: #415f8c;
-  color: #fff;
+  background-color: #fcf7f8;
+  color: #5b616a;
   font-size: 2rem;
-`
+`;
 
-export const AboutTitle = styled.h1`
+
+export const PortfolioTitle = styled.h1`
 @media only screen and (max-width: 450px) {
     top: -1rem;
     left: -1rem;

@@ -11,6 +11,7 @@ export const Container = styled.div`
   top: 2rem;
   left: 3rem;
   right: 3rem;
+  margin-bottom: 2rem;
   padding: 3rem 0rem;
   border: 0.15rem dashed #5b616a;
   border-radius: 1rem;

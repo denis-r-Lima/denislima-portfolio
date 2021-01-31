@@ -10,10 +10,10 @@ const TopMenu: React.FC = () => {
           <a href='#AboutMe'> About Me</a>
         </ButtonItem>
         <ButtonItem>
-          <a href='#CloudText'> My Portfolio</a>
+          <a href='#MyPortfolio'> My Portfolio</a>
         </ButtonItem>
         <ButtonItem>
-          <a href='#CloudText'> Contact</a>
+          <a href='#Contact'> Contact</a>
         </ButtonItem>
       </ul>
     </Container>

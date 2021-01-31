@@ -1,16 +1,13 @@
 import React, { useRef } from "react"
 
-import { Container, Menu, MenuCall, BurguerMenu } from "./styles"
+import { Container, Menu, MenuCall, BurguerMenu, MenuButton } from "./styles"
 
 const SideMenu: React.FC = () => {
   let callMenu = useRef<null | HTMLDivElement>(null)
 
   let burguer = useRef<null | HTMLDivElement>(null)
 
-  const BurguerMenuClick = (
-    div: HTMLDivElement,
-    burguerEle: HTMLDivElement
-  ) => {
+  const OpenCloseMenu = (div: HTMLDivElement, burguerEle: HTMLDivElement) => {
     if (div.classList.contains("Hidden")) {
       div.classList.remove("Hidden")
       burguerEle.classList.add("Selected")
@@ -39,12 +36,45 @@ const SideMenu: React.FC = () => {
           ClickOutMenu(e, burguer.current as HTMLDivElement)
         }
       >
-        <Menu id='Menu'></Menu>
+        <Menu id='Menu'>
+          <ul>
+            <MenuButton
+              onClick={() => {
+                OpenCloseMenu(
+                  callMenu.current as HTMLDivElement,
+                  burguer.current as HTMLDivElement
+                )
+              }}
+            >
+              <a href='#AboutMe'>About Me</a>
+            </MenuButton>
+            <MenuButton
+              onClick={() => {
+                OpenCloseMenu(
+                  callMenu.current as HTMLDivElement,
+                  burguer.current as HTMLDivElement
+                )
+              }}
+            >
+              <a href='#MyPortfolio'>My Portfolio</a>
+            </MenuButton>
+            <MenuButton
+              onClick={() => {
+                OpenCloseMenu(
+                  callMenu.current as HTMLDivElement,
+                  burguer.current as HTMLDivElement
+                )
+              }}
+            >
+              <a href='#Contact'>Contact Me</a>
+            </MenuButton>
+          </ul>
+        </Menu>
       </Container>
       <MenuCall
         ref={burguer}
         onClick={() => {
-          BurguerMenuClick(
+          OpenCloseMenu(
             callMenu.current as HTMLDivElement,
             burguer.current as HTMLDivElement
           )

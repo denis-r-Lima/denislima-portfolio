@@ -6,6 +6,8 @@ import { FaAngleUp } from "react-icons/fa"
 import HeaderComponent from "../components/HeaderComponent/index"
 import TopMenu from "../components/TopMenu"
 import AboutMe from "../components/AboutMe"
+import Portfolio from "../components/Portfolio"
+import Contact from "../components/Contact"
 import SideMenu from "../components/SideMenu"
 import { Container , BackUp} from "../styles/index/styles"
 
@@ -21,6 +23,8 @@ export default function Home() {
         <HeaderComponent />
         <TopMenu />
         <AboutMe id="AboutMe" />
+        <Portfolio id="MyPortfolio" />
+        <Contact id="Contact"/>
         <Link href='/converter'>
           <a>Refresh the right way</a>
         </Link>
