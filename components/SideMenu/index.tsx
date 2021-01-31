@@ -56,7 +56,7 @@ const SideMenu: React.FC = () => {
                 )
               }}
             >
-              <a href='#MyPortfolio'>My Portfolio</a>
+              <a href='#Portfolio'>Portfolio</a>
             </MenuButton>
             <MenuButton
               onClick={() => {

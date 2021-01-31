@@ -16,7 +16,7 @@ export const HeaderFrame = styled.div`
 
 export const ImgFrame = styled.div`
   background-image: url("/img/myself.jpeg");
-  background-size: 100% 100%;
+  background-size: cover;
   margin: 5rem 0 0 0rem;
   padding: 0;
   border: 0.5rem solid #5B616A;

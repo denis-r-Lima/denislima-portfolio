@@ -12,7 +12,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
     <Container id={props.id ? props.id : ""}>
       <PortfolioTitle>
         <DiCodeBadge size='8rem' color='#275DAD' style={{ marginRight: "1rem" }} />
-        My Portfolio
+        Portfolio
       </PortfolioTitle>
     </Container>
   )

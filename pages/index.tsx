@@ -25,7 +25,7 @@ export default function Home() {
         <TopMenu />
         <AboutMe id="AboutMe" />
         <SkillCard />
-        <Portfolio id="MyPortfolio" />
+        <Portfolio id="Portfolio" />
         <Contact id="Contact"/>
         <BackUp><a href="#TopPage"><FaAngleUp color="#FFFFFF" /> </a> </BackUp>
       </Container>
