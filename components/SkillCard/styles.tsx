@@ -15,7 +15,7 @@ export const Card = styled.div`
   min-height: 50rem;
   position: relative;
   top: -25rem;
-  background-color: #fcf7f8;
+  background-color: #fff;
   padding: 3rem;
   border: 0.2rem solid #bbb;
   border-radius: 1rem;
