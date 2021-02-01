@@ -20,7 +20,7 @@ export const ImgFrame = styled.div`
   }
   position: relative;
   left: 7rem;
-  background-image: url("/img/myself.jpeg");
+  /* background-image: url("/img/myself.jpeg"); */
   background-size: cover;
   margin: 5rem 0 0 0rem;
   padding: 0;

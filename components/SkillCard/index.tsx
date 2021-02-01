@@ -20,6 +20,7 @@ const SkillCard: React.FC = () => {
             <ul>
               <li><p>HTML</p></li>
               <li><p>CSS</p></li>
+              <li><p>Styled-Components</p></li>
               <li><p>JavaScript</p></li>
               <li><p>TypeScript</p></li>
               <li><p>React</p></li>

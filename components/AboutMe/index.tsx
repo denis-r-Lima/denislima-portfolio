@@ -14,9 +14,10 @@ const AboutMe: React.FC<Props> = (props: Props) => {
         <FaRegComment color="#adc9f5" size="8rem" style={{marginRight:"1rem"}}/>About Me 
         </AboutTitle>
         <p>
-      Hi, I am Denis Lima,like the guy above sad =). </p>
+      Hi, I am Denis Lima, like the guy above sad =). </p>
       <p>I am a petroleum engineer who always was passionate about coding, and
-      motorcycles. Everything started a long time ago, I don't know, maybe when
+      motorcycles.</p> 
+      <p>Everything started a long time ago, I don't know, maybe when
       I was 14 or 15 years old, personal blogs was the big thing of the moment
       and I decided to build a small page to provide templates for that, few
       years later I started my bachelor degree in engineering and I learned the
