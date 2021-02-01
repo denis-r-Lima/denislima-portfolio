@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import Image from "next/image"
 
 import { HeaderFrame, ImgFrame, TextCloud } from "./styles"
 import typeText from "../../controllers/typeText/typeText"
@@ -14,9 +13,7 @@ const HeaderComponent: React.FC = () => {
 
   return (
     <HeaderFrame>
-      <ImgFrame>
-      <Image src="/img/myself.jpeg" layout="fill"/>
-      </ImgFrame>
+      <ImgFrame />
       <TextCloud id='CloudText' />
     </HeaderFrame>
   )

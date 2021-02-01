@@ -1,12 +1,15 @@
 import React from "react"
 import { DiCodeBadge } from "react-icons/di"
+import { FaGithub } from "react-icons/fa"
+import Image from "next/image"
 
 import {
   Container,
   PortfolioTitle,
   PortfolioContainer,
   PortfolioCard,
-  PortfolioDescription
+  PortfolioDescription,
+  GitButton,
 } from "./styles"
 
 interface Props {
@@ -26,27 +29,41 @@ const Portfolio: React.FC<Props> = (props: Props) => {
       </PortfolioTitle>
       <PortfolioContainer>
         <PortfolioCard>
-        <div style={{width:"25rem", height:"17.5rem", backgroundColor:"#333"}}></div>
+          <Image src='/img/projects/ez_converter.PNG' layout='fill' />
           <PortfolioDescription>
-            Coming soon!
+            Mobile app made in React Native that access one external API to
+            fetch data to get updated currency exchange rate.
+            <GitButton
+              href='https://github.com/denis-r-Lima/EZC'
+              target='_blank'
+            >
+              View on <FaGithub size='1.5rem' />
+            </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
         <PortfolioCard>
-        <div style={{width:"25rem", height:"17.5rem", backgroundColor:"#333"}}></div>
+          <Image src='/img/projects/chat_live.PNG' layout='fill' />
           <PortfolioDescription>
-            Coming soon!
+            Live Chat app made in vanila JavaScript, express and Socket.io.
+            <GitButton
+              href='https://github.com/denis-r-Lima/ChatLive'
+              target='_blank'
+            >
+              View on <FaGithub size='1.5rem' />
+            </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
         <PortfolioCard>
-        <div style={{width:"25rem", height:"17.5rem", backgroundColor:"#333"}}></div>
+          <Image src='/img/projects/portfolio.png' layout='fill' />
           <PortfolioDescription>
-            Coming soon!
-          </PortfolioDescription>
-        </PortfolioCard>
-        <PortfolioCard>
-        <div style={{width:"25rem", height:"17.5rem", backgroundColor:"#333"}}></div>
-          <PortfolioDescription>
-            Coming soon!
+            This very same web site, made using React/Next.js, TypeScript and
+            Styled-Components.
+            <GitButton
+              href='https://github.com/denis-r-Lima/denislima-portfolio'
+              target='_blank'
+            >
+              View on <FaGithub size='1.5rem' />
+            </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
       </PortfolioContainer>

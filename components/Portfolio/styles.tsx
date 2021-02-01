@@ -35,48 +35,51 @@ export const PortfolioContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+  align-self: center;
 `
 
 export const PortfolioCard = styled.div`
-  flex: 0 0 25rem;
+  flex: 0 0 35rem;
+  height: 24.5rem;
   padding: 0;
-  margin: 1rem;
-  border: 0.2rem solid rgba(170, 170, 170, 0.3);
+  margin: 0.5rem;
+  border: 0.2rem solid rgba(170, 170, 170, 0.4);
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   &:hover {
     & > div {
-      height: 17.5rem;
+      height: 24.1rem;
       opacity: 1;
-      transition: all cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.8s;
+      transition: opacity cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s,
+        height linear 0.3s;
     }
   }
 `
 
 export const PortfolioDescription = styled.div`
-@media only screen and (max-width: 450px) {
-  position: static;
-  height: 17.5rem;
-  width: 25rem;
-  opacity: 1;
-  background-color: transparent;
-  color: #5b616a;
-  }
   position: absolute;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   bottom: 0;
   left: 0;
-  width: 25rem;
+  width: 100%;
   padding: 2rem;
   margin: 0;
   opacity: 0;
   height: 0;
-  background-color: rgba(91, 97, 106, 0.4);
+  background-color: rgba(91, 97, 106, 0.9);
   transition: all cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s;
   font-size: 1.3rem;
   color: #fcf7f8;
+`
+export const GitButton = styled.a`
+  margin: 2rem;
+  align-self: center;
+  outline: none;
+  background-color: #415f8c;
+  padding: 0.7rem;
+  border: 0.1rem solid #fcf7f8;
+  border-radius: 0.5rem;
 `
