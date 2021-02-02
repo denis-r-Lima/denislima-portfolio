@@ -17,6 +17,7 @@ export const HeaderFrame = styled.div`
 export const ImgFrame = styled.div`
  @media only screen and (max-width: 450px) {
     left: 0rem;
+    margin: 5rem 0 0 0;
   }
   position: relative;
   left: 7rem;
