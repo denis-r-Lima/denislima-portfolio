@@ -2,7 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 
-import { convertFromRomans, convertToRomans } from "../../controllers/numbersConvertion/roman"
+import RomanNumerals from "../../controllers/numbersConvertion/roman"
 // import { Container } from './styles';
 
 const RomanNumbers: React.FC = () => {
@@ -20,7 +20,7 @@ const RomanNumbers: React.FC = () => {
           setNumRom(e.currentTarget.value)
         }}
       />
-      {convertFromRomans(numRom)}
+      {RomanNumerals.from(numRom)}
       <br />
       <br />
       <label>Decimal to Roman numerals</label>
@@ -30,7 +30,7 @@ const RomanNumbers: React.FC = () => {
           setNumDec(e.currentTarget.value)
         }}
       />
-      {convertToRomans(parseInt(numDec))}
+      {RomanNumerals.to(parseInt(numDec))}
       <br/>
       <Link href="/" >
          <a>Refresh the right way</a>

@@ -20,16 +20,18 @@ export default function Home() {
         <title>Hi! I am Denis Lima</title>
         <link rel='icon' href='/img/favico.ico' />
       </Head>
-      <Container>
-        <HeaderComponent />
-        <TopMenu />
-        <AboutMe id="AboutMe" />
-        <SkillCard />
-        <Portfolio id="Portfolio" />
-        <Contact id="Contact"/>
-        <BackUp><a href="#TopPage"><FaAngleUp color="#fcf7f8" /></a></BackUp>
-      </Container>
-      <SideMenu />
+      <main>
+        <Container>
+          <HeaderComponent />
+          <TopMenu />
+          <AboutMe id="AboutMe" />
+          <SkillCard />
+          <Portfolio id="Portfolio" />
+          <Contact id="Contact"/>
+          <BackUp><a href="#TopPage"><FaAngleUp color="#fcf7f8" /></a></BackUp>
+        </Container>
+        <SideMenu />
+      </main>
     </div>
   )
 }
