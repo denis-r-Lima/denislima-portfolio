@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 8rem;
   background-color: #415f8c;
   color: #fcf7f8;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: justify;
   &#AboutMe{
     padding-bottom: 30rem;
@@ -20,6 +20,12 @@ export const Container = styled.div`
   &#Contact{
     &>p{
       text-align: center;
+    &>a{
+      color: #CED3DC;
+      &:hover{
+        font-weight: bold;
+      }
+    }
     }
   }
 `

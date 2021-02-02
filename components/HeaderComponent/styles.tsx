@@ -22,11 +22,11 @@ export const ImgFrame = styled.div`
   left: 7rem;
   background-image: url("/img/myself.jpeg");
   background-size: cover;
-  margin: 5rem 0 0 0rem;
+  margin: 5rem 0 5rem 0;
   padding: 0;
   border: 0.5rem solid #5B616A;
-  width: 19rem;
-  height: 19rem;
+  width: 28rem;
+  height: 28rem;
   border-radius: 50%;
   overflow: hidden;
 `
@@ -49,5 +49,5 @@ export const TextCloud = styled.div`
   position: relative;
   top: -6rem;
   left: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 `

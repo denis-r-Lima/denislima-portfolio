@@ -13,7 +13,7 @@ const Contact: React.FC<Props> = (props: Props) => {
       <ContactTitle>
         <FaEnvelopeOpenText
           color='#adc9f5'
-          size='8rem'
+          size='7rem'
           style={{ marginRight: "1rem" }}
         />
         Contact Me

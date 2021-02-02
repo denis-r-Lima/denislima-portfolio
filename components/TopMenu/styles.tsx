@@ -3,15 +3,6 @@ import styled from "styled-components"
 export const Container = styled.nav`
   @media only screen and (max-width: 450px) {
     display: none;
-    height: 0.1rem;
-    margin: 0;
-    padding: 0;
-    margin-top: -2rem;
-    background-color: #5b616a;
-    opacity: 0.6;
-    & > ul {
-      display: none;
-    }
   }
 
   & > ul {
@@ -21,9 +12,10 @@ export const Container = styled.nav`
     justify-content: flex-end;
     align-items: center;
   }
+  
   border-bottom: 2px dashed rgba(91, 97, 106, 0.4);
   border-top: 2px dashed rgba(91, 97, 106, 0.4);
-  margin: 1.5rem 0 0 0;
+  /* margin: 1.5rem 0 0 0; */
   width: 100%;
   height: 3.5rem;
   display: flex;

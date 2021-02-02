@@ -15,3 +15,4 @@ export default function typeText(text: string, target: string) {
 
   type()
 }
+

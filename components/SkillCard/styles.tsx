@@ -25,9 +25,14 @@ export const Card = styled.div`
 
   &>h1 {
     font-size: 6rem;
+    
   }
   &>h2 {
     margin-bottom: 3rem;
+    color: #275DAD;
+  }
+  &>h3{
+    color: #415F8C;
   }
   &>ul {
     text-align: left;

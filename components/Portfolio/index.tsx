@@ -3,6 +3,8 @@ import { DiCodeBadge } from "react-icons/di"
 import { FaGithub } from "react-icons/fa"
 import Image from "next/image"
 
+
+
 import {
   Container,
   PortfolioTitle,
@@ -29,7 +31,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
       </PortfolioTitle>
       <PortfolioContainer>
         <PortfolioCard>
-          <Image src='/img/projects/ez_converter.PNG' layout='fill' />
+          <Image src='/img/projects/ez_converter.PNG' layout='fill'/>
           <PortfolioDescription>
             Mobile app made in React Native that access one external API to
             fetch data to get updated currency exchange rate.
@@ -37,7 +39,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
               href='https://github.com/denis-r-Lima/EZC'
               target='_blank'
             >
-              View on <FaGithub size='1.5rem' />
+              View on <FaGithub size='1.6rem' />
             </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
@@ -49,7 +51,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
               href='https://github.com/denis-r-Lima/ChatLive'
               target='_blank'
             >
-              View on <FaGithub size='1.5rem' />
+              View on <FaGithub size='1.6rem' />
             </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
@@ -62,7 +64,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
               href='https://github.com/denis-r-Lima/denislima-portfolio'
               target='_blank'
             >
-              View on <FaGithub size='1.5rem' />
+              View on <FaGithub size='1.6rem' />
             </GitButton>
           </PortfolioDescription>
         </PortfolioCard>

@@ -13,7 +13,6 @@ export const Container = styled.div`
   left: 3rem;
   right: 3rem;
   margin-bottom: 2rem;
-  padding: 3rem 0 0 0;
   overflow: hidden;
   border: 0.15rem dashed #5b616a;
   border-radius: 1rem;

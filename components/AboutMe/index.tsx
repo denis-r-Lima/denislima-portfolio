@@ -11,10 +11,10 @@ const AboutMe: React.FC<Props> = (props: Props) => {
   return (
     <Container id={props.id ? props.id : ""}>
         <AboutTitle>
-        <FaRegComment color="#adc9f5" size="8rem" style={{marginRight:"1rem"}}/>About Me 
+        <FaRegComment color="#adc9f5" size="7rem" style={{marginRight:"1rem"}}/>About Me 
         </AboutTitle>
         <p>
-      Hi, I am Denis Lima, like the guy above sad =). </p>
+      Hi, I am Denis Lima, like the guy above said =). </p>
       <p>I am a petroleum engineer who always was passionate about coding, and
       motorcycles.</p> 
       <p>Everything started a long time ago, I don't know, maybe when

@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 8rem;
   background-color: #fcf7f8;
   color: #5b616a;
-  font-size: 2rem;
+  font-size: 1.8rem;
   display: flex;
   flex-direction: column;
 `
@@ -47,12 +47,20 @@ export const PortfolioCard = styled.div`
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+
+  & > img {
+    transition: transform 0.3s;
+  }
+
   &:hover {
     & > div {
       height: 24.1rem;
       opacity: 1;
       transition: opacity cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s,
         height linear 0.3s;
+    }
+    & > img {
+      transform: scale(1.3);
     }
   }
 `
@@ -61,11 +69,11 @@ export const PortfolioDescription = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2rem;
+  padding: 5rem;
   margin: 0;
   opacity: 0;
   height: 0;
@@ -75,11 +83,16 @@ export const PortfolioDescription = styled.div`
   color: #fcf7f8;
 `
 export const GitButton = styled.a`
-  margin: 2rem;
   align-self: center;
   outline: none;
   background-color: #415f8c;
   padding: 0.7rem;
   border: 0.1rem solid #fcf7f8;
   border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  &>svg{
+    margin: 0.4rem;
+    
+  }
 `
