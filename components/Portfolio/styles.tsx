@@ -47,7 +47,8 @@ export const PortfolioCard = styled.div`
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
-
+  box-shadow: none;
+  transition: all linear 0.3s;
   & > img {
     transition: transform 0.3s;
   }
@@ -62,6 +63,10 @@ export const PortfolioCard = styled.div`
     & > img {
       transform: scale(1.3);
     }
+    transform: translateY(-0.5rem);
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(170, 170, 170, 0.6);
+    transition: all linear 0.3s;
+
   }
 `
 
@@ -93,6 +98,5 @@ export const GitButton = styled.a`
   align-items: center;
   &>svg{
     margin: 0.4rem;
-    
   }
 `

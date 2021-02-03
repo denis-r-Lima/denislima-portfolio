@@ -22,6 +22,20 @@ export const Card = styled.div`
   margin: 1rem;
   color: #5b616a;
   text-align: center;
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform ease-in 0.5s, opacity ease-in 0.8s;
+
+
+  &.front{
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+
+  &.back{
+    transform: translateX(40%);
+    opacity: 0;
+  }
 
   &>h1 {
     font-size: 6rem;

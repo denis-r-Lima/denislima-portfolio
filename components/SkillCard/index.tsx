@@ -7,7 +7,7 @@ import { Container , Card } from './styles';
 const SkillCard: React.FC = () => {
   return (
       <Container>
-          <Card>
+          <Card className="front Card">
             <h1>
             <MdDevices color="#275DAD" />
             </h1>
@@ -29,7 +29,7 @@ const SkillCard: React.FC = () => {
               <li><p>Git</p></li>
             </ul>
             </Card>
-          <Card>
+          <Card className="back Card">
           <h1>
             <DiDatabase color="#275DAD" />
             </h1>

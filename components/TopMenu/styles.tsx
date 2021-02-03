@@ -12,10 +12,16 @@ export const Container = styled.nav`
     justify-content: flex-end;
     align-items: center;
   }
-  
+
+  &.Sticky{
+    position:fixed;
+    top: 0;
+    z-index: 10;
+    width: calc(100% - 6.3rem);
+  }
+  background-color: #FFF;
   border-bottom: 2px dashed rgba(91, 97, 106, 0.4);
   border-top: 2px dashed rgba(91, 97, 106, 0.4);
-  /* margin: 1.5rem 0 0 0; */
   width: 100%;
   height: 3.5rem;
   display: flex;
