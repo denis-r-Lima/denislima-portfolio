@@ -5,20 +5,22 @@ export const Container = styled.nav`
     display: none;
   }
 
-  & > ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+
+  &>a{
+    &:hover {
+    color: #275DAD;
+    border: solid #275DAD;
+    border-left: 2px;
+    border-right: 2px;
+  }
+  margin: 0;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #5b616a;
+  cursor: pointer;
   }
 
-  &.Sticky{
-    position:fixed;
-    top: 0;
-    z-index: 10;
-    width: calc(100% - 6.3rem);
-  }
   background-color: #FFF;
   border-bottom: 2px dashed rgba(91, 97, 106, 0.4);
   border-top: 2px dashed rgba(91, 97, 106, 0.4);
@@ -30,17 +32,4 @@ export const Container = styled.nav`
   align-items: center;
   padding: 0;
 `
-export const ButtonItem = styled.li`
-  &:hover {
-    color: #275DAD;
-    border: solid #275DAD;
-    border-left: 2px;
-    border-right: 2px;
-  }
-  margin: 0;
-  padding: 0.5rem 0.8rem;
-  font-weight: bold;
-  font-size: 1.8rem;
-  color: #5b616a;
-  cursor: pointer;
-`
+

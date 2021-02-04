@@ -22,18 +22,17 @@ export const Card = styled.div`
   margin: 1rem;
   color: #5b616a;
   text-align: center;
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
-  transition: transform ease-in 0.5s, opacity ease-in 0.8s;
-
+  transition: transform ease-in 0.6s, opacity ease-in-out 1s;
 
   &.front{
-    transform: translateX(-40%);
+    transform: translateY(50%);
     opacity: 0;
   }
 
   &.back{
-    transform: translateX(40%);
+    transform: translateY(50%);
     opacity: 0;
   }
 
