@@ -12,25 +12,16 @@ import Contact from "../components/Contact"
 import SkillCard from "../components/SkillCard"
 import SideMenu from "../components/SideMenu"
 import { Container , BackUp} from "../styles/index/styles"
+import navigateTo from "../controllers/utils/scroll"
 
 
 export default function Home() {
 
   useEffect(()=>{
-    // const header = document.getElementById("headerFrame")
-    // const topMenu = document.getElementById("topMenu")
 
     const skillCards = document.querySelectorAll(".Card")
 
-    // const topMenuObserver = new IntersectionObserver((elements)=>{
-    //   elements.forEach(element => {
-    //     if(!element.isIntersecting){
-    //       topMenu.classList.add("Sticky")
-    //     }else if(element.isIntersecting && topMenu.classList.contains("Sticky")){
-    //       topMenu.classList.remove("Sticky")
-    //     }
-    //   })
-    // }, { })
+
 
     const skillCardsObserver = new IntersectionObserver((elements, skillCardsObserver) => {
       elements.forEach(element => {
@@ -47,7 +38,6 @@ export default function Home() {
       })
     }, {threshold: 0.5})
 
-    // topMenuObserver.observe(header)
     skillCards.forEach(skillCard =>{
       skillCardsObserver.observe(skillCard)
     })
@@ -66,7 +56,7 @@ export default function Home() {
           <SkillCard />
           <Portfolio id="Portfolio" />
           <Contact id="Contact"/>
-          <BackUp><a href="#TopPage"><FaAngleUp color="#fcf7f8" /></a></BackUp>
+          <BackUp><a href="#TopPage" onClick={(e) => navigateTo(e)}><FaAngleUp color="#fcf7f8" /></a></BackUp>
         </Container>
         <SideMenu />
     </div>

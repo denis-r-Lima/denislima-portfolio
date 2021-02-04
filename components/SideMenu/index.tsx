@@ -1,4 +1,5 @@
 import React, { useRef } from "react"
+import navigateTo from "../../controllers/utils/scroll"
 
 import { Container, Menu, MenuCall, BurguerMenu, MenuButton } from "./styles"
 
@@ -46,7 +47,7 @@ const SideMenu: React.FC = () => {
                 )
               }}
             >
-              <a href='#AboutMe'>About Me</a>
+              <a href='#AboutMe' onClick={(e) => navigateTo(e)}>About Me</a>
             </MenuButton>
             <MenuButton
               onClick={() => {
@@ -56,7 +57,7 @@ const SideMenu: React.FC = () => {
                 )
               }}
             >
-              <a href='#Portfolio'>Portfolio</a>
+              <a href='#Portfolio' onClick={(e) => navigateTo(e)}>Portfolio</a>
             </MenuButton>
             <MenuButton
               onClick={() => {
@@ -66,7 +67,7 @@ const SideMenu: React.FC = () => {
                 )
               }}
             >
-              <a href='#Contact'>Contact Me</a>
+              <a href='#Contact' onClick={(e) => navigateTo(e)}>Contact Me</a>
             </MenuButton>
           </ul>
         </Menu>

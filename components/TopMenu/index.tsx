@@ -1,23 +1,10 @@
 import React from "react"
+import navigateTo from "../../controllers/utils/scroll"
 
 import { Container, ButtonItem } from "./styles"
 
+
 const TopMenu: React.FC = () => {
-
-  const navigateTo = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-
-    const destination = e.currentTarget.getAttribute("href")
-    const targetElement = document.querySelector(destination) as HTMLDivElement
-    
-    const offsetTop = targetElement.offsetTop
-
-    scroll({
-      top: offsetTop,
-      behavior: "smooth"
-    })
-    
-  }
 
   return (
     <Container id="topMenu">
