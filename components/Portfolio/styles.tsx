@@ -63,7 +63,7 @@ export const PortfolioCard = styled.div`
     & > img {
       transform: scale(1.3);
     }
-    transform: translateY(-0.5rem);
+    transform: translateY(-0.5rem) scale(1.02);
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(170, 170, 170, 0.6);
     transition: all linear 0.3s;
 

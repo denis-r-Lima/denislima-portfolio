@@ -59,7 +59,6 @@ export default function Home() {
         <title>Hi! I am Denis Lima</title>
         <link rel='icon' href='/img/favico.ico' />
       </Head>
-      <main>
         <Container>
           <HeaderComponent />
           <TopMenu />
@@ -70,7 +69,6 @@ export default function Home() {
           <BackUp><a href="#TopPage"><FaAngleUp color="#fcf7f8" /></a></BackUp>
         </Container>
         <SideMenu />
-      </main>
     </div>
   )
 }
