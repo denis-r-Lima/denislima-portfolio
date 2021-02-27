@@ -48,6 +48,8 @@ export default function Home() {
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel='icon' href='/img/favico.ico' />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </Head>
         <Container>
           <HeaderComponent />

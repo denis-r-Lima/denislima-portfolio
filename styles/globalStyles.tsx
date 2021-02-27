@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
   *, *:before, *:after{
     padding: 0;
     margin: 0;
@@ -24,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     @media only screen and (max-width: 450px){
       background: #FCF7F8;
     }
-    width: 100vw;
+    width: 100%;
     background: #E5E5EA;
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -32,6 +34,16 @@ const GlobalStyle = createGlobalStyle`
   a {
   color: inherit;
   text-decoration: none;
+}
+
+#TopPage{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#CloudText{
+  font-family: 'Press Start 2P', cursive;
 }
 `
 

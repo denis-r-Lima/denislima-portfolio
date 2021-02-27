@@ -5,14 +5,12 @@ export const Container = styled.div`
     width: 100vw;
     margin: 0;
     border: none;
-    position: static;
     border-radius: 0;
   }
-  position: absolute;
-  top: 2rem;
-  left: 3rem;
-  right: 3rem;
-  margin-bottom: 2rem;
+  align-self: center;
+  width: 90%;
+  max-width: 1420px;
+  margin: 2rem 0 2rem 0;
   overflow: hidden;
   border: 0.15rem dashed #5b616a;
   border-radius: 1rem;
