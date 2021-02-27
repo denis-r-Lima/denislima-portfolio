@@ -20,16 +20,17 @@ export const Container = styled.nav`
   color: #5b616a;
   cursor: pointer;
   }
-
-  background-color: #FFF;
-  border-bottom: 2px dashed rgba(91, 97, 106, 0.4);
-  border-top: 2px dashed rgba(91, 97, 106, 0.4);
-  width: 100%;
+  position: fixed;
+  top:0;
+  background-color: #fcf7f8;
+  width: 90%;
+  max-width: 1420px;
   height: 3.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   padding: 0;
+  z-index: 5;
 `
 

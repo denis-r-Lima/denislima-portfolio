@@ -7,13 +7,14 @@ export const Container = styled.div`
     border: none;
     border-radius: 0;
   }
+  position: relative;
   align-self: center;
   width: 90%;
   max-width: 1420px;
-  margin: 2rem 0 2rem 0;
+  margin: 0;
   overflow: hidden;
-  border: 0.15rem dashed #5b616a;
-  border-radius: 1rem;
+  border: 0rem dashed #5b616a;
+  border-radius: 0rem;
   background-color: #fcf7f8;
   display: flex;
   flex-direction: column;
@@ -31,6 +32,7 @@ export const BackUp = styled.div`
   right: 4rem;
   background-color: #5b616a;
   border-radius: 50%;
+  border: 0.1rem solid #FFF;
   width: 4rem;
   height: 4rem;
   font-size: 3rem;
