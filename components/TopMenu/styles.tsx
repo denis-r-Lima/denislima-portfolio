@@ -23,7 +23,7 @@ export const Container = styled.nav`
   position: fixed;
   top:0;
   background-color: #fcf7f8;
-  width: 90%;
+  width: 100%;
   max-width: 1420px;
   height: 3.5rem;
   display: flex;
