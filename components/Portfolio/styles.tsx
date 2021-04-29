@@ -86,6 +86,11 @@ export const PortfolioDescription = styled.div`
   transition: all cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s;
   font-size: 1.3rem;
   color: #fcf7f8;
+
+  & ul{
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
 `
 export const GitButton = styled.a`
   align-self: center;

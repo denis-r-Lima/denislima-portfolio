@@ -68,6 +68,27 @@ const Portfolio: React.FC<Props> = (props: Props) => {
             </GitButton>
           </PortfolioDescription>
         </PortfolioCard>
+        <PortfolioCard>
+          <Image src='/img/projects/podcastr.png' layout='fill' />
+          <PortfolioDescription>
+            A podcast player app, it uses a mongoDB on a docker container to store
+            the episodes data.<br/>
+            This project was create using: 
+            <ul>
+              <li>TypeScript</li>
+              <li>MongoDB</li>
+              <li>Docker</li>
+              <li>Styled-components</li>
+              <li>Next.js</li>
+            </ul>
+            <GitButton
+              href='https://github.com/denis-r-Lima/podcastr'
+              target='_blank'
+            >
+              View on <FaGithub size='1.6rem' />
+            </GitButton>
+          </PortfolioDescription>
+        </PortfolioCard>
       </PortfolioContainer>
     </Container>
   )
