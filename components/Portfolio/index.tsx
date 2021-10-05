@@ -1,9 +1,9 @@
-import React from "react"
-import { DiCodeBadge } from "react-icons/di"
-import { FaGithub } from "react-icons/fa"
-import Image from "next/image"
+import React from "react";
+import Image from "next/image";
 
-
+import { DiCodeBadge } from "react-icons/di";
+import { FaGithub } from "react-icons/fa";
+import { PORTFOLIO } from "./utils";
 
 import {
   Container,
@@ -12,10 +12,10 @@ import {
   PortfolioCard,
   PortfolioDescription,
   GitButton,
-} from "./styles"
+} from "./styles";
 
 interface Props {
-  id?: string
+  id?: string;
 }
 
 const Portfolio: React.FC<Props> = (props: Props) => {
@@ -23,75 +23,27 @@ const Portfolio: React.FC<Props> = (props: Props) => {
     <Container id={props.id ? props.id : ""}>
       <PortfolioTitle>
         <DiCodeBadge
-          size='8rem'
-          color='#275DAD'
+          size="8rem"
+          color="#275DAD"
           style={{ marginRight: "1rem" }}
         />
         Portfolio
       </PortfolioTitle>
       <PortfolioContainer>
-        <PortfolioCard>
-          <Image src='/img/projects/ez_converter.PNG' layout='fill'/>
-          <PortfolioDescription>
-            Mobile app made in React Native that access one external API to
-            fetch data to get updated currency exchange rate.
-            <GitButton
-              href='https://github.com/denis-r-Lima/EZC'
-              target='_blank'
-            >
-              View on <FaGithub size='1.6rem' />
-            </GitButton>
-          </PortfolioDescription>
-        </PortfolioCard>
-        <PortfolioCard>
-          <Image src='/img/projects/chat_live.PNG' layout='fill' />
-          <PortfolioDescription>
-            Live Chat app made in vanila JavaScript, express and Socket.io.
-            <GitButton
-              href='https://github.com/denis-r-Lima/ChatLive'
-              target='_blank'
-            >
-              View on <FaGithub size='1.6rem' />
-            </GitButton>
-          </PortfolioDescription>
-        </PortfolioCard>
-        <PortfolioCard>
-          <Image src='/img/projects/portfolio.png' layout='fill' />
-          <PortfolioDescription>
-            This very same web site, made using React/Next.js, TypeScript and
-            Styled-Components.
-            <GitButton
-              href='https://github.com/denis-r-Lima/denislima-portfolio'
-              target='_blank'
-            >
-              View on <FaGithub size='1.6rem' />
-            </GitButton>
-          </PortfolioDescription>
-        </PortfolioCard>
-        <PortfolioCard>
-          <Image src='/img/projects/podcastr.png' layout='fill' />
-          <PortfolioDescription>
-            A podcast player app, it uses a mongoDB on a docker container to store
-            the episodes data.<br/>
-            This project was create using: 
-            <ul>
-              <li>TypeScript</li>
-              <li>MongoDB</li>
-              <li>Docker</li>
-              <li>Styled-components</li>
-              <li>Next.js</li>
-            </ul>
-            <GitButton
-              href='https://github.com/denis-r-Lima/podcastr'
-              target='_blank'
-            >
-              View on <FaGithub size='1.6rem' />
-            </GitButton>
-          </PortfolioDescription>
-        </PortfolioCard>
+        {PORTFOLIO.map((item, index) => (
+          <PortfolioCard key={`${item.img} - ${index}`}>
+            <Image src={item.img} layout="fill" />
+            <PortfolioDescription>
+              {item.description()}
+              <GitButton href={item.gitHub} target="_blank">
+                View on <FaGithub size="1.6rem" />
+              </GitButton>
+            </PortfolioDescription>
+          </PortfolioCard>
+        ))}
       </PortfolioContainer>
     </Container>
-  )
-}
+  );
+};
 
-export default Portfolio
+export default Portfolio;
