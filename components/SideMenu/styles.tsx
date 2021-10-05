@@ -76,12 +76,12 @@ export const MenuButton = styled.li`
   position: relative;
   color: #fcf7f8;
   font-size: 2.5rem;
-  padding: 1rem;
+  padding: 2rem 3rem;
   width: 100%;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   cursor: pointer;
   &::after {
     content: "";

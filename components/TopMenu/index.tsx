@@ -1,18 +1,18 @@
-import React from "react"
-import navigateTo from "../../controllers/utils/scroll"
+import React from "react";
+import navigateTo from "../../controllers/utils/scroll";
 
-import { Container } from "./styles"
-
+import { Container, LinkButton } from "./styles";
 
 const TopMenu: React.FC = () => {
-
   return (
     <Container id="topMenu">
-          <a href='#AboutMe' onClick={(e) => navigateTo(e)}> About Me</a>
-          <a href='#Portfolio' onClick={(e) => navigateTo(e)}>Portfolio</a>
-          <a href='#Contact' onClick={(e) => navigateTo(e)}> Contact</a>
+      <LinkButton onClick={() => navigateTo("#AboutMe")}> About Me</LinkButton>
+      <LinkButton onClick={() => navigateTo("#Portfolio")}>
+        Portfolio
+      </LinkButton>
+      <LinkButton onClick={() => navigateTo("#Contact")}> Contact</LinkButton>
     </Container>
-  )
-}
+  );
+};
 
-export default TopMenu
+export default TopMenu;

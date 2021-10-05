@@ -1,16 +1,12 @@
-const navigateTo = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+const navigateTo = (destination: string) => {
+  const targetElement = document.querySelector(destination) as HTMLDivElement;
 
-    const destination = e.currentTarget.getAttribute("href")
-    const targetElement = document.querySelector(destination) as HTMLDivElement
-    
-    const offsetTop = targetElement.offsetTop
+  const offsetTop = targetElement.offsetTop;
 
-    scroll({
-      top: offsetTop,
-      behavior: "smooth"
-    })
-    
-  }
+  scroll({
+    top: offsetTop,
+    behavior: "smooth",
+  });
+};
 
-  export default navigateTo
+export default navigateTo;

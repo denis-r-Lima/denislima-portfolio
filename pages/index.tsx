@@ -55,7 +55,7 @@ export default function Home() {
             }
           });
         },
-        { root: null, rootMargin: "-50%" }
+        { rootMargin: "-350px 0px 0px 0px" }
       );
 
       observer.observe(root);
@@ -97,8 +97,8 @@ export default function Home() {
         <SkillCard />
         <Portfolio id="Portfolio" />
         <Contact id="Contact" />
+        {showSideMenu && <SideMenu />}
       </Container>
-      {showSideMenu && <SideMenu />}
     </div>
   );
 }

@@ -10,6 +10,11 @@ const SideMenu: React.FC = () => {
     setIsOpen((prevState) => !prevState);
   };
 
+  const LinkClick = (target: string) => {
+    OpenCloseMenu();
+    navigateTo(target);
+  };
+
   const ClickOutMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       setIsOpen((prevState) => !prevState);
@@ -21,20 +26,14 @@ const SideMenu: React.FC = () => {
       <Container className={isOpen ? "" : "Hidden"} onClick={ClickOutMenu}>
         <Menu id="Menu">
           <ul>
-            <MenuButton onClick={OpenCloseMenu}>
-              <a href="#AboutMe" onClick={(e) => navigateTo(e)}>
-                About Me
-              </a>
+            <MenuButton onClick={() => LinkClick("#AboutMe")}>
+              About Me
             </MenuButton>
-            <MenuButton onClick={OpenCloseMenu}>
-              <a href="#Portfolio" onClick={(e) => navigateTo(e)}>
-                Portfolio
-              </a>
+            <MenuButton onClick={() => LinkClick("#Portfolio")}>
+              Portfolio
             </MenuButton>
-            <MenuButton onClick={OpenCloseMenu}>
-              <a href="#Contact" onClick={(e) => navigateTo(e)}>
-                Contact Me
-              </a>
+            <MenuButton onClick={() => LinkClick("#Contact")}>
+              Contact Me
             </MenuButton>
           </ul>
         </Menu>

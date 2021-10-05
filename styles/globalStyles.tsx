@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   *, *:before, *:after{
@@ -21,12 +21,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    @media only screen and (max-width: 450px){
-      background: #FCF7F8;
-    }
     width: 100%;
-    background: #5b616a;
     font-family: Arial, Helvetica, sans-serif;
+    background: #fcf7f8;
   }
 
   a {
@@ -43,6 +40,6 @@ const GlobalStyle = createGlobalStyle`
 #CloudText{
   font-family: 'Press Start 2P', cursive;
 }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;
