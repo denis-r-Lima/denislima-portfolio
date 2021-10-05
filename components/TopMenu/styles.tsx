@@ -1,27 +1,35 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.nav`
-  @media only screen and (max-width: 450px) {
-    display: none;
-  }
-
-
-  &>a{
+  & > a {
+    position: relative;
+    margin: 0;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #5b616a;
+    cursor: pointer;
+    border: 2px solid transparent;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      height: 2px;
+      width: 0;
+      background-color: #275dad;
+      transition: width linear 0.3s;
+    }
     &:hover {
-    color: #275DAD;
-    border: solid #275DAD;
-    border-left: 2px;
-    border-right: 2px;
-  }
-  margin: 0;
-  padding: 0.5rem 2rem;
-  font-weight: bold;
-  font-size: 1.8rem;
-  color: #5b616a;
-  cursor: pointer;
+      &::after {
+        width: 85%;
+      }
+      color: #275dad;
+    }
   }
   position: fixed;
-  top:0;
+  top: 0;
   background-color: #fcf7f8;
   width: 100%;
   max-width: 1420px;
@@ -32,5 +40,4 @@ export const Container = styled.nav`
   align-items: center;
   padding: 0;
   z-index: 5;
-`
-
+`;

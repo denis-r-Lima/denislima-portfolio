@@ -1,9 +1,6 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
-  @media only screen and (max-width: 450px) {
-    display: flex;
-  }
   &.Hidden {
     width: 0;
     background-color: transparent;
@@ -19,10 +16,10 @@ export const Container = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: flex-end;
-`
+`;
 
 export const Menu = styled.div`
   & > ul {
@@ -39,11 +36,8 @@ export const Menu = styled.div`
   transition: width linear 0.3s;
   overflow: hidden;
   padding-top: 5rem;
-`
+`;
 export const MenuCall = styled.div`
-  @media only screen and (max-width: 450px) {
-    display: flex;
-  }
   &.Selected {
     & > div {
       transition: all linear 0.3s;
@@ -61,32 +55,48 @@ export const MenuCall = styled.div`
   position: fixed;
   top: 1rem;
   right: 1rem;
-  width: 4rem;
-  height: 4rem;
-  background-color: transparent;
-  border-radius: 1rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
   z-index: 2;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #5b616a;
-`
+`;
 export const BurguerMenu = styled.div`
   height: 0.3rem;
   margin: 0.2rem;
   width: 2.5rem;
   background-color: #fcf7f8;
   transition: all linear 0.3s;
-`
+`;
 export const MenuButton = styled.li`
+  position: relative;
   color: #fcf7f8;
   font-size: 2.5rem;
   padding: 1rem;
-  border-bottom: 0.1rem solid rgba(252, 247, 248, 0.2);
   width: 100%;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    height: 2px;
+    width: 0;
+    background-color: #fff;
+    transition: width linear 0.3s;
+  }
+  &:hover {
+    &::after {
+      width: 85%;
+    }
+  }
+`;
