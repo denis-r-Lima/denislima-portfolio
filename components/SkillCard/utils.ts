@@ -16,7 +16,6 @@ export const FRONT_END_SKILLS = [
   "JavaScript",
   "TypeScript",
   "React",
-  "React",
   "Electron",
   "Git",
 ];
