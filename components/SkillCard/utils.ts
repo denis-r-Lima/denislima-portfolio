@@ -12,7 +12,7 @@ export const BACK_END_SKILLS = [
 export const FRONT_END_SKILLS = [
   "HTML",
   "CSS",
-  "Styled",
+  "Styled Component",
   "JavaScript",
   "TypeScript",
   "React",
