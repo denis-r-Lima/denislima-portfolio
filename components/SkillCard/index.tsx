@@ -4,6 +4,8 @@ import { DiDatabase } from "react-icons/di";
 
 import { Container, Card } from "./styles";
 
+import { BACK_END_SKILLS, FRONT_END_SKILLS } from "./utils";
+
 const SkillCard: React.FC = () => {
   return (
     <Container>
@@ -21,33 +23,11 @@ const SkillCard: React.FC = () => {
         <h3>Technologies</h3>
         <br />
         <ul>
-          <li>
-            <p>HTML</p>
-          </li>
-          <li>
-            <p>CSS</p>
-          </li>
-          <li>
-            <p>Styled-Components</p>
-          </li>
-          <li>
-            <p>JavaScript</p>
-          </li>
-          <li>
-            <p>TypeScript</p>
-          </li>
-          <li>
-            <p>React</p>
-          </li>
-          <li>
-            <p>React Native</p>
-          </li>
-          <li>
-            <p>Electron</p>
-          </li>
-          <li>
-            <p>Git</p>
-          </li>
+          {FRONT_END_SKILLS.map((skill) => (
+            <li key={skill}>
+              <p>{skill}</p>
+            </li>
+          ))}
         </ul>
       </Card>
       <Card className="back Card">
@@ -64,30 +44,11 @@ const SkillCard: React.FC = () => {
         <h3>Technologies</h3>
         <br />
         <ul>
-          <li>
-            <p>Node.js</p>
-          </li>
-          <li>
-            <p>Python</p>
-          </li>
-          <li>
-            <p>Flask</p>
-          </li>
-          <li>
-            <p>REST API</p>
-          </li>
-          <li>
-            <p>SQL</p>
-          </li>
-          <li>
-            <p>MongoDB</p>
-          </li>
-          <li>
-            <p>GraphQL</p>
-          </li>
-          <li>
-            <p>GCP</p>
-          </li>
+          {BACK_END_SKILLS.map((skill) => (
+            <li key={skill}>
+              <p>{skill}</p>
+            </li>
+          ))}
         </ul>
       </Card>
     </Container>

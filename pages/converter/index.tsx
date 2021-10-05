@@ -1,13 +1,11 @@
-import React from "react"
-import Link from "next/link"
+import React from "react";
+import Link from "next/link";
 
-
-import RomanNumerals from "../../controllers/numbersConvertion/roman"
-// import { Container } from './styles';
+import RomanNumerals from "../../controllers/numbersConvertion/roman";
 
 const RomanNumbers: React.FC = () => {
-  const [numRom, setNumRom] = React.useState<string>("")
-  const [numDec, setNumDec] = React.useState<string>("")
+  const [numRom, setNumRom] = React.useState<string>("");
+  const [numDec, setNumDec] = React.useState<string>("");
 
   return (
     <div>
@@ -15,9 +13,9 @@ const RomanNumbers: React.FC = () => {
       <br />
       <label>Roman numerals to Decimal</label>
       <input
-        type='text'
+        type="text"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setNumRom(e.currentTarget.value)
+          setNumRom(e.currentTarget.value);
         }}
       />
       {RomanNumerals.from(numRom)}
@@ -25,18 +23,18 @@ const RomanNumbers: React.FC = () => {
       <br />
       <label>Decimal to Roman numerals</label>
       <input
-        type='text'
+        type="text"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setNumDec(e.currentTarget.value)
+          setNumDec(e.currentTarget.value);
         }}
       />
       {RomanNumerals.to(parseInt(numDec))}
-      <br/>
-      <Link href="/" >
-         <a>Refresh the right way</a>
-       </Link>
+      <br />
+      <Link href="/">
+        <a>Refresh the right way</a>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default RomanNumbers
+export default RomanNumbers;

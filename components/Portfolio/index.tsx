@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { DiCodeBadge } from "react-icons/di";
 import { FaGithub } from "react-icons/fa";
-import { PORTFOLIO } from "./utils";
+import { PORTFOLIO as PORTFOLIO_ARR } from "./utils";
 
 import {
   Container,
@@ -30,7 +30,7 @@ const Portfolio: React.FC<Props> = (props: Props) => {
         Portfolio
       </PortfolioTitle>
       <PortfolioContainer>
-        {PORTFOLIO.map((item, index) => (
+        {PORTFOLIO_ARR.map((item, index) => (
           <PortfolioCard key={`${item.img} - ${index}`}>
             <Image src={item.img} layout="fill" />
             <PortfolioDescription>
