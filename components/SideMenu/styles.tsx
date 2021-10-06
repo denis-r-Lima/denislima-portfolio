@@ -31,8 +31,7 @@ export const Menu = styled.div`
   }
   width: 20rem;
   height: 100%;
-  background-color: #5b616a;
-  color: fcf7f8;
+  background-color: #fcf7f8;
   transition: width linear 0.3s;
   overflow: hidden;
   padding-top: 5rem;
@@ -63,20 +62,21 @@ export const MenuCall = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #5b616a;
+  background-color: #fcf7f8;
 `;
 export const BurguerMenu = styled.div`
   height: 0.3rem;
   margin: 0.2rem;
   width: 2.5rem;
-  background-color: #fcf7f8;
+  background-color: #5b616a;
   transition: all linear 0.3s;
 `;
 export const MenuButton = styled.li`
   position: relative;
-  color: #fcf7f8;
+  color: #5b616a;
   font-size: 2.5rem;
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
+  margin: 0.5rem 0;
   width: 100%;
   white-space: nowrap;
   display: flex;
@@ -91,8 +91,8 @@ export const MenuButton = styled.li`
     transform: translate(-50%, 100%);
     height: 2px;
     width: 0;
-    background-color: #fff;
-    transition: width linear 0.3s;
+    background-color: #275dad;
+    transition: width linear 0.1s;
   }
   &:hover {
     &::after {

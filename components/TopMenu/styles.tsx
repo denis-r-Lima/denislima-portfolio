@@ -34,7 +34,7 @@ export const LinkButton = styled.button`
     height: 2px;
     width: 0;
     background-color: #275dad;
-    transition: width linear 0.3s;
+    transition: width linear 0.1s;
   }
   &:hover {
     &::after {
@@ -54,6 +54,6 @@ export const LinkButton = styled.button`
     height: 0;
     width: 2px;
     background-color: #275dad;
-    transition: height linear 0.3s;
+    transition: height linear 0.1s;
   }
 `;
