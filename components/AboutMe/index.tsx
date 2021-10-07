@@ -19,10 +19,12 @@ const AboutMe: React.FC<Props> = (props: Props) => {
         About Me
       </AboutTitle>
       <p>Hi, I am Denis Lima, like the guy above said =).</p>
+      <br />
       <p>
         I am a petroleum engineer who always was passionate about coding, and
         motorcycles.
       </p>
+      <br />
       <p>
         Everything started a long time ago, I don't know, maybe when I was 14 or
         15 years old, personal blogs were the big thing of the moment and I
@@ -30,6 +32,7 @@ const AboutMe: React.FC<Props> = (props: Props) => {
         later I started my bachelor degree in engineering and I learned the
         basics of software development, using C.
       </p>
+      <br />
       <p>
         After I finished my degree I started my professional carrier, and it
         bothered me that simple tasks could be made easier and more efficient
@@ -37,10 +40,12 @@ const AboutMe: React.FC<Props> = (props: Props) => {
         team, and the more I studied about software development the more I fell
         in love for the subject.
       </p>
+      <br />
       <p>
         Now, after several years working in the oil {`&`} gas industry, I am
         ready to start a new carrier as a software developer.
       </p>
+      <br />
     </Container>
   );
 };

@@ -15,7 +15,7 @@ const SkillCard: React.FC = () => {
         </h1>
         <h2>Front-end Developer</h2>
         <p>
-          I like to build apps from scratch, and enjoy seeing ideas becoming
+          I like to build apps from scratch and enjoy seeing ideas becoming
           reality.
         </p>
         <br />
@@ -36,8 +36,8 @@ const SkillCard: React.FC = () => {
         </h1>
         <h2>Back-end Developer</h2>
         <p>
-          I value simple and well built back-end in which the front-end can rely
-          on.
+          I value a simple and well-built back-end on which the front end can
+          rely.
         </p>
         <br />
         <br />

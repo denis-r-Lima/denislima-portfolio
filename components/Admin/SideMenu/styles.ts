@@ -22,14 +22,19 @@ export const AdminButton = styled.button`
   text-align: left;
   font-size: 1.5rem;
   border-radius: 10rem;
-  &.Current {
-    background-color: #fefefe;
-    color: #333;
-  }
-
   &:hover {
     color: #333;
     background-color: #f1f1f1;
+  }
+
+  &.Current {
+    background-color: #fefefe;
+    color: #333;
+    cursor: default;
+
+    &:hover {
+      background-color: #fefefe;
+    }
   }
 `;
 

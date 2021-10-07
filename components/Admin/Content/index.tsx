@@ -1,9 +1,4 @@
-import React, {
-  InputHTMLAttributes,
-  TextareaHTMLAttributes,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import {
   collection,
   getFirestore,
@@ -14,8 +9,9 @@ import {
 
 import app from "../../../controllers/utils/firebase";
 
-import { Container, AboutTextArea } from "./styles";
+import { Container, AboutTextArea, StyledInput, SaveButton } from "./styles";
 import { useLoading } from "../../../context/LoadingContext";
+import SkillCardContent from "./SkillsContent";
 
 const Content: React.FC = () => {
   const [pageContent, setPageContent] = useState<ContentType>(
@@ -58,23 +54,53 @@ const Content: React.FC = () => {
     }
   };
 
+  const nestedOnChange =
+    (nest: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setPageContent((prevState) => ({
+        ...prevState,
+        [nest]: { ...prevState[nest], [name]: value },
+      }));
+    };
+
   useEffect(() => {
     fetchFromStore();
   }, []);
+
+  console.log(pageContent);
   return (
     <Container>
       {pageContent && (
         <>
-          <label>About Me</label>
-          <AboutTextArea
-            rows={10}
-            value={pageContent.about}
-            name="about"
-            onChange={onChange}
+          <div>
+            <label>About Me</label>
+            <AboutTextArea
+              rows={15}
+              value={pageContent.about || ""}
+              name="about"
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <label>Email</label>
+            <StyledInput
+              value={pageContent.email || ""}
+              name="email"
+              onChange={onChange}
+            />
+          </div>
+          <SkillCardContent
+            skill={pageContent.frontEnd}
+            onChange={nestedOnChange("frontEnd")}
           />
-          <label>Email</label>
-          <input value={pageContent.email} name="email" onChange={onChange} />
-          <button onClick={saveContent}>Save</button>
+          <SkillCardContent
+            skill={pageContent.backEnd}
+            onChange={nestedOnChange("backEnd")}
+          />
+          <div>
+            <SaveButton onClick={saveContent}>Save</SaveButton>
+          </div>
         </>
       )}
     </Container>
