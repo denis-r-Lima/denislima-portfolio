@@ -20,12 +20,14 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
   };
 
   const onAdd = () => {
-    const updatedTech = [...skill.technologies, newTech];
-    const e = {
-      target: { name: "technologies", value: updatedTech },
-    } as unknown as React.ChangeEvent<HTMLInputElement>;
-    onChange(e);
-    setNewTech("");
+    if (newTech.length > 0) {
+      const updatedTech = [...skill.technologies, newTech];
+      const e = {
+        target: { name: "technologies", value: updatedTech },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+      onChange(e);
+      setNewTech("");
+    }
   };
 
   return (

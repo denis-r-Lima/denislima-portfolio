@@ -1,7 +1,7 @@
 import AdminWrapper from "../../../components/Admin/AdminWrapper";
 import ContentPage from "../../../components/Admin/Content";
 
-const Test: React.FC = () => {
+const Content: React.FC = () => {
   return (
     <AdminWrapper>
       <ContentPage />
@@ -9,4 +9,4 @@ const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default Content;

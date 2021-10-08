@@ -83,7 +83,7 @@ export const AddButton = styled.button`
   width: 3rem;
   outline: none;
   border: none;
-  border-radius: 50%;
+  border-radius: 10rem;
   margin: 0 1rem;
   color: #fff;
   font-size: 2rem;

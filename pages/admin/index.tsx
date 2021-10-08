@@ -1,13 +1,9 @@
 import { useRouter } from "next/router";
-import React, { useLayoutEffect } from "react";
-
-import AdminWrapper from "../../components/Admin/AdminWrapper";
-
-// import { Container } from './styles';
+import React, { useEffect } from "react";
 
 const AdminPage: React.FC = () => {
   const router = useRouter();
-  useLayoutEffect(() => {
+  useEffect(() => {
     router.push("/admin/content");
   }, []);
   return <div></div>;

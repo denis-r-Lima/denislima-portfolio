@@ -9,9 +9,16 @@ import {
 
 import app from "../../../controllers/utils/firebase";
 
-import { Container, AboutTextArea, StyledInput, SaveButton } from "./styles";
+import {
+  Container,
+  AboutTextArea,
+  StyledInput,
+  SaveButton,
+  AddButton,
+} from "./styles";
 import { useLoading } from "../../../context/LoadingContext";
 import SkillCardContent from "./SkillsContent";
+import { fetchApi, updateData } from "../../../controllers/utils/fetchDatabase";
 
 const Content: React.FC = () => {
   const [pageContent, setPageContent] = useState<ContentType>(
@@ -20,18 +27,17 @@ const Content: React.FC = () => {
   const { setLoadingData } = useLoading();
 
   const fetchFromStore = async () => {
-    const db = getFirestore(app);
-    const pageCollection = collection(db, "pageContent");
     try {
       setLoadingData(true);
-      const result = await getDocs(pageCollection);
+      const result = await fetchApi("pageContent");
       setPageContent({
         ...result.docs[0].data(),
         id: result.docs[0].id,
       } as ContentType);
-      setLoadingData(false);
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoadingData(false);
     }
   };
 
@@ -43,14 +49,13 @@ const Content: React.FC = () => {
   };
 
   const saveContent = async () => {
-    const db = getFirestore(app);
-    const pageCollection = collection(db, "pageContent");
     try {
       setLoadingData(true);
-      await updateDoc(doc(pageCollection, pageContent.id), pageContent);
-      setLoadingData(false);
+      await updateData("pageContent", pageContent);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoadingData(false);
     }
   };
 
