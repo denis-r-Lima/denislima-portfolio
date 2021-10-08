@@ -31,7 +31,7 @@ export const Menu = styled.div`
   }
   width: 20rem;
   height: 100%;
-  background-color: #fcf7f8;
+  background-color: #fcfcfc;
   transition: width linear 0.3s;
   overflow: hidden;
   padding-top: 5rem;
@@ -62,15 +62,18 @@ export const MenuCall = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fcf7f8;
+  background-color: #fcfcfc;
 `;
+
 export const BurguerMenu = styled.div`
   height: 0.3rem;
   margin: 0.2rem;
   width: 2.5rem;
   background-color: #5b616a;
   transition: all linear 0.3s;
+  border-radius: 10rem;
 `;
+
 export const MenuButton = styled.li`
   position: relative;
   color: #5b616a;

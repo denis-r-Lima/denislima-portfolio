@@ -68,7 +68,6 @@ const Content: React.FC = () => {
     fetchFromStore();
   }, []);
 
-  console.log(pageContent);
   return (
     <Container>
       {pageContent && (

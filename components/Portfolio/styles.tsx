@@ -6,7 +6,6 @@ export const Container = styled.div`
   }
   position: relative;
   padding: 8rem;
-  background-color: #fcf7f8;
   color: #5b616a;
   font-size: 1.8rem;
   display: flex;

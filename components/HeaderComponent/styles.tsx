@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderFrame = styled.div`
   @media only screen and (max-width: 450px) {
@@ -12,10 +12,10 @@ export const HeaderFrame = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ImgFrame = styled.div`
- @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 450px) {
     left: 0rem;
     margin: 5rem 0 0 0;
   }
@@ -25,12 +25,12 @@ export const ImgFrame = styled.div`
   background-size: cover;
   margin: 5rem 0 5rem 0;
   padding: 0;
-  border: 0.5rem solid #5B616A;
+  border: 0.5rem solid #5b616a;
   width: 28rem;
   height: 28rem;
   border-radius: 50%;
   overflow: hidden;
-`
+`;
 
 export const TextCloud = styled.div`
   @media only screen and (max-width: 450px) {
@@ -51,4 +51,5 @@ export const TextCloud = styled.div`
   top: -6rem;
   left: 1rem;
   font-size: 1.4rem;
-`
+  line-height: 1.4;
+`;

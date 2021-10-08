@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.nav`
   position: fixed;
   top: 0;
-  background-color: #fcf7f8;
+  background-color: transparent;
   width: 100%;
   max-width: 1420px;
   height: 3.5rem;

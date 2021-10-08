@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    background: #fcf7f8;
+    background: #f1f1f1;
   }
 
   a {

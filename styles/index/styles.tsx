@@ -13,7 +13,7 @@ export const Container = styled.div`
   max-width: 1420px;
   margin: 0;
   overflow: hidden;
-  background-color: #fcf7f8;
+  background-color: #fcfcfc;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
