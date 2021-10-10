@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
@@ -9,9 +9,14 @@ import { useLoading } from "../../context/LoadingContext";
 import Loading from "./Loading";
 
 const AdminWrapper: React.FC = ({ children }) => {
+  const [isHidden, setIsHidden] = useState<boolean>(false);
   const { authUser, loading, signOut } = useAuth();
   const { loadingData } = useLoading();
   const router = useRouter();
+
+  useEffect(() => {
+    setIsHidden(window.innerWidth <= 450);
+  }, []);
 
   useEffect(() => {
     if (!loading && !authUser) router.push("/admin/login");
@@ -30,7 +35,7 @@ const AdminWrapper: React.FC = ({ children }) => {
       {loading && <h1>Loading</h1>}
       {!loading && authUser && (
         <Container>
-          <SideMenu />
+          <SideMenu isHidden={isHidden} />
           {children}
         </Container>
       )}

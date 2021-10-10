@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 20vw;
   height: 100vh;
   background-color: #eee;
   padding: 2rem 1rem;
   border-right: 1px solid #aaa;
   display: flex;
   flex-direction: column;
+  transition: transform linear 0.3s;
+  &.Hidden {
+    transform: translateX(-100%);
+  }
+
+  @media only screen and (max-width: 450px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25rem;
+    max-width: 50%;
+  }
 `;
 
 export const AdminButton = styled.button`

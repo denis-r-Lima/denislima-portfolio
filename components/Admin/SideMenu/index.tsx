@@ -5,6 +5,10 @@ import { useRouter } from "next/router";
 import { Container, AdminButton, SignOutButton } from "./styles";
 import { useAuth } from "../../../context/AuthContext";
 
+type SideMenuProps = {
+  isHidden: boolean;
+};
+
 type MenuItemType = {
   url: string;
   label: string;
@@ -21,11 +25,11 @@ const MENU_ITEMS: MenuItemType[] = [
   },
 ];
 
-const SideMenu: React.FC = () => {
+const SideMenu: React.FC<SideMenuProps> = ({ isHidden }) => {
   const router = useRouter();
   const { signOut } = useAuth();
   return (
-    <Container>
+    <Container className={isHidden && "Hidden"}>
       {MENU_ITEMS.map((item) => (
         <Link href={item.url} key={item.url}>
           <AdminButton className={router.pathname === item.url && "Current"}>

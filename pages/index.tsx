@@ -134,6 +134,6 @@ export async function getStaticProps(
   }
   return {
     props: { content, portfolio },
-    revalidate: 24 * 60 * 60, // Every day
+    revalidate: 24 * 60 * 60, // Every 24h
   };
 }

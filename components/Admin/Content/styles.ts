@@ -59,6 +59,11 @@ export const StyledInput = styled.input`
   &:focus {
     border: 2px solid ${lighterColor};
   }
+
+  @media only screen and (max-width: 450px) {
+    width: 100%;
+    min-width: 0;
+  }
 `;
 
 export const SaveButton = styled.button`

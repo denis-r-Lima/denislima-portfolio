@@ -1,23 +1,36 @@
 import React from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { PortfolioCardContainer } from "./styles";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
+
+import { IconButton, PortfolioCardContainer } from "./styles";
 
 type PortfolioCardProps = {
   item: PortfolioItemType;
   onDelete: () => void;
+  selectEdit: () => void;
 };
 
-const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onDelete }) => {
+const PortfolioCard: React.FC<PortfolioCardProps> = ({
+  item,
+  onDelete,
+  selectEdit,
+}) => {
   return (
     <PortfolioCardContainer>
       <div>
-        <img src={item.image} width="100%" />
+        <Image src={item.image} width="300" height="200" />
       </div>
       <div>
         <ReactMarkdown children={item.description} />
       </div>
       <div>
-        <button onClick={onDelete}>Delete</button>
+        <IconButton onClick={onDelete}>
+          <FiTrash2 />
+        </IconButton>
+        <IconButton onClick={selectEdit}>
+          <FiEdit2 />
+        </IconButton>
       </div>
     </PortfolioCardContainer>
   );

@@ -6,8 +6,8 @@ export const Container = styled.div`
     background-color: transparent;
     transition: width linear 0.8s;
     & > #Menu {
-      width: 0;
-      transition: width linear 0.3s;
+      transform: translateX(100%);
+      transition: transform linear 0.3s;
     }
   }
   position: fixed;
@@ -32,10 +32,11 @@ export const Menu = styled.div`
   width: 20rem;
   height: 100%;
   background-color: #fcfcfc;
-  transition: width linear 0.3s;
+  transition: transform linear 0.3s;
   overflow: hidden;
   padding-top: 5rem;
 `;
+
 export const MenuCall = styled.div`
   &.Selected {
     & > div {
@@ -65,7 +66,7 @@ export const MenuCall = styled.div`
   background-color: #fcfcfc;
 `;
 
-export const BurguerMenu = styled.div`
+export const BurgerMenu = styled.span`
   height: 0.3rem;
   margin: 0.2rem;
   width: 2.5rem;

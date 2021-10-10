@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import navigateTo from "../../../controllers/utils/scroll";
 
-import { Container, Menu, MenuCall, BurguerMenu, MenuButton } from "./styles";
+import { Container, Menu, MenuCall, BurgerMenu, MenuButton } from "./styles";
 
 const SideMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -23,7 +23,7 @@ const SideMenu: React.FC = () => {
 
   return (
     <>
-      <Container className={isOpen ? "" : "Hidden"} onClick={ClickOutMenu}>
+      <Container className={!isOpen && "Hidden"} onClick={ClickOutMenu}>
         <Menu id="Menu">
           <ul>
             <MenuButton onClick={() => LinkClick("#AboutMe")}>
@@ -38,10 +38,10 @@ const SideMenu: React.FC = () => {
           </ul>
         </Menu>
       </Container>
-      <MenuCall className={isOpen ? "Selected" : ""} onClick={OpenCloseMenu}>
-        <BurguerMenu id="Top" />
-        <BurguerMenu id="Middle" />
-        <BurguerMenu id="Bottom" />
+      <MenuCall className={isOpen && "Selected"} onClick={OpenCloseMenu}>
+        <BurgerMenu id="Top" />
+        <BurgerMenu id="Middle" />
+        <BurgerMenu id="Bottom" />
       </MenuCall>
     </>
   );
