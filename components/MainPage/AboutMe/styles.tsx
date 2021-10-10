@@ -1,12 +1,12 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
- @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 450px) {
     padding: 2rem;
   }
-  &>p{
-      text-indent: 2rem;
-      line-height: 3rem;
+  & > p {
+    text-indent: 2rem;
+    line-height: 3rem;
   }
   position: relative;
   padding: 8rem;
@@ -14,24 +14,24 @@ export const Container = styled.div`
   color: #fcf7f8;
   font-size: 1.8rem;
   text-align: justify;
-  &#AboutMe{
+  &#AboutMe {
     padding-bottom: 30rem;
   }
-  &#Contact{
-    &>p{
+  &#Contact {
+    & > p {
       text-align: center;
-    &>a{
-      color: #CED3DC;
-      &:hover{
-        font-weight: bold;
+      & > a {
+        color: #ced3dc;
+        &:hover {
+          font-weight: bold;
+        }
       }
     }
-    }
   }
-`
+`;
 
 export const AboutTitle = styled.h1`
-@media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 450px) {
     top: -1rem;
     left: -1rem;
   }
@@ -42,4 +42,8 @@ export const AboutTitle = styled.h1`
   flex-direction: row;
   align-items: center;
   margin: 0rem 0 2rem 0;
-`
+`;
+
+export const AboutContent = styled.div`
+  white-space: pre-wrap;
+`;

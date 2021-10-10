@@ -97,8 +97,3 @@ export const AddButton = styled.button`
     background-color: ${secondaryLighter};
   }
 `;
-
-// export const TestDiv = styled.div`
-//   white-space: pre-wrap;  Breaks line when it finds a \n
-//   font-size: 1.5rem;
-// `;

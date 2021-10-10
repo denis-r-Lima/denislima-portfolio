@@ -1,16 +1,23 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-import HeaderComponent from "../components/HeaderComponent/index";
-import TopMenu from "../components/TopMenu";
-import AboutMe from "../components/AboutMe";
-import Portfolio from "../components/Portfolio";
-import Contact from "../components/Contact";
-import SkillCard from "../components/SkillCard";
-import SideMenu from "../components/SideMenu";
+import HeaderComponent from "../components/MainPage/HeaderComponent/index";
+import TopMenu from "../components/MainPage/TopMenu";
+import AboutMe from "../components/MainPage/AboutMe";
+import Portfolio from "../components/MainPage/Portfolio";
+import Contact from "../components/MainPage/Contact";
+import SkillCard from "../components/MainPage/SkillCard";
+import SideMenu from "../components/MainPage/SideMenu";
 import { Container } from "../styles/index/styles";
+import { fetchApi } from "../controllers/utils/fetchDatabase";
+import { GetStaticPropsResult } from "next";
 
-export default function Home() {
+type HomeProps = {
+  content: ContentType;
+  portfolio: PortfolioItemType[];
+};
+
+const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -93,12 +100,40 @@ export default function Home() {
       <Container>
         {!showSideMenu && <TopMenu />}
         <HeaderComponent />
-        <AboutMe id="AboutMe" />
-        <SkillCard />
-        <Portfolio id="Portfolio" />
-        <Contact id="Contact" />
+        <AboutMe id="AboutMe" content={content.about} />
+        <SkillCard content={content} />
+        <Portfolio id="Portfolio" portfolio={portfolio} />
+        <Contact id="Contact" email={content.email} />
         {showSideMenu && <SideMenu />}
       </Container>
     </div>
   );
+};
+
+export default Home;
+
+export async function getStaticProps(
+  context
+): Promise<GetStaticPropsResult<HomeProps>> {
+  let content = {} as ContentType;
+  let portfolio = [] as PortfolioItemType[];
+  try {
+    const resultContent = await fetchApi("pageContent");
+    const resultPortfolio = await fetchApi("portfolioItems");
+    if (resultContent.docs) {
+      content = resultContent.docs[0].data() as ContentType;
+      delete content.id;
+    }
+    if (resultPortfolio.docs) {
+      const portfolioResponse =
+        resultPortfolio.docs[0].data() as PortfolioFetchResponseType;
+      portfolio = portfolioResponse?.items;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return {
+    props: { content, portfolio },
+    revalidate: 24 * 60 * 60, // Every day
+  };
 }

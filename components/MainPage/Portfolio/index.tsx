@@ -13,9 +13,11 @@ import {
   PortfolioDescription,
   GitButton,
 } from "./styles";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   id?: string;
+  portfolio: PortfolioItemType[];
 }
 
 const Portfolio: React.FC<Props> = (props: Props) => {
@@ -30,11 +32,11 @@ const Portfolio: React.FC<Props> = (props: Props) => {
         Portfolio
       </PortfolioTitle>
       <PortfolioContainer>
-        {PORTFOLIO_ARR.map((item, index) => (
-          <PortfolioCard key={`${item.img} - ${index}`}>
-            <Image src={item.img} layout="fill" />
+        {props.portfolio?.map((item, index) => (
+          <PortfolioCard key={`${item.image} - ${index}`}>
+            <Image src={item.image} layout="fill" />
             <PortfolioDescription>
-              {item.description()}
+              <ReactMarkdown children={item.description} />
               <GitButton href={item.gitHub} target="_blank">
                 View on <FaGithub size="1.6rem" />
               </GitButton>

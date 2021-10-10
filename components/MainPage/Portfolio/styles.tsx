@@ -38,8 +38,8 @@ export const PortfolioContainer = styled.div`
 `;
 
 export const PortfolioCard = styled.div`
-  flex: 0 0 47rem;
-  height: 35rem;
+  flex: 0 0 45rem;
+  height: 30rem;
   padding: 0;
   margin: 0.5rem;
   border: 0.2rem solid rgba(170, 170, 170, 0.4);
@@ -54,7 +54,7 @@ export const PortfolioCard = styled.div`
 
   &:hover {
     & > div {
-      height: 35rem;
+      height: 30rem;
       opacity: 1;
       transition: opacity cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s,
         height linear 0.3s;
