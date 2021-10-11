@@ -11,6 +11,7 @@ import TopMenu from "../components/MainPage/TopMenu";
 
 import { Container } from "../styles/index/styles";
 import { GetStaticPropsResult } from "next";
+import { fetchApi } from "../controllers/utils/fetchDatabase";
 
 type HomeProps = {
   content: ContentType;
@@ -113,25 +114,25 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
 export default Home;
 
 export async function getStaticProps(
-  _context: any
+  _context
 ): Promise<GetStaticPropsResult<HomeProps>> {
   let content = {} as ContentType;
   let portfolio = [] as PortfolioItemType[];
   try {
-    const contentFetch = fetch(
-      "http://https://denis-lima.vercel.app/api/content_handler"
-    );
-    const portfolioFetch = fetch(
-      "http://https://denis-lima.vercel.app/api/portfolio_handler"
-    );
-    const result = await Promise.all([contentFetch, portfolioFetch]);
-    content = await result[0].json();
-    portfolio = (await result[1].json()).items;
-    delete content.id;
+    const resultContent = await fetchApi("pageContent");
+    const resultPortfolio = await fetchApi("portfolioItems");
+    if (resultContent.docs) {
+      content = resultContent.docs[0].data() as ContentType;
+      delete content.id;
+    }
+    if (resultPortfolio.docs) {
+      const portfolioResponse =
+        resultPortfolio.docs[0].data() as PortfolioFetchResponseType;
+      portfolio = portfolioResponse?.items;
+    }
   } catch (e) {
     console.log(e);
   }
-  console.log({ content, portfolio });
   return {
     props: { content, portfolio },
     revalidate: 24 * 60 * 60, // Every 24h

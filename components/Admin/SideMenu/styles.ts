@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   transition: transform linear 0.3s;
+  z-index: 99;
   &.Hidden {
     transform: translateX(-100%);
   }
@@ -65,6 +66,7 @@ export const BurgerContainer = styled.div`
   justify-content: center;
   @media only screen and (max-width: 450px) {
     display: flex;
+    z-index: 100;
   }
 `;
 
