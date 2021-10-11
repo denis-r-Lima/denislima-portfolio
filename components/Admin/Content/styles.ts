@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-const mainColor = "hsl(204, 70%, 55%)";
-const lighterColor = "hsl(204, 70%, 70%)";
-
-const secondaryColor = "hsl(24, 90%, 55%)";
-const secondaryLighter = "hsl(24, 90%, 70%)";
-
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -31,7 +25,7 @@ export const AboutTextArea = styled.textarea`
   font-size: 1.5rem;
   resize: none;
   outline: none;
-  border: 2px solid ${mainColor};
+  border: 2px solid ${(props) => props.theme.pallet.color.primary};
   border-radius: 1rem;
   overflow: hidden;
 
@@ -42,7 +36,7 @@ export const AboutTextArea = styled.textarea`
   transition: all linear 1s;
 
   &:focus {
-    border: 2px solid ${lighterColor};
+    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
   }
 `;
 
@@ -52,12 +46,12 @@ export const StyledInput = styled.input`
   font-size: 1.5rem;
   padding: 1rem;
   outline: none;
-  border: 2px solid ${mainColor};
+  border: 2px solid ${(props) => props.theme.pallet.color.primary};
   border-radius: 1rem;
   transition: all linear 1s;
 
   &:focus {
-    border: 2px solid ${lighterColor};
+    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
   }
 
   @media only screen and (max-width: 450px) {
@@ -73,13 +67,13 @@ export const SaveButton = styled.button`
   color: #fff;
   font-size: 1.4rem;
   padding: 1rem 5rem;
-  background-color: ${mainColor};
+  background-color: ${(props) => props.theme.pallet.color.primary};
   justify-self: center;
   cursor: pointer;
   transition: background-color linear 0.5s;
   align-self: flex-end;
   &:hover {
-    background-color: ${lighterColor};
+    background-color: ${(props) => props.theme.pallet.color.primaryLight};
   }
 `;
 
@@ -92,13 +86,13 @@ export const AddButton = styled.button`
   margin: 0 1rem;
   color: #fff;
   font-size: 2rem;
-  background-color: ${secondaryColor};
+  background-color: ${(props) => props.theme.pallet.color.secondary};
   justify-self: center;
   cursor: pointer;
   transition: background-color linear 0.5s;
   align-self: flex-start;
   margin-bottom: 1rem;
   &:hover {
-    background-color: ${secondaryLighter};
+    background-color: ${(props) => props.theme.pallet.color.secondaryLight};
   }
 `;

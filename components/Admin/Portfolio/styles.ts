@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const mainColor = "hsl(204, 70%, 55%)";
-const lighterColor = "hsl(204, 70%, 70%)";
-
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -28,12 +25,12 @@ export const StyledInput = styled.input`
   font-size: 1.5rem;
   padding: 1rem;
   outline: none;
-  border: 2px solid ${mainColor};
+  border: 2px solid ${(props) => props.theme.pallet.color.primary};
   border-radius: 1rem;
   transition: all linear 1s;
 
   &:focus {
-    border: 2px solid ${lighterColor};
+    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
   }
 
   @media only screen and (max-width: 450px) {
@@ -48,7 +45,7 @@ export const StyledTextArea = styled.textarea`
   font-size: 1.5rem;
   resize: none;
   outline: none;
-  border: 2px solid ${mainColor};
+  border: 2px solid ${(props) => props.theme.pallet.color.primary};
   border-radius: 1rem;
   overflow: hidden;
 
@@ -59,7 +56,7 @@ export const StyledTextArea = styled.textarea`
   transition: all linear 1s;
 
   &:focus {
-    border: 2px solid ${lighterColor};
+    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
   }
 `;
 
@@ -70,13 +67,13 @@ export const SaveButton = styled.button`
   color: #fff;
   font-size: 1.4rem;
   padding: 1rem 5rem;
-  background-color: ${mainColor};
+  background-color: ${(props) => props.theme.pallet.color.primary};
   justify-self: center;
   cursor: pointer;
   transition: background-color linear 0.5s;
   align-self: flex-end;
   &:hover {
-    background-color: ${lighterColor};
+    background-color: ${(props) => props.theme.pallet.color.primaryLight};
   }
 `;
 
@@ -114,6 +111,7 @@ export const IconButton = styled.button`
   outline: none;
   border: none;
   font-size: 1.8rem;
+  background-color: transparent;
 `;
 
 export const ModalContainer = styled.div`
