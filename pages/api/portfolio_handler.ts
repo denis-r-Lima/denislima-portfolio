@@ -14,6 +14,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       ),
     });
   }
+
   if (request.method === "GET") {
     const db = admin.firestore();
     try {
@@ -25,6 +26,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       return response.status(404).send("Collection not found!");
     }
   }
+
   if (request.method === "PUT") {
     const { token, data } = JSON.parse(request.body);
     const id = data.id;
