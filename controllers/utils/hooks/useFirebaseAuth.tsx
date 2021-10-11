@@ -1,7 +1,7 @@
 import { User } from "@firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const formatAuthUser = (user: User) => ({
   uid: user.uid,

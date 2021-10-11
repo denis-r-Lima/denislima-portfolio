@@ -17,14 +17,14 @@ const SkillCard: React.FC<SkillCardProps> = ({ content }) => {
         <h1>
           <MdDevices color="#275DAD" />
         </h1>
-        <h2>{frontEnd.title}</h2>
-        <p>{frontEnd.description}</p>
+        <h2>{frontEnd?.title}</h2>
+        <p>{frontEnd?.description}</p>
         <br />
         <br />
         <h3>Technologies</h3>
         <br />
         <ul>
-          {frontEnd.technologies.map((skill) => (
+          {frontEnd?.technologies.map((skill) => (
             <li key={skill}>
               <p>{skill}</p>
             </li>
@@ -35,14 +35,14 @@ const SkillCard: React.FC<SkillCardProps> = ({ content }) => {
         <h1>
           <DiDatabase color="#275DAD" />
         </h1>
-        <h2>{backEnd.title}</h2>
-        <p>{backEnd.description}</p>
+        <h2>{backEnd?.title}</h2>
+        <p>{backEnd?.description}</p>
         <br />
         <br />
         <h3>Technologies</h3>
         <br />
         <ul>
-          {backEnd.technologies.map((skill) => (
+          {backEnd?.technologies.map((skill) => (
             <li key={skill}>
               <p>{skill}</p>
             </li>

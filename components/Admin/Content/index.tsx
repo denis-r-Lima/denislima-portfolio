@@ -1,39 +1,24 @@
 import React, { useEffect, useState } from "react";
-import {
-  collection,
-  getFirestore,
-  getDocs,
-  updateDoc,
-  doc,
-} from "firebase/firestore";
+import { getIdToken, getAuth } from "firebase/auth";
 
-import app from "../../../controllers/utils/firebase";
-
-import {
-  Container,
-  AboutTextArea,
-  StyledInput,
-  SaveButton,
-  AddButton,
-} from "./styles";
+import { Container, AboutTextArea, StyledInput, SaveButton } from "./styles";
 import { useLoading } from "../../../context/LoadingContext";
 import SkillCardContent from "./SkillsContent";
-import { fetchApi, updateData } from "../../../controllers/utils/fetchDatabase";
 
 const Content: React.FC = () => {
   const [pageContent, setPageContent] = useState<ContentType>(
     {} as ContentType
   );
   const { setLoadingData } = useLoading();
+  const auth = getAuth();
 
   const fetchFromStore = async () => {
     try {
       setLoadingData(true);
-      const result = await fetchApi("pageContent");
-      setPageContent({
-        ...result.docs[0].data(),
-        id: result.docs[0].id,
-      } as ContentType);
+      const result = await fetch("/api/content_handler");
+      if (result.status !== 200) throw new Error();
+      const data = await result.json();
+      setPageContent(data as ContentType);
     } catch (e) {
       console.error(e);
     } finally {
@@ -49,9 +34,13 @@ const Content: React.FC = () => {
   };
 
   const saveContent = async () => {
+    const token = await getIdToken(auth.currentUser);
     try {
       setLoadingData(true);
-      await updateData("pageContent", pageContent);
+      await fetch("/api/content_handler", {
+        method: "PUT",
+        body: JSON.stringify({ data: pageContent, token }),
+      });
     } catch (e) {
       console.log(e);
     } finally {

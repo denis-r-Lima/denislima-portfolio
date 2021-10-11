@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-import HeaderComponent from "../components/MainPage/HeaderComponent/index";
-import TopMenu from "../components/MainPage/TopMenu";
 import AboutMe from "../components/MainPage/AboutMe";
-import Portfolio from "../components/MainPage/Portfolio";
 import Contact from "../components/MainPage/Contact";
+import HeaderComponent from "../components/MainPage/HeaderComponent/index";
+import Portfolio from "../components/MainPage/Portfolio";
 import SkillCard from "../components/MainPage/SkillCard";
 import SideMenu from "../components/MainPage/SideMenu";
+import TopMenu from "../components/MainPage/TopMenu";
+
 import { Container } from "../styles/index/styles";
-import { fetchApi } from "../controllers/utils/fetchDatabase";
 import { GetStaticPropsResult } from "next";
 
 type HomeProps = {
@@ -100,10 +100,10 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
       <Container>
         {!showSideMenu && <TopMenu />}
         <HeaderComponent />
-        <AboutMe id="AboutMe" content={content.about} />
+        <AboutMe id="AboutMe" content={content?.about} />
         <SkillCard content={content} />
         <Portfolio id="Portfolio" portfolio={portfolio} />
-        <Contact id="Contact" email={content.email} />
+        <Contact id="Contact" email={content?.email} />
         {showSideMenu && <SideMenu />}
       </Container>
     </div>
@@ -113,25 +113,25 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
 export default Home;
 
 export async function getStaticProps(
-  context
+  _context: any
 ): Promise<GetStaticPropsResult<HomeProps>> {
   let content = {} as ContentType;
   let portfolio = [] as PortfolioItemType[];
   try {
-    const resultContent = await fetchApi("pageContent");
-    const resultPortfolio = await fetchApi("portfolioItems");
-    if (resultContent.docs) {
-      content = resultContent.docs[0].data() as ContentType;
-      delete content.id;
-    }
-    if (resultPortfolio.docs) {
-      const portfolioResponse =
-        resultPortfolio.docs[0].data() as PortfolioFetchResponseType;
-      portfolio = portfolioResponse?.items;
-    }
+    const contentFetch = fetch(
+      "http://https://denis-lima.vercel.app/api/content_handler"
+    );
+    const portfolioFetch = fetch(
+      "http://https://denis-lima.vercel.app/api/portfolio_handler"
+    );
+    const result = await Promise.all([contentFetch, portfolioFetch]);
+    content = await result[0].json();
+    portfolio = (await result[1].json()).items;
+    delete content.id;
   } catch (e) {
     console.log(e);
   }
+  console.log({ content, portfolio });
   return {
     props: { content, portfolio },
     revalidate: 24 * 60 * 60, // Every 24h

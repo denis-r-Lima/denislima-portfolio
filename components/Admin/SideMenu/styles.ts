@@ -19,6 +19,7 @@ export const Container = styled.div`
     left: 0;
     width: 25rem;
     max-width: 50%;
+    padding-top: 7rem;
   }
 `;
 
@@ -52,4 +53,25 @@ export const AdminButton = styled.button`
 
 export const SignOutButton = styled(AdminButton)`
   margin-top: auto;
+`;
+
+export const BurgerContainer = styled.div`
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 450px) {
+    display: flex;
+  }
+`;
+
+export const BurgerLine = styled.span`
+  height: 0.5rem;
+  width: 3rem;
+  border-radius: 5rem;
+  margin: 0.2rem;
+  background-color: #313131;
 `;

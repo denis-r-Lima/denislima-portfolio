@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+
 import { useAuth } from "../../context/AuthContext";
 import SideMenu from "./SideMenu";
 
@@ -10,7 +11,7 @@ import Loading from "./Loading";
 
 const AdminWrapper: React.FC = ({ children }) => {
   const [isHidden, setIsHidden] = useState<boolean>(false);
-  const { authUser, loading, signOut } = useAuth();
+  const { authUser, loading } = useAuth();
   const { loadingData } = useLoading();
   const router = useRouter();
 
@@ -32,14 +33,16 @@ const AdminWrapper: React.FC = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      {loading && <h1>Loading</h1>}
       {!loading && authUser && (
         <Container>
-          <SideMenu isHidden={isHidden} />
+          <SideMenu
+            isHidden={isHidden}
+            openMenu={() => setIsHidden((prevState) => !prevState)}
+          />
           {children}
         </Container>
       )}
-      {loadingData && <Loading />}
+      {(loadingData || loading) && <Loading />}
     </>
   );
 };

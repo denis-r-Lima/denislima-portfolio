@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { getAuth, getIdToken } from "firebase/auth";
+
 import { useLoading } from "../../../context/LoadingContext";
 import {
-  fetchApi,
   updateData,
   uploadFile,
 } from "../../../controllers/utils/fetchDatabase";
@@ -13,6 +14,7 @@ import { AddButton } from "../Content/styles";
 import EditModal from "./EditModal";
 
 const Portfolio: React.FC = () => {
+  const auth = getAuth();
   const { setLoadingData } = useLoading();
   const [newItem, setNewItem] = useState<PortfolioItemType>(
     {} as PortfolioItemType
@@ -25,13 +27,9 @@ const Portfolio: React.FC = () => {
   const fetchFromStore = async () => {
     try {
       setLoadingData(true);
-      const result = await fetchApi("portfolioItems");
-      if (result.docs[0]) {
-        setPortfolioItems({
-          id: result.docs[0].id,
-          items: result.docs[0].data().items,
-        });
-      }
+      const result = await fetch("/api/portfolio_handler");
+      const data = await result.json();
+      setPortfolioItems(data);
     } catch (e) {
       console.error(e);
     } finally {
@@ -76,9 +74,13 @@ const Portfolio: React.FC = () => {
   };
 
   const onSave = async () => {
+    const token = await getIdToken(auth.currentUser);
     try {
       setLoadingData(true);
-      await updateData("portfolioItems", portfolioItems);
+      await fetch("/api/portfolio_handler", {
+        method: "PUT",
+        body: JSON.stringify({ data: portfolioItems, token }),
+      });
     } catch (e) {
       console.error(e);
     } finally {
