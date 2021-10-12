@@ -2,10 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { getAuth, getIdToken } from "firebase/auth";
 
 import { useLoading } from "../../../context/LoadingContext";
-import {
-  updateData,
-  uploadFile,
-} from "../../../controllers/utils/fetchDatabase";
+import { uploadFile } from "../../../controllers/utils/fetchDatabase";
 
 import { Container, StyledInput, StyledTextArea } from "./styles";
 import PortfolioCard from "./portfolioItemCard";
