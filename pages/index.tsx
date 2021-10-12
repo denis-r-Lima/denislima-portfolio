@@ -119,15 +119,20 @@ export async function getStaticProps(
   let content = {} as ContentType;
   let portfolio = [] as PortfolioItemType[];
   try {
-    const resultContent = await fetchApi("pageContent");
-    const resultPortfolio = await fetchApi("portfolioItems");
-    if (resultContent.docs) {
-      content = resultContent.docs[0].data() as ContentType;
-      delete content.id;
+    const resultContent = await fetchApi(
+      "pageContent",
+      process.env.NEXT_PUBLIC_CONTENT_ID
+    );
+    const resultPortfolio = await fetchApi(
+      "portfolioItems",
+      process.env.NEXT_PUBLIC_PORTFOLIO_ID
+    );
+    if (resultContent) {
+      content = resultContent.data() as ContentType;
     }
-    if (resultPortfolio.docs) {
+    if (resultPortfolio) {
       const portfolioResponse =
-        resultPortfolio.docs[0].data() as PortfolioFetchResponseType;
+        resultPortfolio.data() as PortfolioFetchResponseType;
       portfolio = portfolioResponse?.items;
     }
   } catch (e) {

@@ -1,25 +1,12 @@
-import {
-  collection,
-  getFirestore,
-  getDocs,
-  updateDoc,
-  doc,
-} from "firebase/firestore";
+import { collection, getFirestore, getDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import app from "./firebase";
 
-export const fetchApi = async (document: string) => {
+export const fetchApi = async (document: string, targetDoc: string) => {
   const db = getFirestore(app);
   const pageCollection = collection(db, document);
-  return await getDocs(pageCollection);
-};
-
-export const updateData = async (document: string, data: any) => {
-  const db = getFirestore(app);
-  const pageCollection = collection(db, document);
-
-  await updateDoc(doc(pageCollection, data.id), data);
+  return await getDoc(doc(pageCollection, targetDoc));
 };
 
 export const uploadFile = async (filePath: string, file: File) => {

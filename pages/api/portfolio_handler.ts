@@ -18,9 +18,12 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === "GET") {
     const db = admin.firestore();
     try {
-      const portfolioCollection = await db.collection("portfolioItems").get();
-      const portfolio = portfolioCollection.docs[0].data().items;
-      const resp = { id: portfolioCollection.docs[0].id, items: portfolio };
+      const portfolioCollection = await db
+        .collection("portfolioItems")
+        .doc(process.env.NEXT_PUBLIC_PORTFOLIO_ID)
+        .get();
+      const items = portfolioCollection.data().items;
+      const resp = { items };
       return response.status(200).send(JSON.stringify(resp));
     } catch (e) {
       return response.status(404).send("Collection not found!");
@@ -29,12 +32,11 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   if (request.method === "PUT") {
     const { token, data } = JSON.parse(request.body);
-    const id = data.id;
+
     if (await isAuthorized(token)) {
       try {
-        delete data.id;
         const db = admin.firestore().collection("portfolioItems");
-        await db.doc(id).set(data);
+        await db.doc(process.env.NEXT_PUBLIC_PORTFOLIO_ID).set(data);
         return response.status(204).send("");
       } catch (e) {
         return response.status(401).send("Not authorized");
