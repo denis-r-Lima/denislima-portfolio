@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { GetStaticPropsResult } from "next";
 
 import AboutMe from "../components/MainPage/AboutMe";
 import Contact from "../components/MainPage/Contact";
@@ -10,7 +11,6 @@ import SideMenu from "../components/MainPage/SideMenu";
 import TopMenu from "../components/MainPage/TopMenu";
 
 import { Container } from "../styles/index/styles";
-import { GetStaticPropsResult } from "next";
 import { fetchApi } from "../controllers/utils/fetchDatabase";
 
 type HomeProps = {
