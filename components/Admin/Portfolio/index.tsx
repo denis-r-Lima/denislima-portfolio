@@ -99,7 +99,6 @@ const Portfolio: React.FC = () => {
     setEditIdx(0);
   };
 
-  console.log(portfolioItems);
   return (
     <>
       <Container>

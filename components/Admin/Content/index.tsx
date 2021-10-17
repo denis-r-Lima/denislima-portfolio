@@ -42,7 +42,7 @@ const Content: React.FC = () => {
         body: JSON.stringify({ data: pageContent, token }),
       });
     } catch (e) {
-      console.log(e);
+      console.error(e);
     } finally {
       setLoadingData(false);
     }
