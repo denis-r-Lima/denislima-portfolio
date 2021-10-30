@@ -19,41 +19,12 @@ export const Container = styled.div`
   }
 `;
 
-export const AboutTextArea = styled.textarea`
-  width: 100%;
-  padding: 2rem 1rem;
-  font-size: 1.5rem;
-  resize: none;
-  outline: none;
-  border: 2px solid ${(props) => props.theme.pallet.color.primary};
-  border-radius: 1rem;
-  overflow: hidden;
-
-  &:hover {
-    overflow: auto;
-  }
-
-  transition: all linear 1s;
-
-  &:focus {
-    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
-  }
-`;
-
-export const StyledInput = styled.input`
-  width: 45%;
+export const HalfGrid = styled.div`
+  width: 50%;
   min-width: 350px;
-  font-size: 1.5rem;
-  padding: 1rem;
-  outline: none;
-  border: 2px solid ${(props) => props.theme.pallet.color.primary};
-  border-radius: 1rem;
-  transition: all linear 1s;
-
-  &:focus {
-    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
-  }
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   @media only screen and (max-width: 450px) {
     width: 100%;
     min-width: 0;

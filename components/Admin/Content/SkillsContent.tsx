@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
-import { AboutTextArea, AddButton, StyledInput } from "./styles";
+import { AddButton, HalfGrid } from "./styles";
 
 type SkillCardContentProps = {
   skill: DevTypes;
@@ -34,19 +35,26 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
     <>
       <h2>{skill?.title || ""}</h2>
       <div>
-        <label>Description</label>
-        <AboutTextArea
+        <StyledInput
+          multiLine
+          fullWidth
+          title="Description"
           name="description"
           value={skill?.description || ""}
           onChange={(e) => onChange(e)}
         />
       </div>
       <div>
-        <label>Technologies</label>
-        <div>
-          <StyledInput value={newTech} onChange={onNewTechChange} />
-          <AddButton onClick={onAdd}>+</AddButton>
-        </div>
+        <HalfGrid>
+          <StyledInput
+            title="Technologies"
+            value={newTech}
+            onChange={onNewTechChange}
+          />
+          <div>
+            <AddButton onClick={onAdd}>+</AddButton>
+          </div>
+        </HalfGrid>
         <ul>
           {skill?.technologies.map((tech) => (
             <li key={tech}>{tech}</li>

@@ -19,44 +19,16 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledInput = styled.input`
-  width: 45%;
+export const HalfGrid = styled.div`
+  width: 50%;
   min-width: 350px;
-  font-size: 1.5rem;
-  padding: 1rem;
-  outline: none;
-  border: 2px solid ${(props) => props.theme.pallet.color.primary};
-  border-radius: 1rem;
-  transition: all linear 1s;
-
-  &:focus {
-    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
-  }
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   @media only screen and (max-width: 450px) {
     width: 100%;
     min-width: 0;
-  }
-`;
-
-export const StyledTextArea = styled.textarea`
-  width: 100%;
-  padding: 2rem 1rem;
-  font-size: 1.5rem;
-  resize: none;
-  outline: none;
-  border: 2px solid ${(props) => props.theme.pallet.color.primary};
-  border-radius: 1rem;
-  overflow: hidden;
-
-  &:hover {
-    overflow: auto;
-  }
-
-  transition: all linear 1s;
-
-  &:focus {
-    border: 2px solid ${(props) => props.theme.pallet.color.primaryLight};
   }
 `;
 
@@ -123,6 +95,7 @@ export const ModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   display: grid;
   place-items: center;
+  z-index: 100;
 `;
 
 export const Modal = styled.div`
@@ -132,7 +105,7 @@ export const Modal = styled.div`
   width: 65%;
   min-width: 30rem;
   max-width: 80rem;
-  background-color: #fefefe;
+  background-color: ${(props) => props.theme.pallet.color.base};
   border-radius: 1rem;
   font-size: 1.5rem;
   gap: 2rem;

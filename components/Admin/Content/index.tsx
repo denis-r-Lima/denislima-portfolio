@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getIdToken, getAuth } from "firebase/auth";
 
-import { Container, AboutTextArea, StyledInput, SaveButton } from "./styles";
+import { Container, SaveButton, HalfGrid } from "./styles";
 import { useLoading } from "../../../context/LoadingContext";
 import SkillCardContent from "./SkillsContent";
+import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
 const Content: React.FC = () => {
   const [pageContent, setPageContent] = useState<ContentType>(
@@ -67,21 +68,26 @@ const Content: React.FC = () => {
       {pageContent && (
         <>
           <div>
-            <label>About Me</label>
-            <AboutTextArea
+            <StyledInput
+              multiLine
               rows={15}
               value={pageContent.about || ""}
               name="about"
+              title="About Me"
               onChange={onChange}
+              fullWidth
             />
           </div>
           <div>
-            <label>Email</label>
-            <StyledInput
-              value={pageContent.email || ""}
-              name="email"
-              onChange={onChange}
-            />
+            <HalfGrid>
+              <StyledInput
+                value={pageContent.email || ""}
+                name="email"
+                title="Email"
+                onChange={onChange}
+                fullWidth
+              />
+            </HalfGrid>
           </div>
           <SkillCardContent
             skill={pageContent.frontEnd}

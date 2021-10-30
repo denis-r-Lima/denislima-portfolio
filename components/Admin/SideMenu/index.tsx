@@ -30,6 +30,10 @@ const MENU_ITEMS: MenuItemType[] = [
     url: "/admin/portfolio",
     label: "Portfolio",
   },
+  {
+    url: "/admin/blog",
+    label: "Blog Edit",
+  },
 ];
 
 const SideMenu: React.FC<SideMenuProps> = ({ isHidden, openMenu }) => {

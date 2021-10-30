@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: grid;
   place-items: center;
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 `;
 
 const rotate = keyframes`

@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 
-import { Container, LoginForm, SubmitButton, FormInputs } from "./styles";
+import { Container, LoginForm, SubmitButton } from "./styles";
+import StyledInput from "../StyledComponents/StyledInput/StyledInput";
 
 const Login: React.FC = () => {
   const [alert, setAlert] = useState<string>("");
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
   const { signIn } = useAuth();
   const router = useRouter();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
     try {
-      await signIn(email, password);
+      await signIn(loginData.email, loginData.password);
       router.push("/admin");
     } catch (e) {
       console.log(e.response);
@@ -22,13 +22,29 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
   return (
     <Container>
       <LoginForm onSubmit={onSubmit}>
-        <label htmlFor="email">Email</label>
-        <FormInputs type="email" name="email" id="email" />
-        <label htmlFor="password">Password</label>
-        <FormInputs type="password" name="password" id="password" />
+        <h2>Sign Up</h2>
+        <StyledInput
+          name="email"
+          type="email"
+          title="Email"
+          value={loginData.email || ""}
+          onChange={handleChange}
+        />
+        <StyledInput
+          name="password"
+          type="password"
+          title="Password"
+          value={loginData.password || ""}
+          onChange={handleChange}
+        />
         <SubmitButton type="submit">Submit</SubmitButton>
         {!!alert && alert}
       </LoginForm>

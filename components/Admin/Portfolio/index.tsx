@@ -4,11 +4,12 @@ import { getAuth, getIdToken } from "firebase/auth";
 import { useLoading } from "../../../context/LoadingContext";
 import { uploadFile } from "../../../controllers/utils/fetchDatabase";
 
-import { Container, StyledInput, StyledTextArea } from "./styles";
+import { Container, HalfGrid } from "./styles";
 import PortfolioCard from "./portfolioItemCard";
 import { SaveButton } from "./styles";
 import { AddButton } from "../Content/styles";
 import EditModal from "./EditModal";
+import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
 const Portfolio: React.FC = () => {
   const auth = getAuth();
@@ -103,25 +104,35 @@ const Portfolio: React.FC = () => {
     <>
       <Container>
         <div>
-          <label>Git Hub Link</label>
           <StyledInput
             name="gitHub"
+            title="GitHub Link"
             value={newItem.gitHub || ""}
             onChange={onChange}
+            fullWidth
           />
         </div>
         <div>
-          <label>Description</label>
-          <StyledTextArea
+          <StyledInput
             name="description"
+            title="Description"
+            multiLine
             rows={5}
+            fullWidth
             value={newItem.description || ""}
             onChange={onChange}
           />
         </div>
         <div>
-          <label>Image</label>
-          <StyledInput name="image" type="file" ref={fileRef} />
+          <HalfGrid>
+            <StyledInput
+              title="Image"
+              name="image"
+              type="file"
+              ref={fileRef}
+              fullWidth
+            />
+          </HalfGrid>
         </div>
         <div>
           <AddButton onClick={onAddItem}>+</AddButton>

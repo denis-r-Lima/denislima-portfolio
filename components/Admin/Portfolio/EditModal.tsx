@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StyledInput } from "../Content/styles";
+import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
-import { ModalContainer, Modal, StyledTextArea, SaveButton } from "./styles";
+import { ModalContainer, Modal, SaveButton } from "./styles";
 
 type EditModalType = {
   item: PortfolioItemType;
@@ -26,18 +26,21 @@ const EditModal: React.FC<EditModalType> = ({ item, onClose, onConfirm }) => {
   return (
     <ModalContainer onClick={closeModal}>
       <Modal>
-        <label>Description</label>
-        <StyledTextArea
+        <StyledInput
           value={localItem.description || ""}
+          multiLine
           rows={5}
+          fullWidth
           name="description"
+          title="Description"
           onChange={onChange}
         />
-        <label>Git Hub Link</label>
         <StyledInput
           value={localItem.gitHub || ""}
           name="github"
+          title="GitHub Link"
           onChange={onChange}
+          fullWidth
         />
         <SaveButton onClick={() => onConfirm(localItem)}>Confirm</SaveButton>
       </Modal>
