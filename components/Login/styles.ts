@@ -21,15 +21,15 @@ export const SubmitButton = styled.button`
   padding: 0.8rem 4rem;
   background-color: transparent;
   color: ${(props) => props.theme.pallet.color.primary};
-  border: 3px solid ${(props) => props.theme.pallet.color.primary};
+  border: none;
   outline: none;
   border-radius: 5px;
   cursor: pointer;
   margin: 2rem auto;
   font-size: 1.5rem;
   font-weight: bold;
+  transition: all 0.4s;
   &:hover {
-    background-color: ${(props) => props.theme.pallet.color.primaryLight};
-    color: ${(props) => props.theme.pallet.color.base};
+    background-color: ${(props) => props.theme.pallet.color.primaryVeryLight};
   }
 `;

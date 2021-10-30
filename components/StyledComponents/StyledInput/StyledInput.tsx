@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { InputField, FormInputs, FormTextArea } from "./styles";
@@ -16,6 +16,7 @@ const StyledInput = React.forwardRef<
   StyledInput
 >((props, ref) => {
   const theme = useTheme();
+  const [isFocused, setIsFocused] = useState(false);
 
   const onChangeFocus = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -23,15 +24,17 @@ const StyledInput = React.forwardRef<
     const { type } = e;
     const { parentElement } = e.target;
     if (type === "focus") {
-      return (parentElement.style.borderColor = theme.pallet.color.primary);
+      return setIsFocused(true);
     }
     if (type === "blur") {
-      return (parentElement.style.borderColor = theme.pallet.color.baseDark);
+      return setIsFocused(false);
     }
   };
 
   return (
-    <InputField className={props.fullWidth && "FullWidth"}>
+    <InputField
+      className={`${props.fullWidth && "FullWidth"} ${isFocused && "Focus"}`}
+    >
       {props.multiLine ? (
         <FormTextArea
           {...props}
