@@ -9,6 +9,7 @@ import PortfolioCard from "./portfolioItemCard";
 import { SaveButton } from "./styles";
 import EditModal from "./EditModal";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
+import DraggableDiv from "../../StyledComponents/DraggableDiv/DraggableDiv";
 
 const Portfolio: React.FC = () => {
   const auth = getAuth();
@@ -106,7 +107,8 @@ const Portfolio: React.FC = () => {
 
   const onDrop = (index: number) => () => {
     const newOrder = portfolioItems.items.filter((_, idx) => idx !== dragIndex);
-    newOrder.splice(index, 0, portfolioItems.items[dragIndex]);
+    const newIndex = index > dragIndex ? index - 1 : index;
+    newOrder.splice(newIndex, 0, portfolioItems.items[dragIndex]);
     setPortfolioItems((prevState) => ({ ...prevState, items: newOrder }));
     setDragIndex(null);
   };
@@ -150,19 +152,17 @@ const Portfolio: React.FC = () => {
         </div>
         <h2>Portfolio List</h2>
         {portfolioItems.items?.map((item, index) => (
-          <div
+          <DraggableDiv
             key={item.description}
-            draggable
-            onDragOver={(e) => e.preventDefault()}
-            onDragStart={onDragStart(index)}
-            onDrop={onDrop(index)}
+            startDrag={onDragStart(index)}
+            action={onDrop(index)}
           >
             <PortfolioCard
               item={item}
               onDelete={onDelete(index)}
               selectEdit={selectEdit(index)}
             />
-          </div>
+          </DraggableDiv>
         ))}
         <SaveButton onClick={onSave}>Save</SaveButton>
       </Container>

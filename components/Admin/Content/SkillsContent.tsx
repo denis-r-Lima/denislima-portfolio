@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MdAddCircleOutline, MdDelete } from "react-icons/md";
+import DraggableDiv from "../../StyledComponents/DraggableDiv/DraggableDiv";
 import IconButton from "../../StyledComponents/IconButton/IconButton";
 
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
@@ -42,10 +43,9 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
   };
 
   const onDrop = (index: number) => () => {
-    const newOrder = skill?.technologies.filter(
-      (_skill, idx) => idx !== dragIndex
-    );
-    newOrder.splice(index, 0, skill?.technologies[dragIndex]);
+    const newOrder = skill?.technologies.filter((_, idx) => idx !== dragIndex);
+    const newIndex = index > dragIndex ? index - 1 : index;
+    newOrder.splice(newIndex, 0, skill?.technologies[dragIndex]);
     const e = {
       target: { name: "technologies", value: newOrder },
     } as unknown as React.ChangeEvent<HTMLInputElement>;
@@ -83,17 +83,16 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
         <List>
           {skill?.technologies.map((tech, index) => {
             return (
-              <ListItem
-                key={tech}
-                draggable
-                onDragOver={(e) => e.preventDefault()}
-                onDragStart={onDragStart(index)}
-                onDrop={onDrop(index)}
-              >
-                {tech}
-                <IconButton onClick={() => onDelete(index)}>
-                  <MdDelete />
-                </IconButton>
+              <ListItem key={tech}>
+                <DraggableDiv
+                  action={onDrop(index)}
+                  startDrag={onDragStart(index)}
+                >
+                  {tech}
+                  <IconButton onClick={() => onDelete(index)}>
+                    <MdDelete />
+                  </IconButton>
+                </DraggableDiv>
               </ListItem>
             );
           })}

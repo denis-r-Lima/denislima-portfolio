@@ -88,4 +88,5 @@ export const ListItem = styled.li`
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
   padding: 0.7rem 1rem 0;
+  transition: all 0.4s;
 `;
