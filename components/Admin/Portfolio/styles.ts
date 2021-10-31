@@ -76,16 +76,6 @@ export const PortfolioCardContainer = styled.div`
   }
 `;
 
-export const IconButton = styled.button`
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  border: none;
-  font-size: 1.8rem;
-  background-color: transparent;
-`;
-
 export const ModalContainer = styled.div`
   position: absolute;
   top: 0;
@@ -109,4 +99,18 @@ export const Modal = styled.div`
   border-radius: 1rem;
   font-size: 1.5rem;
   gap: 2rem;
+`;
+
+export const AddButton = styled.button`
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.pallet.color.secondary};
+  color: ${(props) => props.theme.pallet.color.base};
+  transition: all 0.4s;
+  &:hover {
+    background-color: ${(props) => props.theme.pallet.color.secondaryLight};
+  }
 `;

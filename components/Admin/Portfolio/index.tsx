@@ -4,10 +4,9 @@ import { getAuth, getIdToken } from "firebase/auth";
 import { useLoading } from "../../../context/LoadingContext";
 import { uploadFile } from "../../../controllers/utils/fetchDatabase";
 
-import { Container, HalfGrid } from "./styles";
+import { Container, HalfGrid, AddButton } from "./styles";
 import PortfolioCard from "./portfolioItemCard";
 import { SaveButton } from "./styles";
-import { AddButton } from "../Content/styles";
 import EditModal from "./EditModal";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
@@ -20,6 +19,7 @@ const Portfolio: React.FC = () => {
   const [portfolioItems, setPortfolioItems] =
     useState<PortfolioFetchResponseType>({} as PortfolioFetchResponseType);
   const [editIdx, setEditIdx] = useState<number>(0);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const fetchFromStore = async () => {
@@ -100,6 +100,17 @@ const Portfolio: React.FC = () => {
     setEditIdx(0);
   };
 
+  const onDragStart = (index: number) => () => {
+    setDragIndex(index);
+  };
+
+  const onDrop = (index: number) => () => {
+    const newOrder = portfolioItems.items.filter((_, idx) => idx !== dragIndex);
+    newOrder.splice(index, 0, portfolioItems.items[dragIndex]);
+    setPortfolioItems((prevState) => ({ ...prevState, items: newOrder }));
+    setDragIndex(null);
+  };
+
   return (
     <>
       <Container>
@@ -135,11 +146,17 @@ const Portfolio: React.FC = () => {
           </HalfGrid>
         </div>
         <div>
-          <AddButton onClick={onAddItem}>+</AddButton>
+          <AddButton onClick={onAddItem}>Add</AddButton>
         </div>
         <h2>Portfolio List</h2>
         {portfolioItems.items?.map((item, index) => (
-          <div key={item.description}>
+          <div
+            key={item.description}
+            draggable
+            onDragOver={(e) => e.preventDefault()}
+            onDragStart={onDragStart(index)}
+            onDrop={onDrop(index)}
+          >
             <PortfolioCard
               item={item}
               onDelete={onDelete(index)}

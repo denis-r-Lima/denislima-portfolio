@@ -22,7 +22,6 @@ const StyledInput = React.forwardRef<
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { type } = e;
-    const { parentElement } = e.target;
     if (type === "focus") {
       return setIsFocused(true);
     }

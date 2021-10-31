@@ -1,20 +1,26 @@
 import React, { useState } from "react";
+import { MdAddCircleOutline, MdDelete } from "react-icons/md";
+import IconButton from "../../StyledComponents/IconButton/IconButton";
+
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
-import { AddButton, HalfGrid } from "./styles";
+import { HalfGrid, InsideDiv, List, ListItem } from "./styles";
 
 type SkillCardContentProps = {
   skill: DevTypes;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  onDelete: (index: number) => void;
 };
 
 const SkillCardContent: React.FC<SkillCardContentProps> = ({
   skill,
   onChange,
+  onDelete,
 }) => {
   const [newTech, setNewTech] = useState<string>("");
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
 
   const onNewTechChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTech(e.target.value);
@@ -29,6 +35,22 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
       onChange(e);
       setNewTech("");
     }
+  };
+
+  const onDragStart = (index: number) => () => {
+    setDragIndex(index);
+  };
+
+  const onDrop = (index: number) => () => {
+    const newOrder = skill?.technologies.filter(
+      (_skill, idx) => idx !== dragIndex
+    );
+    newOrder.splice(index, 0, skill?.technologies[dragIndex]);
+    const e = {
+      target: { name: "technologies", value: newOrder },
+    } as unknown as React.ChangeEvent<HTMLInputElement>;
+    onChange(e);
+    setDragIndex(null);
   };
 
   return (
@@ -47,19 +69,35 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
       <div>
         <HalfGrid>
           <StyledInput
-            title="Technologies"
+            title="Technology"
             value={newTech}
             onChange={onNewTechChange}
+            fullWidth
           />
-          <div>
-            <AddButton onClick={onAdd}>+</AddButton>
-          </div>
+          <InsideDiv>
+            <IconButton onClick={onAdd}>
+              <MdAddCircleOutline />
+            </IconButton>
+          </InsideDiv>
         </HalfGrid>
-        <ul>
-          {skill?.technologies.map((tech) => (
-            <li key={tech}>{tech}</li>
-          ))}
-        </ul>
+        <List>
+          {skill?.technologies.map((tech, index) => {
+            return (
+              <ListItem
+                key={tech}
+                draggable
+                onDragOver={(e) => e.preventDefault()}
+                onDragStart={onDragStart(index)}
+                onDrop={onDrop(index)}
+              >
+                {tech}
+                <IconButton onClick={() => onDelete(index)}>
+                  <MdDelete />
+                </IconButton>
+              </ListItem>
+            );
+          })}
+        </List>
       </div>
     </>
   );

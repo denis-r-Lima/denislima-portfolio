@@ -3,7 +3,8 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
-import { IconButton, PortfolioCardContainer } from "./styles";
+import { PortfolioCardContainer } from "./styles";
+import IconButton from "../../StyledComponents/IconButton/IconButton";
 
 type PortfolioCardProps = {
   item: PortfolioItemType;

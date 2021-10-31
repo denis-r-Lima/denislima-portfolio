@@ -22,6 +22,7 @@ export const Container = styled.div`
 export const HalfGrid = styled.div`
   width: 50%;
   min-width: 350px;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,6 +30,13 @@ export const HalfGrid = styled.div`
     width: 100%;
     min-width: 0;
   }
+`;
+
+export const InsideDiv = styled.div`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-25%, -50%);
 `;
 
 export const SaveButton = styled.button`
@@ -66,4 +74,18 @@ export const AddButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.pallet.color.secondaryLight};
   }
+`;
+
+export const List = styled.ul`
+  width: 100%;
+`;
+
+export const ListItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 0.7rem 1rem 0;
 `;

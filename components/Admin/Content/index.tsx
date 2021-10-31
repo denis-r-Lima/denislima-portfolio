@@ -63,6 +63,17 @@ const Content: React.FC = () => {
     fetchFromStore();
   }, []);
 
+  const deleteTechnology = (skillType: string) => (index: number) => {
+    const newTechnologies = [...pageContent[skillType].technologies];
+    setPageContent((prevState) => ({
+      ...prevState,
+      [skillType]: {
+        ...prevState[skillType],
+        technologies: newTechnologies.filter((tech, idx) => idx !== index),
+      },
+    }));
+  };
+
   return (
     <Container>
       {pageContent && (
@@ -92,10 +103,12 @@ const Content: React.FC = () => {
           <SkillCardContent
             skill={pageContent.frontEnd}
             onChange={nestedOnChange("frontEnd")}
+            onDelete={deleteTechnology("frontEnd")}
           />
           <SkillCardContent
             skill={pageContent.backEnd}
             onChange={nestedOnChange("backEnd")}
+            onDelete={deleteTechnology("backEnd")}
           />
           <div>
             <SaveButton onClick={saveContent}>Save</SaveButton>
