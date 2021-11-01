@@ -97,6 +97,10 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
           href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
           rel="stylesheet"
         />
+        <meta
+          name="google-site-verification"
+          content="uCeKzpk0adsR9XKoxGS0htn--dCn2DvaIGyddz0J0lI"
+        />
       </Head>
       <Container>
         {!showSideMenu && <TopMenu />}
