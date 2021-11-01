@@ -2,16 +2,11 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { GetStaticPropsResult } from "next";
 
-import AboutMe from "../components/MainPage/AboutMe";
-import Contact from "../components/MainPage/Contact";
-import HeaderComponent from "../components/MainPage/HeaderComponent/index";
-import Portfolio from "../components/MainPage/Portfolio";
-import SkillCard from "../components/MainPage/SkillCard";
-import SideMenu from "../components/MainPage/SideMenu";
-import TopMenu from "../components/MainPage/TopMenu";
-
-import { Container } from "../styles/index/styles";
+import { Container } from "../styles/indexV2/styles";
 import { fetchApi } from "../controllers/utils/fetchDatabase";
+import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
+import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
+import Header from "../components/MainPage_V2/Header/Header";
 
 type HomeProps = {
   content: ContentType;
@@ -22,40 +17,41 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  useEffect(() => {
-    const skillCards = document.querySelectorAll(".Card");
-    const skillCardsObserver = new IntersectionObserver(
-      (elements, skillCardsObserver) => {
-        elements.forEach((element) => {
-          if (element.isIntersecting) {
-            if (element.target.classList.contains("front")) {
-              element.target.classList.remove("front");
-            }
-            if (element.target.classList.contains("back")) {
-              element.target.classList.remove("back");
-            }
+  //   useEffect(() => {
+  //     const skillCards = document.querySelectorAll(".Card");
+  //     const skillCardsObserver = new IntersectionObserver(
+  //       (elements, skillCardsObserver) => {
+  //         elements.forEach((element) => {
+  //           if (element.isIntersecting) {
+  //             if (element.target.classList.contains("front")) {
+  //               element.target.classList.remove("front");
+  //             }
+  //             if (element.target.classList.contains("back")) {
+  //               element.target.classList.remove("back");
+  //             }
 
-            skillCardsObserver.unobserve(element.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
+  //             skillCardsObserver.unobserve(element.target);
+  //           }
+  //         });
+  //       },
+  //       { threshold: 0.5 }
+  //     );
 
-    skillCards.forEach((skillCard) => {
-      skillCardsObserver.observe(skillCard);
-    });
-  }, []);
+  //     skillCards.forEach((skillCard) => {
+  //       skillCardsObserver.observe(skillCard);
+  //     });
+  //   }, []);
 
   useEffect(() => {
     if (isMobile) {
       setShowSideMenu(true);
     } else {
-      const root = document.getElementById("headerFrame");
+      const target = document.getElementById("Header");
 
       const observer = new IntersectionObserver(
         (elements) => {
           elements.forEach((element) => {
+            console.log(element.isIntersecting);
             if (element.isIntersecting) {
               setShowSideMenu(false);
             } else {
@@ -63,10 +59,10 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
             }
           });
         },
-        { rootMargin: "-350px 0px 0px 0px" }
+        { threshold: 0.95 }
       );
 
-      observer.observe(root);
+      observer.observe(target);
       return () => observer.disconnect();
     }
   }, [isMobile]);
@@ -97,15 +93,18 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
           href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
           rel="stylesheet"
         />
+        <meta
+          name="google-site-verification"
+          content="WV4fnX-CLbGZIP8tPpDrmRedAMZUO50eHYujRc2-NXk"
+        />
       </Head>
       <Container>
-        {!showSideMenu && <TopMenu />}
-        <HeaderComponent />
-        <AboutMe id="AboutMe" content={content?.about} />
-        <SkillCard content={content} />
-        <Portfolio id="Portfolio" portfolio={portfolio} />
-        <Contact id="Contact" email={content?.email} />
-        {showSideMenu && <SideMenu />}
+        <TopMenu className={(isMobile || showSideMenu) && "hide"} />
+        <SideMenu className={showSideMenu && "show"} />
+        <Header />
+        <div
+          style={{ width: "100%", height: "400vh", backgroundColor: "inherit" }}
+        ></div>
       </Container>
     </div>
   );

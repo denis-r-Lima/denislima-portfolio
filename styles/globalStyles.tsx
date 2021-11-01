@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   html{
     scroll-behavior: smooth;
     box-sizing: border-box;
-    font-size: 62.5%; 
+    font-size: 62.5%;
     @media only screen and (max-width: 770px){
       font-size: 40%
     }
@@ -23,7 +23,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f1f1f1;
+    background: ${(props) => props.theme.pallet.color.background};
+    color: ${(props) => props.theme.typography.color}
   }
 
   a {
