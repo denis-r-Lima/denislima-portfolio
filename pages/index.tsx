@@ -99,7 +99,7 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
         />
         <meta
           name="google-site-verification"
-          content="uCeKzpk0adsR9XKoxGS0htn--dCn2DvaIGyddz0J0lI"
+          content="WV4fnX-CLbGZIP8tPpDrmRedAMZUO50eHYujRc2-NXk"
         />
       </Head>
       <Container>
