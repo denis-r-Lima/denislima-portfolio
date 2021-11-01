@@ -31,7 +31,7 @@ export const BurgerMenuContainer = styled.div`
     }
   }
   & > :nth-child(2) {
-    transition: opacity 0s linear 0.4s;
+    transition: opacity 0s linear ${burgerAnimationDelay};
   }
   & > :last-child {
     transition: transform ${burgerAnimationTime} linear ${burgerAnimationDelay};
@@ -41,8 +41,8 @@ export const BurgerMenuContainer = styled.div`
   }
   &.opened {
     & > :first-child {
-      transform: translateY(0.7rem);
       transition: transform ${burgerAnimationTime};
+      transform: translateY(0.7rem);
       & > div {
         transition: transform ${burgerAnimationTime} linear
           ${burgerAnimationDelay};
@@ -53,8 +53,8 @@ export const BurgerMenuContainer = styled.div`
       opacity: 0;
     }
     & > :last-child {
-      transform: translateY(-0.7rem);
       transition: transform ${burgerAnimationTime};
+      transform: translateY(-0.7rem);
       & > div {
         transition: transform ${burgerAnimationTime} linear
           ${burgerAnimationDelay};
@@ -102,7 +102,7 @@ export const Container = styled.div`
 
 export const MenuSideDiv = styled.div`
   height: 100vh;
-  width: 15vw;
+  width: 250px;
   background-color: ${(props) => props.theme.pallet.color.background};
   font-size: 2.3rem;
   padding: 9rem 1rem;
