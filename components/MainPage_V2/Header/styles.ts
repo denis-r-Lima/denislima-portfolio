@@ -8,11 +8,14 @@ export const Container = styled.div`
 
 export const TextContainer = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
   transform: translate(-50%, -50%);
+  max-width: 1600px;
   color: ${(props) => props.theme.pallet.color.background};
   font-size: 3rem;
+  flex-direction: column;
+  display: flex;
 `;
 
 export const ImageContainer = styled.div`

@@ -1,12 +1,17 @@
 const navigateTo = (destination: string) => {
   const targetElement = document.querySelector(destination) as HTMLDivElement;
+  if (targetElement) {
+    const offsetTop = targetElement.offsetTop;
 
-  const offsetTop = targetElement.offsetTop;
-
-  scroll({
-    top: offsetTop,
-    behavior: "smooth",
-  });
+    setTimeout(
+      () =>
+        scroll({
+          top: offsetTop,
+          behavior: "smooth",
+        }),
+      150
+    );
+  }
 };
 
 export default navigateTo;

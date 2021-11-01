@@ -10,7 +10,6 @@ export const Container = styled.div`
   position: relative;
   align-self: center;
   width: 100%;
-  max-width: 1420px;
   margin: 0;
   overflow: hidden;
   display: flex;

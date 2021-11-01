@@ -7,6 +7,7 @@ import { fetchApi } from "../controllers/utils/fetchDatabase";
 import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
 import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
 import Header from "../components/MainPage_V2/Header/Header";
+import About from "../components/MainPage_V2/About/About";
 
 type HomeProps = {
   content: ContentType;
@@ -51,7 +52,6 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       const observer = new IntersectionObserver(
         (elements) => {
           elements.forEach((element) => {
-            console.log(element.isIntersecting);
             if (element.isIntersecting) {
               setShowSideMenu(false);
             } else {
@@ -84,7 +84,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   }, []);
 
   return (
-    <div id="TopPage">
+    <div id="Home">
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel="icon" href="/img/favico.ico" />
@@ -102,9 +102,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         <TopMenu className={(isMobile || showSideMenu) && "hide"} />
         <SideMenu className={showSideMenu && "show"} />
         <Header />
-        <div
-          style={{ width: "100%", height: "400vh", backgroundColor: "inherit" }}
-        ></div>
+        <About />
       </Container>
     </div>
   );
@@ -112,33 +110,33 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
 export default HomeV2;
 
-export async function getStaticProps(
-  _context
-): Promise<GetStaticPropsResult<HomeProps>> {
-  let content = {} as ContentType;
-  let portfolio = [] as PortfolioItemType[];
-  try {
-    const resultContent = await fetchApi(
-      "pageContent",
-      process.env.NEXT_PUBLIC_CONTENT_ID
-    );
-    const resultPortfolio = await fetchApi(
-      "portfolioItems",
-      process.env.NEXT_PUBLIC_PORTFOLIO_ID
-    );
-    if (resultContent) {
-      content = resultContent.data() as ContentType;
-    }
-    if (resultPortfolio) {
-      const portfolioResponse =
-        resultPortfolio.data() as PortfolioFetchResponseType;
-      portfolio = portfolioResponse?.items;
-    }
-  } catch (e) {
-    console.log(e);
-  }
-  return {
-    props: { content, portfolio },
-    revalidate: 24 * 60 * 60, // Every 24h
-  };
-}
+// export async function getStaticProps(
+//   _context
+// ): Promise<GetStaticPropsResult<HomeProps>> {
+//   let content = {} as ContentType;
+//   let portfolio = [] as PortfolioItemType[];
+//   try {
+//     const resultContent = await fetchApi(
+//       "pageContent",
+//       process.env.NEXT_PUBLIC_CONTENT_ID
+//     );
+//     const resultPortfolio = await fetchApi(
+//       "portfolioItems",
+//       process.env.NEXT_PUBLIC_PORTFOLIO_ID
+//     );
+//     if (resultContent) {
+//       content = resultContent.data() as ContentType;
+//     }
+//     if (resultPortfolio) {
+//       const portfolioResponse =
+//         resultPortfolio.data() as PortfolioFetchResponseType;
+//       portfolio = portfolioResponse?.items;
+//     }
+//   } catch (e) {
+//     console.log(e);
+//   }
+//   return {
+//     props: { content, portfolio },
+//     revalidate: 24 * 60 * 60, // Every 24h
+//   };
+// }

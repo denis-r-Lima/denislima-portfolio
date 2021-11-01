@@ -21,3 +21,14 @@ export const Container = styled.div`
     opacity: 0;
   }
 `;
+
+export const MenuButton = styled.span`
+  padding: 0 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: ${(props) => props.theme.pallet.color.secondaryLight};
+  }
+`;

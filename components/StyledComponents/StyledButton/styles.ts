@@ -6,12 +6,19 @@ export const Container = styled.button`
   padding: 1.5rem 5rem;
   background-color: transparent;
   overflow: hidden;
-  margin: 1rem auto;
+  margin: 1rem 0;
+  width: fit-content;
   text-transform: uppercase;
   color: ${(props) => props.theme.pallet.color.background};
   box-shadow: none;
   cursor: pointer;
   font-weight: bolder;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
   &::after {
     content: "";
@@ -42,5 +49,9 @@ export const Container = styled.button`
     &::after {
       transform: translate(-50%, -50%) scale(6);
     }
+  }
+
+  &:active {
+    transform: translateY(3px);
   }
 `;
