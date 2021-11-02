@@ -79,19 +79,9 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
     checkWidth();
 
-    const observer = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.contentRect.width < 450) {
-          setIsMobile(true);
-        } else {
-          setIsMobile(false);
-        }
-      });
-    });
+    window.addEventListener("resize", checkWidth);
 
-    observer.observe(body);
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
   return (
