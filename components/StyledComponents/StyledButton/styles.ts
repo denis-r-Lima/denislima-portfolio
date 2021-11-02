@@ -19,6 +19,7 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  z-index: 1;
 
   &::after {
     content: "";

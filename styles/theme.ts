@@ -9,7 +9,9 @@ export const theme = {
       base: "hsl(37, 79%, 75%)",
       baseMedium: "hsl(37, 79%, 55%)",
       baseDark: "hsl(37, 79%, 15%)",
-      background: "hsl(52, 50%, 91%)",
+      background: "hsl(52, 50%, 95%)",
+      backgroundDarker: "hsl(52, 10%, 90%)",
+      backgroundSecondary: "hsl(234, 15%, 25%)",
     },
   },
   typography: {

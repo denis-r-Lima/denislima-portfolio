@@ -8,6 +8,9 @@ import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
 import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
 import Header from "../components/MainPage_V2/Header/Header";
 import About from "../components/MainPage_V2/About/About";
+import Contact from "../components/MainPage_V2/Contact/Contact";
+import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
+import { IntersectionObserverRegister } from "../controllers/utils/IntersectionObserver";
 
 type HomeProps = {
   content: ContentType;
@@ -47,23 +50,20 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
     if (isMobile) {
       setShowSideMenu(true);
     } else {
-      const target = document.getElementById("Header");
-
-      const observer = new IntersectionObserver(
-        (elements) => {
-          elements.forEach((element) => {
-            if (element.isIntersecting) {
-              setShowSideMenu(false);
-            } else {
-              setShowSideMenu(true);
-            }
-          });
-        },
+      const callBack = (element: IntersectionObserverEntry) => {
+        if (element.isIntersecting) {
+          setShowSideMenu(false);
+        } else {
+          setShowSideMenu(true);
+        }
+      };
+      const topMenuObserver = IntersectionObserverRegister(
+        "#Header",
+        callBack,
         { threshold: 0.95 }
       );
 
-      observer.observe(target);
-      return () => observer.disconnect();
+      return () => topMenuObserver.disconnect();
     }
   }, [isMobile]);
 
@@ -88,11 +88,6 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel="icon" href="/img/favico.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-          rel="stylesheet"
-        />
         <meta
           name="google-site-verification"
           content="WV4fnX-CLbGZIP8tPpDrmRedAMZUO50eHYujRc2-NXk"
@@ -103,6 +98,8 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         <SideMenu className={showSideMenu && "show"} />
         <Header />
         <About />
+        <Portfolio />
+        <Contact email={content?.email} />
       </Container>
     </div>
   );
@@ -110,33 +107,33 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
 export default HomeV2;
 
-// export async function getStaticProps(
-//   _context
-// ): Promise<GetStaticPropsResult<HomeProps>> {
-//   let content = {} as ContentType;
-//   let portfolio = [] as PortfolioItemType[];
-//   try {
-//     const resultContent = await fetchApi(
-//       "pageContent",
-//       process.env.NEXT_PUBLIC_CONTENT_ID
-//     );
-//     const resultPortfolio = await fetchApi(
-//       "portfolioItems",
-//       process.env.NEXT_PUBLIC_PORTFOLIO_ID
-//     );
-//     if (resultContent) {
-//       content = resultContent.data() as ContentType;
-//     }
-//     if (resultPortfolio) {
-//       const portfolioResponse =
-//         resultPortfolio.data() as PortfolioFetchResponseType;
-//       portfolio = portfolioResponse?.items;
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-//   return {
-//     props: { content, portfolio },
-//     revalidate: 24 * 60 * 60, // Every 24h
-//   };
-// }
+export async function getStaticProps(
+  _context
+): Promise<GetStaticPropsResult<HomeProps>> {
+  let content = {} as ContentType;
+  let portfolio = [] as PortfolioItemType[];
+  try {
+    const resultContent = await fetchApi(
+      "pageContent",
+      process.env.NEXT_PUBLIC_CONTENT_ID
+    );
+    const resultPortfolio = await fetchApi(
+      "portfolioItems",
+      process.env.NEXT_PUBLIC_PORTFOLIO_ID
+    );
+    if (resultContent) {
+      content = resultContent.data() as ContentType;
+    }
+    if (resultPortfolio) {
+      const portfolioResponse =
+        resultPortfolio.data() as PortfolioFetchResponseType;
+      portfolio = portfolioResponse?.items;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return {
+    props: { content, portfolio },
+    revalidate: 24 * 60 * 60, // Every 24h
+  };
+}

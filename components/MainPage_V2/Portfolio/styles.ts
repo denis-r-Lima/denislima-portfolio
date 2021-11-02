@@ -3,7 +3,5 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.pallet.color.backgroundDarker};
 `;
-
-export const Title = styled.h1``;

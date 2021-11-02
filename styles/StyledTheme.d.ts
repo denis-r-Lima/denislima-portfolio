@@ -13,6 +13,8 @@ declare module "styled-components" {
         baseMedium: string;
         baseDark: string;
         background: string;
+        backgroundDarker: string;
+        backgroundSecondary: string;
       };
     };
     typography: {

@@ -30,3 +30,7 @@ export const ImageContainer = styled.div`
   background-size: cover;
   filter: grayscale(1) sepia(0.6);
 `;
+
+export const Name = styled.span`
+  color: ${(props) => props.theme.pallet.color.baseMedium};
+`;
