@@ -57,7 +57,7 @@ const Contact: React.FC<Props> = ({ email }) => {
             </StyledButton>
           </ButtonContainer>
           <NormalText>
-            Or you can reach me at <a href={`mailto:${email}`}>{email}</a>
+            or you can reach me at <a href={`mailto:${email}`}>{email}</a>
           </NormalText>
         </FromContainer>
       </InnerContainer>

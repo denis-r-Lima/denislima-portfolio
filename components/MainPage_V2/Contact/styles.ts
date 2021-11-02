@@ -31,7 +31,8 @@ export const NormalText = styled.p`
 
 export const Title = styled.h1`
   color: ${(props) => props.theme.pallet.color.background};
-  margin: 5rem;
+  margin: 5rem auto;
+  width: fit-content;
   text-align: center;
   transform: translateX(50%);
   opacity: 0;
@@ -39,10 +40,29 @@ export const Title = styled.h1`
   font-size: 3.5rem;
   font-family: ${(props) => props.theme.typography.fontFamilyTitle};
   text-transform: uppercase;
+  position: relative;
+
+  &::after {
+    content: "";
+    background-color: ${(props) => props.theme.pallet.color.background};
+    width: 50%;
+    height: 3px;
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-150%);
+    opacity: 0;
+    transition: all 0.8s linear 1s;
+  }
 
   &.show {
     transform: translateX(0);
     opacity: 1;
+    &::after {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
   }
 `;
 

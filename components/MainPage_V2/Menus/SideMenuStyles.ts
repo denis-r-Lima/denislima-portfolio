@@ -105,7 +105,7 @@ export const MenuSideDiv = styled.div`
   width: 250px;
   background-color: ${(props) => props.theme.pallet.color.background};
   font-size: 2.3rem;
-  padding: 9rem 1rem;
+  padding: 3rem 1rem;
 `;
 
 export const MenuButton = styled.div`

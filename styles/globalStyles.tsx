@@ -31,6 +31,21 @@ const GlobalStyle = createGlobalStyle`
   color: inherit;
   text-decoration: none;
 }
+
+li{
+  list-style: inside none;
+  margin-left: 2rem;
+  position: relative;
+
+  &::before{
+    content: ">";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-200%, -50%);
+
+  }
+}
 `;
 
 export default GlobalStyle;

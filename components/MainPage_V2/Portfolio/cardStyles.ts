@@ -4,7 +4,6 @@ export const Container = styled.div`
   position: relative;
   width: 35rem;
   height: 35rem;
-
   overflow: hidden;
 
   &:hover {
@@ -18,7 +17,8 @@ export const Container = styled.div`
     }
     & > :last-child {
       opacity: 1;
-      transition: opacity 0.4s linear 0.55s;
+      transform: scale(1);
+      transition: opacity 0.4s linear 0.55s, transform 0s linear 0.5s;
     }
   }
 `;
@@ -68,9 +68,6 @@ export const Text = styled.div`
   justify-content: space-between;
   padding: 3rem 1.5rem;
   opacity: 0;
-  transition: opacity 0.4s;
-
-  & > * > * > li {
-    margin-left: 2rem;
-  }
+  transform: scale(0);
+  transition: opacity 0.4s, transform 0s linear 0.4s;
 `;

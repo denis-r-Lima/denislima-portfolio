@@ -32,7 +32,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         observer.disconnect();
       }
     };
-    const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -50% 0px" };
+    const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -40% 0px" };
     observers.push(
       IntersectionObserverRegister("#ContactTitle", callBack, observerOptions)
     );
