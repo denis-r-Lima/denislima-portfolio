@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: ${(props) => props.theme.typography.fontFamily};
     background: ${(props) => props.theme.pallet.color.background};
     color: ${(props) => props.theme.typography.color}
   }
@@ -30,16 +30,6 @@ const GlobalStyle = createGlobalStyle`
   a {
   color: inherit;
   text-decoration: none;
-}
-
-#TopPage{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-#CloudText{
-  font-family: 'Press Start 2P', cursive;
 }
 `;
 

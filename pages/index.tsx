@@ -21,30 +21,34 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  //   useEffect(() => {
-  //     const skillCards = document.querySelectorAll(".Card");
-  //     const skillCardsObserver = new IntersectionObserver(
-  //       (elements, skillCardsObserver) => {
-  //         elements.forEach((element) => {
-  //           if (element.isIntersecting) {
-  //             if (element.target.classList.contains("front")) {
-  //               element.target.classList.remove("front");
-  //             }
-  //             if (element.target.classList.contains("back")) {
-  //               element.target.classList.remove("back");
-  //             }
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    const callBack = (
+      element: IntersectionObserverEntry,
+      observer: IntersectionObserver
+    ) => {
+      if (element.isIntersecting) {
+        element.target.classList.add("show");
+        observer.disconnect();
+      }
+    };
+    const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -50% 0px" };
+    observers.push(
+      IntersectionObserverRegister("#ContactTitle", callBack, observerOptions)
+    );
+    observers.push(
+      IntersectionObserverRegister("#AboutTitle", callBack, observerOptions)
+    );
+    observers.push(
+      IntersectionObserverRegister("#PortfolioTitle", callBack, observerOptions)
+    );
 
-  //             skillCardsObserver.unobserve(element.target);
-  //           }
-  //         });
-  //       },
-  //       { threshold: 0.5 }
-  //     );
-
-  //     skillCards.forEach((skillCard) => {
-  //       skillCardsObserver.observe(skillCard);
-  //     });
-  //   }, []);
+    return () => {
+      for (let observer of observers) {
+        observer.disconnect();
+      }
+    };
+  });
 
   useEffect(() => {
     if (isMobile) {
@@ -88,6 +92,13 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel="icon" href="/img/favico.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Roboto:wght@300;400;700;900&display=swap"
+          rel="stylesheet"
+        />
+
         <meta
           name="google-site-verification"
           content="WV4fnX-CLbGZIP8tPpDrmRedAMZUO50eHYujRc2-NXk"
@@ -96,10 +107,18 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       <Container>
         <TopMenu className={(isMobile || showSideMenu) && "hide"} />
         <SideMenu className={showSideMenu && "show"} />
-        <Header />
-        <About />
-        <Portfolio />
-        <Contact email={content?.email} />
+        <section id="Header">
+          <Header />
+        </section>
+        <section id="About">
+          <About />
+        </section>
+        <section id="Portfolio">
+          <Portfolio portfolio={portfolio} />
+        </section>
+        <section id="Contact">
+          <Contact email={content?.email} />
+        </section>
       </Container>
     </div>
   );

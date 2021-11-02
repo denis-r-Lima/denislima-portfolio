@@ -16,5 +16,7 @@ export const theme = {
   },
   typography: {
     color: "hsl(234, 20%, 30%)",
+    fontFamily: "'Roboto', sans-serif;",
+    fontFamilyTitle: "'Raleway', sans-serif;",
   },
 };

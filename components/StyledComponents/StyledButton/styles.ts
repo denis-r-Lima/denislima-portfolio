@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+type ButtonProps = {
+  color?: string;
+  backgroundColor?: string;
+};
+
+export const Container = styled.button<ButtonProps>`
   border: none;
   position: relative;
   padding: 1.5rem 5rem;
@@ -9,7 +14,7 @@ export const Container = styled.button`
   margin: 1rem 0;
   width: fit-content;
   text-transform: uppercase;
-  color: ${(props) => props.theme.pallet.color.background};
+  color: ${(props) => props.color || props.theme.pallet.color.background};
   box-shadow: none;
   cursor: pointer;
   font-weight: bolder;
@@ -20,6 +25,7 @@ export const Container = styled.button`
   justify-content: center;
   gap: 1rem;
   z-index: 1;
+  font-family: ${(props) => props.theme.typography.fontFamily};
 
   &::after {
     content: "";
@@ -30,7 +36,8 @@ export const Container = styled.button`
     height: 50px;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
-    background-color: ${(props) => props.theme.pallet.color.primary};
+    background-color: ${(props) =>
+      props.backgroundColor || props.theme.pallet.color.primary};
     transition: all 0.5s;
     z-index: -1;
   }
@@ -42,7 +49,8 @@ export const Container = styled.button`
     left: 0;
     width: 100%;
     height: 100%;
-    border: 3px solid ${(props) => props.theme.pallet.color.background};
+    border: 3px solid
+      ${(props) => props.color || props.theme.pallet.color.background};
     z-index: -2;
   }
 

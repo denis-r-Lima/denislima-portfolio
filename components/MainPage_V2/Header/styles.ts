@@ -9,13 +9,13 @@ export const Container = styled.div`
 export const TextContainer = styled.div`
   position: absolute;
   top: 30%;
-  left: 40%;
-  transform: translate(-50%, -50%);
+  left: 10%;
   max-width: 1600px;
   color: ${(props) => props.theme.pallet.color.background};
-  font-size: 3rem;
+  font-size: 4rem;
   flex-direction: column;
   display: flex;
+  font-family: ${(props) => props.theme.typography.fontFamilyTitle};
 `;
 
 export const ImageContainer = styled.div`

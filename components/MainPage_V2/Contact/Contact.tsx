@@ -20,8 +20,8 @@ const Contact: React.FC<Props> = ({ email }) => {
   return (
     <Container>
       <InnerContainer>
-        <Title>Contact</Title>
-        <FromContainer onSubmit={onSubmit} id="Contact">
+        <Title id="ContactTitle">Contact</Title>
+        <FromContainer onSubmit={onSubmit}>
           <NormalText>Have a question or want to work together?</NormalText>
           <StyledInput
             title="Name"

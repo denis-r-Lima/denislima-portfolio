@@ -2,9 +2,12 @@ import React, { ButtonHTMLAttributes } from "react";
 
 import { Container } from "./styles";
 
-const StyledButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = (
-  props
-) => {
+interface StyledButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: string;
+  backgroundColor?: string;
+}
+
+const StyledButton: React.FC<StyledButton> = (props) => {
   return <Container {...props}>{props.children}</Container>;
 };
 

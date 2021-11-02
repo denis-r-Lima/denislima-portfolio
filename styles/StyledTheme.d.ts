@@ -19,6 +19,8 @@ declare module "styled-components" {
     };
     typography: {
       color: string;
+      fontFamily: string;
+      fontFamilyTitle: string;
     };
   }
 }

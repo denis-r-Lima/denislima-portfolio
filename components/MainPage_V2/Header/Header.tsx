@@ -7,7 +7,7 @@ import { Container, ImageContainer, TextContainer, Name } from "./styles";
 
 const Header: React.FC = () => {
   return (
-    <Container id="Header">
+    <Container>
       <ImageContainer />
       <TextContainer>
         <h1>
