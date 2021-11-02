@@ -60,7 +60,9 @@ const StyledInput = React.forwardRef<
           color={props.color}
         />
       )}
-      <legend>{props.title}</legend>
+      <legend>
+        {props.title} {props.required && "*"}
+      </legend>
     </InputField>
   );
 });

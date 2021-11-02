@@ -22,33 +22,28 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
     const callBack = (
       element: IntersectionObserverEntry,
       observer: IntersectionObserver
     ) => {
       if (element.isIntersecting) {
         element.target.classList.add("show");
-        observer.disconnect();
+        observer.unobserve(element.target);
       }
     };
+
     const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -40% 0px" };
-    observers.push(
-      IntersectionObserverRegister("#ContactTitle", callBack, observerOptions)
-    );
-    observers.push(
-      IntersectionObserverRegister("#AboutTitle", callBack, observerOptions)
-    );
-    observers.push(
-      IntersectionObserverRegister("#PortfolioTitle", callBack, observerOptions)
+    const targets = ["#ContactTitle", "#AboutTitle", "#PortfolioTitle"];
+    const observer = IntersectionObserverRegister(
+      targets,
+      callBack,
+      observerOptions
     );
 
     return () => {
-      for (let observer of observers) {
-        observer.disconnect();
-      }
+      observer.disconnect();
     };
-  });
+  }, []);
 
   useEffect(() => {
     if (isMobile) {
@@ -62,7 +57,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         }
       };
       const topMenuObserver = IntersectionObserverRegister(
-        "#Header",
+        ["#Header"],
         callBack,
         { threshold: 0.95 }
       );
@@ -72,6 +67,8 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   }, [isMobile]);
 
   useEffect(() => {
+    const body = document.getElementsByTagName("body")[0];
+
     const checkWidth = () => {
       if (window.innerWidth < 450) {
         setIsMobile(true);
@@ -82,9 +79,19 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
     checkWidth();
 
-    window.addEventListener("resize", checkWidth);
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.contentRect.width < 450) {
+          setIsMobile(true);
+        } else {
+          setIsMobile(false);
+        }
+      });
+    });
 
-    return () => window.removeEventListener("resize", checkWidth);
+    observer.observe(body);
+
+    return () => observer.disconnect();
   }, []);
 
   return (

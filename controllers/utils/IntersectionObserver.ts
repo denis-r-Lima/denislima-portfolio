@@ -4,18 +4,19 @@ type CallBack = (
 ) => void;
 
 export const IntersectionObserverRegister = (
-  selector: string,
+  selectors: string[],
   callBack: CallBack,
   options: IntersectionObserverInit
 ) => {
-  const target = document.querySelector(selector);
-
   const observer = new IntersectionObserver((elements) => {
     elements.forEach((element) => {
       callBack(element, observer);
     });
   }, options);
 
-  observer.observe(target);
+  for (let selector of selectors) {
+    const target = document.querySelector(selector);
+    observer.observe(target);
+  }
   return observer;
 };

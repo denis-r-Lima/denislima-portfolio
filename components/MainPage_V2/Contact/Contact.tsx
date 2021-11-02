@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 
 import { useTheme } from "styled-components";
@@ -12,10 +12,36 @@ interface Props {
   email: string;
 }
 
+const EMAIL_DEFAULT_VALUES = {
+  name: "",
+  email: "",
+  message: "",
+};
+
 const Contact: React.FC<Props> = ({ email }) => {
   const theme = useTheme();
-  const onSubmit = (e: React.FormEvent) => {
+  const [emailSend, setEmailSend] = useState(EMAIL_DEFAULT_VALUES);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { value, name } = e.target;
+    setEmailSend((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      const res = await fetch("/api/send_email", {
+        method: "POST",
+        body: JSON.stringify(emailSend),
+      });
+      if (res.status === 200) {
+        setEmailSend(EMAIL_DEFAULT_VALUES);
+      }
+    } catch (error) {
+      console.error("Email not sent");
+    }
   };
   return (
     <Container>
@@ -26,14 +52,20 @@ const Contact: React.FC<Props> = ({ email }) => {
           <StyledInput
             title="Name"
             name="name"
+            value={emailSend.name}
+            onChange={handleChange}
             backgroundColor={theme.pallet.color.backgroundSecondary}
             color={theme.pallet.color.background}
             colorHover={theme.pallet.color.background}
             focusColor={theme.pallet.color.background}
+            required
           />
           <StyledInput
+            required
             title="Email"
             name="email"
+            value={emailSend.email}
+            onChange={handleChange}
             type="email"
             backgroundColor={theme.pallet.color.backgroundSecondary}
             color={theme.pallet.color.background}
@@ -41,8 +73,11 @@ const Contact: React.FC<Props> = ({ email }) => {
             focusColor={theme.pallet.color.background}
           />
           <StyledInput
+            required
             title="Message"
             name="message"
+            value={emailSend.message}
+            onChange={handleChange}
             multiLine
             rows={8}
             backgroundColor={theme.pallet.color.backgroundSecondary}
