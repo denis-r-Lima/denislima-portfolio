@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.pallet.color.backgroundSecondary};
   padding: 1rem;
+  position: relative;
 `;
 
 export const InnerContainer = styled.div`
@@ -16,6 +17,7 @@ export const FromContainer = styled.form`
   width: 100%;
   max-width: 500px;
   margin: 5rem auto;
+  position: relative;
 
   @media only screen and (max-width: 450px) {
     max-width: 300px;

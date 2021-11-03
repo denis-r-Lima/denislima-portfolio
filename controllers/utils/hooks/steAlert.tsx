@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "styled-components";
 
 const useAlert = () => {
@@ -16,7 +16,7 @@ const useAlert = () => {
     setTimeout(() => {
       setMessage("");
       setColor("");
-    }, 2500);
+    }, 4000);
   };
 
   return [message, color, setAlert] as const;

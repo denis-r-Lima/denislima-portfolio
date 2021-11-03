@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 
 import { useTheme } from "styled-components";
+import { useLoading } from "../../../context/LoadingContext";
+import Loading from "../../Admin/Loading";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import { ButtonContainer, Title } from "./styles";
@@ -21,6 +23,7 @@ const EMAIL_DEFAULT_VALUES = {
 
 const Contact: React.FC<Props> = ({ email, setAlert }) => {
   const theme = useTheme();
+  const { loadingData, setLoadingData } = useLoading();
   const [emailSend, setEmailSend] = useState(EMAIL_DEFAULT_VALUES);
 
   const handleChange = (
@@ -33,6 +36,7 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      setLoadingData(true);
       const res = await fetch("/api/send_email", {
         method: "POST",
         body: JSON.stringify(emailSend),
@@ -43,6 +47,8 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
       }
     } catch (error) {
       setAlert("Email not sent", "error");
+    } finally {
+      setLoadingData(false);
     }
   };
   return (
@@ -98,6 +104,7 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
           </NormalText>
         </FromContainer>
       </InnerContainer>
+      {loadingData && <Loading />}
     </Container>
   );
 };
