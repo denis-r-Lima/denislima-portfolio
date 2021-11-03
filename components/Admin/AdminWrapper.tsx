@@ -7,7 +7,7 @@ import SideMenu from "./SideMenu";
 
 import { Container } from "./styles";
 import { useLoading } from "../../context/LoadingContext";
-import Loading from "./Loading";
+import Loading from "../StyledComponents/Loading";
 
 const AdminWrapper: React.FC = ({ children }) => {
   const [isHidden, setIsHidden] = useState<boolean>(false);

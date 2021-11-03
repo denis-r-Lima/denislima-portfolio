@@ -12,7 +12,7 @@ import Contact from "../components/MainPage_V2/Contact/Contact";
 import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
 import { IntersectionObserverRegister } from "../controllers/utils/IntersectionObserver";
 import SnackBar from "../components/StyledComponents/SnackBar/SnackBar";
-import useAlert from "../controllers/utils/hooks/steAlert";
+import useAlert from "../controllers/utils/hooks/setAlert";
 
 type HomeProps = {
   content: ContentType;
@@ -82,7 +82,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
-  console.log({ message, color });
+
   return (
     <div id="Home">
       <Head>

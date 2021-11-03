@@ -3,7 +3,7 @@ import { FaEnvelope } from "react-icons/fa";
 
 import { useTheme } from "styled-components";
 import { useLoading } from "../../../context/LoadingContext";
-import Loading from "../../Admin/Loading";
+import Loading from "../../StyledComponents/Loading";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import { ButtonContainer, Title } from "./styles";
@@ -94,9 +94,10 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
             focusColor={theme.pallet.color.background}
           />
           <ButtonContainer>
-            <StyledButton>
+            <StyledButton disabled={loadingData}>
               Send
               <FaEnvelope />
+              {loadingData && <Loading />}
             </StyledButton>
           </ButtonContainer>
           <NormalText>
@@ -104,7 +105,6 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
           </NormalText>
         </FromContainer>
       </InnerContainer>
-      {loadingData && <Loading />}
     </Container>
   );
 };

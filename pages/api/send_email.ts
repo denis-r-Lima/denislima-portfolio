@@ -1,18 +1,29 @@
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
 import { VercelRequest, VercelResponse } from "@vercel/node";
+import crypto from "crypto";
+
+const TO_DECIPHER =
+  "D1ErK0ShFtzbenRmtpE2/k8IKtQbQxbVSSNbqR6zJ8w8rIloriYVMC4BAUdnC0zSIRCled9zF0bgrODr5GFCMnmn5UlGS60qM/NKjB0UUrYWdiZ+67rFgsBC/INAPXSGHWwmo1+iyEfUvgB9vdzgqPnnQjP/xvLBJagGvv6jxi5HE5Z8f3tVSRAcgufIaZoOikfYmupfyhH7jYS/T0I0ng+Pnp20Y0UBlkfUE/B/T6YnJI4AM7XTR3Jq4OcjLOSLIq+7h0aa5U39z5rBPENA+OkKxOocS87NZ4RHYLeEDlKjFzCYvhcsa5c+7hcIOMS5bPr8wuMJMzRWEYzAE3EB49DZ3PpOofqatQpy9w//EDdJTPlIhOtp7llJZgg4hDeg1g1jbSIHq6Lqzdu8d5Yu+6+FRwq9Ft+iw630uPvyiLYxo2/mdEg4g2sqF8HvZ1Y9";
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === "POST") {
-    const authClient = new google.auth.OAuth2(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
-      process.env.REDIRECT_URI
+    const decipher = crypto.createDecipheriv(
+      "aes-128-cbc",
+      process.env.SERVICE_ENCRYPTION_KEY,
+      process.env.SERVICE_ENCRYPTION_IV
     );
-    authClient.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+    let text = decipher.update(TO_DECIPHER, "base64", "utf-8");
+    text += decipher.final("utf-8");
+    const credentials = JSON.parse(text);
+    const authClient = new google.auth.OAuth2(
+      credentials.clientID,
+      credentials.clientSecret,
+      credentials.redirectUri
+    );
+    authClient.setCredentials({ refresh_token: credentials.refreshToken });
     try {
       const accessToken = await authClient.getAccessToken();
-
       authClient.setCredentials({ access_token: accessToken.token });
       const gmail = google.gmail({
         version: "v1",
@@ -24,9 +35,9 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         auth: {
           type: "OAuth2",
           user: "denis.r.lima88@gmail.com",
-          clientId: process.env.CLIENT_ID,
-          clientSecret: process.env.CLIENT_SECRET,
-          refreshToken: process.env.REFRESH_TOKEN,
+          clientId: credentials.clientID,
+          clientSecret: credentials.clientSecret,
+          refreshToken: credentials.refreshToken,
           accessToken: accessToken,
         },
       });
