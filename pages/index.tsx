@@ -11,6 +11,8 @@ import About from "../components/MainPage_V2/About/About";
 import Contact from "../components/MainPage_V2/Contact/Contact";
 import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
 import { IntersectionObserverRegister } from "../controllers/utils/IntersectionObserver";
+import SnackBar from "../components/StyledComponents/SnackBar/SnackBar";
+import useAlert from "../controllers/utils/hooks/steAlert";
 
 type HomeProps = {
   content: ContentType;
@@ -20,6 +22,7 @@ type HomeProps = {
 const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [message, color, setAlert] = useAlert();
 
   useEffect(() => {
     const callBack = (
@@ -31,7 +34,6 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         observer.unobserve(element.target);
       }
     };
-
     const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -40% 0px" };
     const targets = ["#ContactTitle", "#AboutTitle", "#PortfolioTitle"];
     const observer = IntersectionObserverRegister(
@@ -39,7 +41,6 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       callBack,
       observerOptions
     );
-
     return () => {
       observer.disconnect();
     };
@@ -67,8 +68,6 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   }, [isMobile]);
 
   useEffect(() => {
-    const body = document.getElementsByTagName("body")[0];
-
     const checkWidth = () => {
       if (window.innerWidth < 450) {
         setIsMobile(true);
@@ -83,7 +82,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
 
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
-
+  console.log({ message, color });
   return (
     <div id="Home">
       <Head>
@@ -114,9 +113,10 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
           <Portfolio portfolio={portfolio} />
         </section>
         <section id="Contact">
-          <Contact email={content?.email} />
+          <Contact email={content?.email} setAlert={setAlert} />
         </section>
       </Container>
+      <SnackBar message={message} color={color} />
     </div>
   );
 };

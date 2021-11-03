@@ -10,6 +10,7 @@ import { Container, FromContainer, InnerContainer, NormalText } from "./styles";
 
 interface Props {
   email: string;
+  setAlert: (message: string, type: "error" | "success") => void;
 }
 
 const EMAIL_DEFAULT_VALUES = {
@@ -18,7 +19,7 @@ const EMAIL_DEFAULT_VALUES = {
   message: "",
 };
 
-const Contact: React.FC<Props> = ({ email }) => {
+const Contact: React.FC<Props> = ({ email, setAlert }) => {
   const theme = useTheme();
   const [emailSend, setEmailSend] = useState(EMAIL_DEFAULT_VALUES);
 
@@ -38,9 +39,10 @@ const Contact: React.FC<Props> = ({ email }) => {
       });
       if (res.status === 200) {
         setEmailSend(EMAIL_DEFAULT_VALUES);
+        setAlert("Email successfully sent", "success");
       }
     } catch (error) {
-      console.error("Email not sent");
+      setAlert("Email not sent", "error");
     }
   };
   return (
