@@ -26,14 +26,14 @@ const About: React.FC<Props> = ({ content }) => {
           <Text>{content?.about}</Text>
         </Card>
         <Card id="Skills">
-          {content?.frontEnd.technologies.map((tech) => (
+          {content?.frontEndTech.map((tech) => (
             <PercentageBar
               key={tech.name}
               name={tech.name}
               percentage={tech.value}
             />
           ))}
-          {content?.backEnd.technologies.map((tech) => (
+          {content?.backEndTech.map((tech) => (
             <PercentageBar
               key={tech.name}
               name={tech.name}

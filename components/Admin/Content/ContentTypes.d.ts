@@ -15,4 +15,6 @@ type ContentType = {
   frontEnd: DevTypes;
   email: string;
   id: string;
+  backEndTech: TechType[];
+  frontEndTech: TechType[];
 };

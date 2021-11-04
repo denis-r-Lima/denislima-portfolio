@@ -9,10 +9,9 @@ import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import { HalfGrid, InsideDiv, List, ListItem, NumberInput } from "./styles";
 
 type SkillCardContentProps = {
-  skill: DevTypes;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  skill: TechType[];
+  title: string;
+  onChange: (newValue: TechType[]) => void;
   onDelete: (index: number) => void;
 };
 
@@ -20,6 +19,7 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
   skill,
   onChange,
   onDelete,
+  title,
 }) => {
   const theme = useTheme();
   const [newTech, setNewTech] = useState<string>("");
@@ -31,11 +31,8 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
 
   const onAdd = () => {
     if (newTech.length > 0) {
-      const updatedTech = [...skill.technologies, newTech];
-      const e = {
-        target: { name: "technologies", value: updatedTech },
-      } as unknown as React.ChangeEvent<HTMLInputElement>;
-      onChange(e);
+      const updatedTech = [...skill, { name: newTech, value: "0%" }];
+      onChange(updatedTech);
       setNewTech("");
     }
   };
@@ -45,33 +42,26 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
   };
 
   const onDrop = (index: number) => () => {
-    const newOrder = skill?.technologies.filter((_, idx) => idx !== dragIndex);
+    const newOrder = skill?.filter((_, idx) => idx !== dragIndex);
     const newIndex = index > dragIndex ? index - 1 : index;
-    newOrder.splice(newIndex, 0, skill?.technologies[dragIndex]);
-    const e = {
-      target: { name: "technologies", value: newOrder },
-    } as unknown as React.ChangeEvent<HTMLInputElement>;
-    onChange(e);
+    newOrder.splice(newIndex, 0, skill[dragIndex]);
+    onChange(newOrder);
     setDragIndex(null);
   };
 
+  const onSkillLevelChange =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValues = skill.map((value, idx) => {
+        if (idx === index) return { ...value, value: `${e.target.value}%` };
+        return value;
+      });
+
+      onChange(newValues);
+    };
+
   return (
     <>
-      <h2>{skill?.title || ""}</h2>
-      <div>
-        <StyledInput
-          multiLine
-          fullWidth
-          title="Description"
-          name="description"
-          value={skill?.description || ""}
-          onChange={(e) => onChange(e)}
-          backgroundColor={theme.admin.color.base}
-          color={theme.admin.color.baseDark}
-          colorHover={theme.admin.color.baseDark}
-          focusColor={theme.admin.color.baseDark}
-        />
-      </div>
+      <h2>{title}</h2>
       <div>
         <HalfGrid>
           <StyledInput
@@ -91,7 +81,7 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
           </InsideDiv>
         </HalfGrid>
         <List>
-          {skill?.technologies.map((tech, index) => {
+          {skill?.map((tech, index) => {
             return (
               <ListItem key={tech.name}>
                 <DraggableDiv
@@ -104,6 +94,7 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
                     max="100"
                     min="0"
                     value={Number(tech.value.slice(0, -1))}
+                    onChange={onSkillLevelChange(index)}
                   />
                   <IconButton onClick={() => onDelete(index)}>
                     <MdDelete />

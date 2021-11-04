@@ -52,13 +52,11 @@ const Content: React.FC = () => {
     }
   };
 
-  const nestedOnChange =
-    (nest: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
+  const skillsOnChange =
+    (nest: "backEndTech" | "frontEndTech") => (newValue: TechType[]) => {
       setPageContent((prevState) => ({
         ...prevState,
-        [nest]: { ...prevState[nest], [name]: value },
+        [nest]: newValue,
       }));
     };
 
@@ -66,16 +64,16 @@ const Content: React.FC = () => {
     fetchFromStore();
   }, []);
 
-  const deleteTechnology = (skillType: string) => (index: number) => {
-    const newTechnologies = [...pageContent[skillType].technologies];
-    setPageContent((prevState) => ({
-      ...prevState,
-      [skillType]: {
-        ...prevState[skillType],
-        technologies: newTechnologies.filter((tech, idx) => idx !== index),
-      },
-    }));
-  };
+  const deleteSkill =
+    (skillType: "backEndTech" | "frontEndTech") => (index: number) => {
+      const newTechnologies = pageContent[skillType].filter(
+        (_t, idx) => idx !== index
+      );
+      setPageContent((prevState) => ({
+        ...prevState,
+        [skillType]: newTechnologies,
+      }));
+    };
 
   return (
     <Container>
@@ -112,14 +110,16 @@ const Content: React.FC = () => {
             </HalfGrid>
           </div>
           <SkillCardContent
-            skill={pageContent.frontEnd}
-            onChange={nestedOnChange("frontEnd")}
-            onDelete={deleteTechnology("frontEnd")}
+            skill={pageContent.frontEndTech}
+            onChange={skillsOnChange("frontEndTech")}
+            onDelete={deleteSkill("frontEndTech")}
+            title="Front-end"
           />
           <SkillCardContent
-            skill={pageContent.backEnd}
-            onChange={nestedOnChange("backEnd")}
-            onDelete={deleteTechnology("backEnd")}
+            skill={pageContent.backEndTech}
+            onChange={skillsOnChange("backEndTech")}
+            onDelete={deleteSkill("backEndTech")}
+            title="Back-end"
           />
           <div>
             <StyledButton
