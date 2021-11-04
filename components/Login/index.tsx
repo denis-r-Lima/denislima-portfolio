@@ -4,8 +4,11 @@ import { useAuth } from "../../context/AuthContext";
 
 import { Container, LoginForm, SubmitButton } from "./styles";
 import StyledInput from "../StyledComponents/StyledInput/StyledInput";
+import { useTheme } from "styled-components";
+import StyledButton from "../StyledComponents/StyledButton/StyledButton";
 
 const Login: React.FC = () => {
+  const theme = useTheme();
   const [alert, setAlert] = useState<string>("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const { signIn } = useAuth();
@@ -37,6 +40,10 @@ const Login: React.FC = () => {
           title="Email"
           value={loginData.email || ""}
           onChange={handleChange}
+          backgroundColor={theme.admin.color.base}
+          color={theme.admin.color.baseDark}
+          colorHover={theme.admin.color.baseDark}
+          focusColor={theme.admin.color.baseDark}
         />
         <StyledInput
           name="password"
@@ -44,8 +51,14 @@ const Login: React.FC = () => {
           title="Password"
           value={loginData.password || ""}
           onChange={handleChange}
+          backgroundColor={theme.admin.color.base}
+          color={theme.admin.color.baseDark}
+          colorHover={theme.admin.color.baseDark}
+          focusColor={theme.admin.color.baseDark}
         />
-        <SubmitButton type="submit">Submit</SubmitButton>
+        <StyledButton type="submit" background>
+          Submit
+        </StyledButton>
         {!!alert && alert}
       </LoginForm>
     </Container>
