@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import navigateTo from "../../../controllers/utils/scroll";
+import navigateTo from "../../../utils/scroll";
 
 import { Container, Menu, MenuCall, BurgerMenu, MenuButton } from "./styles";
 

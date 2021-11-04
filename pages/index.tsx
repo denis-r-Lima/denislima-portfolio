@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { GetStaticPropsResult } from "next";
 
 import { Container } from "../styles/indexV2/styles";
-import { fetchApi } from "../controllers/utils/fetchDatabase";
+import { fetchApi } from "../utils/fetchDatabase";
 import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
 import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
 import Header from "../components/MainPage_V2/Header/Header";
 import About from "../components/MainPage_V2/About/About";
 import Contact from "../components/MainPage_V2/Contact/Contact";
 import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
-import { IntersectionObserverRegister } from "../controllers/utils/IntersectionObserver";
+import { IntersectionObserverRegister } from "../utils/IntersectionObserver";
 import SnackBar from "../components/StyledComponents/SnackBar/SnackBar";
-import useAlert from "../controllers/utils/hooks/setAlert";
+import useAlert from "../utils/hooks/setAlert";
 
 type HomeProps = {
   content: ContentType;
@@ -34,15 +34,26 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
         observer.unobserve(element.target);
       }
     };
-    const observerOptions = { threshold: 0.5, rootMargin: "0px 0px -40% 0px" };
+    const observerOptions: IntersectionObserverInit = {
+      threshold: 0.5,
+      rootMargin: "0px 0px -40% 0px",
+    };
     const targets = ["#ContactTitle", "#AboutTitle", "#PortfolioTitle"];
     const observer = IntersectionObserverRegister(
       targets,
       callBack,
       observerOptions
     );
+    const observerOptionsCards: IntersectionObserverInit = { threshold: 0.3 };
+    const cardsTarget = ["#Me", "#Skills"];
+    const observerCards = IntersectionObserverRegister(
+      cardsTarget,
+      callBack,
+      observerOptionsCards
+    );
     return () => {
       observer.disconnect();
+      observerCards.disconnect();
     };
   }, []);
 
@@ -107,7 +118,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
           <Header />
         </section>
         <section id="About">
-          <About />
+          <About content={content} />
         </section>
         <section id="Portfolio">
           <Portfolio portfolio={portfolio} />

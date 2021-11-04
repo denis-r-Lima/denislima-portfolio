@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { getAuth, getIdToken } from "firebase/auth";
 
 import { useLoading } from "../../../context/LoadingContext";
-import { uploadFile } from "../../../controllers/utils/fetchDatabase";
+import { uploadFile } from "../../../utils/fetchDatabase";
 
 import { Container, HalfGrid, AddButton } from "./styles";
 import PortfolioCard from "./portfolioItemCard";

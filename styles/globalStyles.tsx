@@ -46,6 +46,10 @@ li{
 
   }
 }
+
+h1{
+  font-family: ${(props) => props.theme.typography.fontFamilyTitle};
+}
 `;
 
 export default GlobalStyle;

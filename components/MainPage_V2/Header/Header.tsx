@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowDown } from "react-icons/fa";
-import navigateTo from "../../../controllers/utils/scroll";
+import navigateTo from "../../../utils/scroll";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 
 import { Container, ImageContainer, TextContainer, Name } from "./styles";

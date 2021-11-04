@@ -84,6 +84,7 @@ export const FormInputs = styled.input<InputField>`
   background-color: transparent;
   z-index: 3;
   color: ${(props) => props.color || props.theme.typography.color};
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const FormTextArea = styled.textarea<InputField>`
@@ -95,4 +96,5 @@ export const FormTextArea = styled.textarea<InputField>`
   background-color: transparent;
   resize: none;
   color: ${(props) => props.color || props.theme.typography.color};
+  font-family: Arial, Helvetica, sans-serif;
 `;

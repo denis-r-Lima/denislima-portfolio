@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import isAuthorized from "../../controllers/utils/isAuthorized";
-import getCredentials from "../../controllers/utils/constants";
+import isAuthorized from "../../utils/isAuthorized";
+import getCredentials from "../../utils/constants";
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (!admin.apps.length) {

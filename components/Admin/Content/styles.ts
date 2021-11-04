@@ -37,6 +37,7 @@ export const InsideDiv = styled.div`
   right: 0;
   top: 50%;
   transform: translate(-25%, -50%);
+  z-index: 3;
 `;
 
 export const SaveButton = styled.button`
@@ -89,4 +90,9 @@ export const ListItem = styled.li`
   border-bottom: 1px solid #ccc;
   padding: 0.7rem 1rem 0;
   transition: all 0.4s;
+  margin: 0;
+
+  &::before {
+    content: "";
+  }
 `;

@@ -11,7 +11,7 @@ import SideMenu from "../components/MainPage/SideMenu";
 import TopMenu from "../components/MainPage/TopMenu";
 
 import { Container } from "../styles/index/styles";
-import { fetchApi } from "../controllers/utils/fetchDatabase";
+import { fetchApi } from "../utils/fetchDatabase";
 
 type HomeProps = {
   content: ContentType;
