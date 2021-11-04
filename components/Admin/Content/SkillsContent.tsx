@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { MdAddCircleOutline, MdDelete } from "react-icons/md";
+import { useTheme } from "styled-components";
 import DraggableDiv from "../../StyledComponents/DraggableDiv/DraggableDiv";
 import IconButton from "../../StyledComponents/IconButton/IconButton";
 
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
-import { HalfGrid, InsideDiv, List, ListItem } from "./styles";
+import { HalfGrid, InsideDiv, List, ListItem, NumberInput } from "./styles";
 
 type SkillCardContentProps = {
   skill: DevTypes;
@@ -20,6 +21,7 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
   onChange,
   onDelete,
 }) => {
+  const theme = useTheme();
   const [newTech, setNewTech] = useState<string>("");
   const [dragIndex, setDragIndex] = useState<number | null>(null);
 
@@ -64,6 +66,10 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
           name="description"
           value={skill?.description || ""}
           onChange={(e) => onChange(e)}
+          backgroundColor={theme.admin.color.base}
+          color={theme.admin.color.baseDark}
+          colorHover={theme.admin.color.baseDark}
+          focusColor={theme.admin.color.baseDark}
         />
       </div>
       <div>
@@ -73,6 +79,10 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
             value={newTech}
             onChange={onNewTechChange}
             fullWidth
+            backgroundColor={theme.admin.color.base}
+            color={theme.admin.color.baseDark}
+            colorHover={theme.admin.color.baseDark}
+            focusColor={theme.admin.color.baseDark}
           />
           <InsideDiv>
             <IconButton onClick={onAdd}>
@@ -89,6 +99,12 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
                   startDrag={onDragStart(index)}
                 >
                   {tech.name}
+                  <NumberInput
+                    type="number"
+                    max="100"
+                    min="0"
+                    value={Number(tech.value.slice(0, -1))}
+                  />
                   <IconButton onClick={() => onDelete(index)}>
                     <MdDelete />
                   </IconButton>

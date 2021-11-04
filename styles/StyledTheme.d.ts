@@ -22,5 +22,20 @@ declare module "styled-components" {
       fontFamily: string;
       fontFamilyTitle: string;
     };
+    admin: {
+      color: {
+        primary: string;
+        primaryLight: string;
+        primaryVeryLight: string;
+        secondary: string;
+        secondaryLight: string;
+        base: string;
+        baseMedium: string;
+        baseDark: string;
+      };
+      typography: {
+        color: string;
+      };
+    };
   }
 }

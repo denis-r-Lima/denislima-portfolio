@@ -7,11 +7,12 @@ export const ButtonIco = styled.button`
   margin: 0;
   cursor: pointer;
   font-size: 2.5rem;
-  color: ${(props) => props.theme.pallet.color.baseMedium};
+  color: ${(props) => props.theme.admin.color.baseMedium};
   margin-left: 1rem;
   transition: color 0.4s;
+  background-color: transparent;
 
   &:hover {
-    color: ${(props) => props.theme.pallet.color.baseDark};
+    color: ${(props) => props.theme.admin.color.baseDark};
   }
 `;

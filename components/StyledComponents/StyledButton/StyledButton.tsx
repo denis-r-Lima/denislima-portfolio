@@ -5,6 +5,7 @@ import { Container } from "./styles";
 interface StyledButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: string;
   backgroundColor?: string;
+  background?: boolean;
 }
 
 const StyledButton: React.FC<StyledButton> = (props) => {

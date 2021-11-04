@@ -10,9 +10,12 @@ import { SaveButton } from "./styles";
 import EditModal from "./EditModal";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import DraggableDiv from "../../StyledComponents/DraggableDiv/DraggableDiv";
+import { useTheme } from "styled-components";
+import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 
 const Portfolio: React.FC = () => {
   const auth = getAuth();
+  const theme = useTheme();
   const { setLoadingData } = useLoading();
   const [newItem, setNewItem] = useState<PortfolioItemType>(
     {} as PortfolioItemType
@@ -123,6 +126,10 @@ const Portfolio: React.FC = () => {
             value={newItem.gitHub || ""}
             onChange={onChange}
             fullWidth
+            backgroundColor={theme.admin.color.base}
+            color={theme.admin.color.baseDark}
+            colorHover={theme.admin.color.baseDark}
+            focusColor={theme.admin.color.baseDark}
           />
         </div>
         <div>
@@ -134,6 +141,10 @@ const Portfolio: React.FC = () => {
             fullWidth
             value={newItem.description || ""}
             onChange={onChange}
+            backgroundColor={theme.admin.color.base}
+            color={theme.admin.color.baseDark}
+            colorHover={theme.admin.color.baseDark}
+            focusColor={theme.admin.color.baseDark}
           />
         </div>
         <div>
@@ -144,11 +155,21 @@ const Portfolio: React.FC = () => {
               type="file"
               ref={fileRef}
               fullWidth
+              backgroundColor={theme.admin.color.base}
+              color={theme.admin.color.baseDark}
+              colorHover={theme.admin.color.baseDark}
+              focusColor={theme.admin.color.baseDark}
             />
           </HalfGrid>
         </div>
         <div>
-          <AddButton onClick={onAddItem}>Add</AddButton>
+          <StyledButton
+            onClick={onAddItem}
+            color={theme.admin.color.baseDark}
+            backgroundColor={theme.admin.color.secondaryLight}
+          >
+            Add
+          </StyledButton>
         </div>
         <h2>Portfolio List</h2>
         {portfolioItems.items?.map((item, index) => (
@@ -164,7 +185,13 @@ const Portfolio: React.FC = () => {
             />
           </DraggableDiv>
         ))}
-        <SaveButton onClick={onSave}>Save</SaveButton>
+        <StyledButton
+          onClick={onSave}
+          color={theme.admin.color.baseDark}
+          backgroundColor={theme.admin.color.primaryVeryLight}
+        >
+          Save
+        </StyledButton>
       </Container>
       {editIdx && (
         <EditModal

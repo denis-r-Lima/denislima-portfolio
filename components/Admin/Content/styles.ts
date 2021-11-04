@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: flex-start;
   gap: 3rem;
   font-size: 1.8rem;
+  background-color: ${(props) => props.theme.admin.color.base};
   & > div {
     width: 100%;
     display: flex;
@@ -47,13 +48,13 @@ export const SaveButton = styled.button`
   color: #fff;
   font-size: 1.4rem;
   padding: 1rem 5rem;
-  background-color: ${(props) => props.theme.pallet.color.primary};
+  background-color: ${(props) => props.theme.admin.color.primary};
   justify-self: center;
   cursor: pointer;
   transition: background-color linear 0.5s;
   align-self: flex-end;
   &:hover {
-    background-color: ${(props) => props.theme.pallet.color.primaryLight};
+    background-color: ${(props) => props.theme.admin.color.primaryLight};
   }
 `;
 
@@ -66,14 +67,14 @@ export const AddButton = styled.button`
   margin: 0 1rem;
   color: #fff;
   font-size: 2rem;
-  background-color: ${(props) => props.theme.pallet.color.secondary};
+  background-color: ${(props) => props.theme.admin.color.secondary};
   justify-self: center;
   cursor: pointer;
   transition: background-color linear 0.5s;
   align-self: flex-start;
   margin-bottom: 1rem;
   &:hover {
-    background-color: ${(props) => props.theme.pallet.color.secondaryLight};
+    background-color: ${(props) => props.theme.admin.color.secondaryLight};
   }
 `;
 
@@ -95,4 +96,11 @@ export const ListItem = styled.li`
   &::before {
     content: "";
   }
+`;
+
+export const NumberInput = styled.input`
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin: 0;
 `;

@@ -5,6 +5,8 @@ import { Container, SaveButton, HalfGrid } from "./styles";
 import { useLoading } from "../../../context/LoadingContext";
 import SkillCardContent from "./SkillsContent";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
+import { useTheme } from "styled-components";
+import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 
 const Content: React.FC = () => {
   const [pageContent, setPageContent] = useState<ContentType>(
@@ -12,6 +14,7 @@ const Content: React.FC = () => {
   );
   const { setLoadingData } = useLoading();
   const auth = getAuth();
+  const theme = useTheme();
 
   const fetchFromStore = async () => {
     try {
@@ -87,6 +90,10 @@ const Content: React.FC = () => {
               title="About Me"
               onChange={onChange}
               fullWidth
+              backgroundColor={theme.admin.color.base}
+              color={theme.admin.color.baseDark}
+              colorHover={theme.admin.color.baseDark}
+              focusColor={theme.admin.color.baseDark}
             />
           </div>
           <div>
@@ -97,6 +104,10 @@ const Content: React.FC = () => {
                 title="Email"
                 onChange={onChange}
                 fullWidth
+                backgroundColor={theme.admin.color.base}
+                color={theme.admin.color.baseDark}
+                colorHover={theme.admin.color.baseDark}
+                focusColor={theme.admin.color.baseDark}
               />
             </HalfGrid>
           </div>
@@ -111,7 +122,13 @@ const Content: React.FC = () => {
             onDelete={deleteTechnology("backEnd")}
           />
           <div>
-            <SaveButton onClick={saveContent}>Save</SaveButton>
+            <StyledButton
+              onClick={saveContent}
+              color={theme.admin.color.baseDark}
+              backgroundColor={theme.admin.color.primaryVeryLight}
+            >
+              Save
+            </StyledButton>
           </div>
         </>
       )}

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useTheme } from "styled-components";
+import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 
 import { ModalContainer, Modal, SaveButton } from "./styles";
@@ -10,6 +12,7 @@ type EditModalType = {
 };
 
 const EditModal: React.FC<EditModalType> = ({ item, onClose, onConfirm }) => {
+  const theme = useTheme();
   const [localItem, setLocalItem] = useState<PortfolioItemType>(item);
 
   const onChange = (
@@ -34,6 +37,10 @@ const EditModal: React.FC<EditModalType> = ({ item, onClose, onConfirm }) => {
           name="description"
           title="Description"
           onChange={onChange}
+          backgroundColor={theme.admin.color.base}
+          color={theme.admin.color.baseDark}
+          colorHover={theme.admin.color.baseDark}
+          focusColor={theme.admin.color.baseDark}
         />
         <StyledInput
           value={localItem.gitHub || ""}
@@ -41,8 +48,18 @@ const EditModal: React.FC<EditModalType> = ({ item, onClose, onConfirm }) => {
           title="GitHub Link"
           onChange={onChange}
           fullWidth
+          backgroundColor={theme.admin.color.base}
+          color={theme.admin.color.baseDark}
+          colorHover={theme.admin.color.baseDark}
+          focusColor={theme.admin.color.baseDark}
         />
-        <SaveButton onClick={() => onConfirm(localItem)}>Confirm</SaveButton>
+        <StyledButton
+          onClick={() => onConfirm(localItem)}
+          color={theme.admin.color.baseDark}
+          backgroundColor={theme.pallet.color.primaryVeryLight}
+        >
+          Confirm
+        </StyledButton>
       </Modal>
     </ModalContainer>
   );

@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: flex-start;
   gap: 3rem;
   font-size: 1.8rem;
+  background-color: ${(props) => props.theme.admin.color.base};
   & > div {
     width: 100%;
     display: flex;
@@ -95,7 +96,7 @@ export const Modal = styled.div`
   width: 65%;
   min-width: 30rem;
   max-width: 80rem;
-  background-color: ${(props) => props.theme.pallet.color.base};
+  background-color: ${(props) => props.theme.admin.color.base};
   border-radius: 1rem;
   font-size: 1.5rem;
   gap: 2rem;

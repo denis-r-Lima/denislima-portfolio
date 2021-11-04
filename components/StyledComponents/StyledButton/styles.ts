@@ -3,6 +3,7 @@ import styled from "styled-components";
 type ButtonProps = {
   color?: string;
   backgroundColor?: string;
+  background?: boolean;
 };
 
 export const Container = styled.button<ButtonProps>`
@@ -52,6 +53,8 @@ export const Container = styled.button<ButtonProps>`
     border: 3px solid
       ${(props) => props.color || props.theme.pallet.color.background};
     z-index: -2;
+    background-color: ${(props) =>
+      props.background ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0)"};
   }
 
   &:hover {
