@@ -54,4 +54,5 @@ export const PortfolioContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.3rem;
 `;

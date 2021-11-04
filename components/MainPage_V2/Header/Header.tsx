@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         </h1>
         <h1>I'm a full-stack developer.</h1>
         <StyledButton onClick={() => navigateTo("#About")} background>
-          View my work
+          View more
           <FaArrowDown />
         </StyledButton>
       </TextContainer>
