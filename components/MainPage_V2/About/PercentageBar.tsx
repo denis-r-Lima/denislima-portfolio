@@ -5,12 +5,11 @@ import { BarContainer, BarName, BarExternal, BarInternal } from "./styles";
 interface Props {
   name: string;
   percentage: string;
-  key?: any;
 }
 
-const PercentageBar: React.FC<Props> = ({ name, percentage, key }) => {
+const PercentageBar: React.FC<Props> = ({ name, percentage }) => {
   return (
-    <BarContainer key={key}>
+    <BarContainer>
       <BarName>{name}</BarName>
       <BarExternal width={percentage}>
         <BarInternal width={percentage} />

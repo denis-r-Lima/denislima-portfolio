@@ -35,25 +35,24 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       }
     };
     const observerOptions: IntersectionObserverInit = {
-      threshold: 0.5,
-      rootMargin: "0px 0px -40% 0px",
+      threshold: 0.3,
+      rootMargin: "0px 0px -15% 0px",
     };
-    const targets = ["#ContactTitle", "#AboutTitle", "#PortfolioTitle"];
+    const targets = [
+      "#ContactTitle",
+      "#AboutTitle",
+      "#PortfolioTitle",
+      "#Me",
+      "#Skills",
+    ];
     const observer = IntersectionObserverRegister(
       targets,
       callBack,
       observerOptions
     );
-    const observerOptionsCards: IntersectionObserverInit = { threshold: 0.3 };
-    const cardsTarget = ["#Me", "#Skills"];
-    const observerCards = IntersectionObserverRegister(
-      cardsTarget,
-      callBack,
-      observerOptionsCards
-    );
+
     return () => {
       observer.disconnect();
-      observerCards.disconnect();
     };
   }, []);
 
