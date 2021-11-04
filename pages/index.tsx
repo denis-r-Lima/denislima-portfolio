@@ -2,72 +2,79 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { GetStaticPropsResult } from "next";
 
-import AboutMe from "../components/MainPage/AboutMe";
-import Contact from "../components/MainPage/Contact";
-import HeaderComponent from "../components/MainPage/HeaderComponent/index";
-import Portfolio from "../components/MainPage/Portfolio";
-import SkillCard from "../components/MainPage/SkillCard";
-import SideMenu from "../components/MainPage/SideMenu";
-import TopMenu from "../components/MainPage/TopMenu";
-
-import { Container } from "../styles/index/styles";
-import { fetchApi } from "../controllers/utils/fetchDatabase";
+import { Container } from "../styles/indexV2/styles";
+import { fetchApi } from "../utils/fetchDatabase";
+import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
+import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
+import Header from "../components/MainPage_V2/Header/Header";
+import About from "../components/MainPage_V2/About/About";
+import Contact from "../components/MainPage_V2/Contact/Contact";
+import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
+import { IntersectionObserverRegister } from "../utils/IntersectionObserver";
+import SnackBar from "../components/StyledComponents/SnackBar/SnackBar";
+import useAlert from "../utils/hooks/setAlert";
 
 type HomeProps = {
   content: ContentType;
   portfolio: PortfolioItemType[];
 };
 
-const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
+const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [message, color, setAlert] = useAlert();
 
   useEffect(() => {
-    const skillCards = document.querySelectorAll(".Card");
-    const skillCardsObserver = new IntersectionObserver(
-      (elements, skillCardsObserver) => {
-        elements.forEach((element) => {
-          if (element.isIntersecting) {
-            if (element.target.classList.contains("front")) {
-              element.target.classList.remove("front");
-            }
-            if (element.target.classList.contains("back")) {
-              element.target.classList.remove("back");
-            }
-
-            skillCardsObserver.unobserve(element.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
+    const callBack = (
+      element: IntersectionObserverEntry,
+      observer: IntersectionObserver
+    ) => {
+      if (element.isIntersecting) {
+        element.target.classList.add("show");
+        observer.unobserve(element.target);
+      }
+    };
+    const observerOptions: IntersectionObserverInit = {
+      threshold: 0.5,
+      rootMargin: "0px 0px -40% 0px",
+    };
+    const targets = ["#ContactTitle", "#AboutTitle", "#PortfolioTitle"];
+    const observer = IntersectionObserverRegister(
+      targets,
+      callBack,
+      observerOptions
     );
-
-    skillCards.forEach((skillCard) => {
-      skillCardsObserver.observe(skillCard);
-    });
+    const observerOptionsCards: IntersectionObserverInit = { threshold: 0.3 };
+    const cardsTarget = ["#Me", "#Skills"];
+    const observerCards = IntersectionObserverRegister(
+      cardsTarget,
+      callBack,
+      observerOptionsCards
+    );
+    return () => {
+      observer.disconnect();
+      observerCards.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     if (isMobile) {
       setShowSideMenu(true);
     } else {
-      const root = document.getElementById("headerFrame");
-
-      const observer = new IntersectionObserver(
-        (elements) => {
-          elements.forEach((element) => {
-            if (element.isIntersecting) {
-              setShowSideMenu(false);
-            } else {
-              setShowSideMenu(true);
-            }
-          });
-        },
-        { rootMargin: "-350px 0px 0px 0px" }
+      const callBack = (element: IntersectionObserverEntry) => {
+        if (element.isIntersecting) {
+          setShowSideMenu(false);
+        } else {
+          setShowSideMenu(true);
+        }
+      };
+      const topMenuObserver = IntersectionObserverRegister(
+        ["#Header"],
+        callBack,
+        { threshold: 0.95 }
       );
 
-      observer.observe(root);
-      return () => observer.disconnect();
+      return () => topMenuObserver.disconnect();
     }
   }, [isMobile]);
 
@@ -88,34 +95,44 @@ const Home: React.FC<HomeProps> = ({ content, portfolio }) => {
   }, []);
 
   return (
-    <div id="TopPage">
+    <div id="Home">
       <Head>
         <title>Hi! I am Denis Lima</title>
         <link rel="icon" href="/img/favico.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Roboto:wght@300;400;700;900&display=swap"
           rel="stylesheet"
         />
+
         <meta
           name="google-site-verification"
           content="WV4fnX-CLbGZIP8tPpDrmRedAMZUO50eHYujRc2-NXk"
         />
       </Head>
       <Container>
-        {!showSideMenu && <TopMenu />}
-        <HeaderComponent />
-        <AboutMe id="AboutMe" content={content?.about} />
-        <SkillCard content={content} />
-        <Portfolio id="Portfolio" portfolio={portfolio} />
-        <Contact id="Contact" email={content?.email} />
-        {showSideMenu && <SideMenu />}
+        <TopMenu className={(isMobile || showSideMenu) && "hide"} />
+        <SideMenu className={showSideMenu && "show"} />
+        <section id="Header">
+          <Header />
+        </section>
+        <section id="About">
+          <About content={content} />
+        </section>
+        <section id="Portfolio">
+          <Portfolio portfolio={portfolio} />
+        </section>
+        <section id="Contact">
+          <Contact email={content?.email} setAlert={setAlert} />
+        </section>
       </Container>
+      <SnackBar message={message} color={color} />
     </div>
   );
 };
 
-export default Home;
+export default HomeV2;
 
 export async function getStaticProps(
   _context

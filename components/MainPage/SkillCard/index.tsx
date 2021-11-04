@@ -25,8 +25,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ content }) => {
         <br />
         <ul>
           {frontEnd?.technologies.map((skill) => (
-            <li key={skill}>
-              <p>{skill}</p>
+            <li key={skill.name}>
+              <p>{skill.name}</p>
             </li>
           ))}
         </ul>
@@ -43,8 +43,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ content }) => {
         <br />
         <ul>
           {backEnd?.technologies.map((skill) => (
-            <li key={skill}>
-              <p>{skill}</p>
+            <li key={skill.name}>
+              <p>{skill.name}</p>
             </li>
           ))}
         </ul>

@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes, useState } from "react";
-import { useTheme } from "styled-components";
 
 import { InputField, FormInputs, FormTextArea } from "./styles";
 
@@ -9,13 +8,16 @@ interface StyledInput
   rows?: number;
   title?: string;
   fullWidth?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  colorHover?: string;
+  focusColor?: string;
 }
 
 const StyledInput = React.forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   StyledInput
 >((props, ref) => {
-  const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
 
   const onChangeFocus = (
@@ -33,6 +35,10 @@ const StyledInput = React.forwardRef<
   return (
     <InputField
       className={`${props.fullWidth && "FullWidth"} ${isFocused && "Focus"}`}
+      backgroundColor={props.backgroundColor}
+      color={props.color}
+      colorHover={props.colorHover}
+      focusColor={props.focusColor}
     >
       {props.multiLine ? (
         <FormTextArea
@@ -42,6 +48,7 @@ const StyledInput = React.forwardRef<
           placeholder=" "
           rows={props.rows}
           ref={ref as React.MutableRefObject<HTMLTextAreaElement>}
+          color={props.color}
         />
       ) : (
         <FormInputs
@@ -50,9 +57,12 @@ const StyledInput = React.forwardRef<
           onBlur={onChangeFocus}
           placeholder=" "
           ref={ref as React.MutableRefObject<HTMLInputElement>}
+          color={props.color}
         />
       )}
-      <legend>{props.title}</legend>
+      <legend>
+        {props.title} {props.required && "*"}
+      </legend>
     </InputField>
   );
 });

@@ -1,6 +1,11 @@
+type TechType = {
+  name: string;
+  value: string;
+};
+
 type DevTypes = {
   description: string;
-  technologies: string[];
+  technologies: TechType[];
   title: string;
 };
 

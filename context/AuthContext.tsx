@@ -1,6 +1,6 @@
 import { UserCredential } from "@firebase/auth";
 import { createContext, useContext } from "react";
-import useFirebaseAuth from "../controllers/utils/hooks/useFirebaseAuth";
+import useFirebaseAuth from "../utils/hooks/useFirebaseAuth";
 
 type AuthUserType = {
   uid: string;

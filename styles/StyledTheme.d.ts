@@ -12,10 +12,15 @@ declare module "styled-components" {
         base: string;
         baseMedium: string;
         baseDark: string;
+        background: string;
+        backgroundDarker: string;
+        backgroundSecondary: string;
       };
     };
     typography: {
       color: string;
+      fontFamily: string;
+      fontFamilyTitle: string;
     };
   }
 }

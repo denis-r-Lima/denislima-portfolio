@@ -22,10 +22,11 @@ const rotate = keyframes`
 `;
 
 export const Loader = styled.div`
-  height: 5rem;
-  width: 5rem;
+  height: 80%;
+  max-height: 5rem;
+  aspect-ratio: 1;
   border-radius: 50%;
-  border: 5px solid #efefef;
-  border-bottom: 5px solid #3498db;
+  border: 5px solid ${(props) => props.theme.pallet.color.background};
+  border-bottom: 5px solid ${(props) => props.theme.pallet.color.primary};
   animation: ${rotate} 0.8s linear infinite;
 `;

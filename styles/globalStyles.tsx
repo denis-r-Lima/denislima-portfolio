@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   html{
     scroll-behavior: smooth;
     box-sizing: border-box;
-    font-size: 62.5%; 
+    font-size: 62.5%;
     @media only screen and (max-width: 770px){
       font-size: 40%
     }
@@ -22,8 +22,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f1f1f1;
+    font-family: ${(props) => props.theme.typography.fontFamily};
+    background: ${(props) => props.theme.pallet.color.background};
+    color: ${(props) => props.theme.typography.color}
   }
 
   a {
@@ -31,14 +32,23 @@ const GlobalStyle = createGlobalStyle`
   text-decoration: none;
 }
 
-#TopPage{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+li{
+  list-style: inside none;
+  margin-left: 2rem;
+  position: relative;
+
+  &::before{
+    content: ">";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-200%, -50%);
+
+  }
 }
 
-#CloudText{
-  font-family: 'Press Start 2P', cursive;
+h1{
+  font-family: ${(props) => props.theme.typography.fontFamilyTitle};
 }
 `;
 

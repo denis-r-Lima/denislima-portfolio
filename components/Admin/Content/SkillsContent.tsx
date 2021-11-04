@@ -83,12 +83,12 @@ const SkillCardContent: React.FC<SkillCardContentProps> = ({
         <List>
           {skill?.technologies.map((tech, index) => {
             return (
-              <ListItem key={tech}>
+              <ListItem key={tech.name}>
                 <DraggableDiv
                   action={onDrop(index)}
                   startDrag={onDragStart(index)}
                 >
-                  {tech}
+                  {tech.name}
                   <IconButton onClick={() => onDelete(index)}>
                     <MdDelete />
                   </IconButton>
