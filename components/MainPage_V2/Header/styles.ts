@@ -34,3 +34,12 @@ export const ImageContainer = styled.div`
 export const Name = styled.span`
   color: ${(props) => props.theme.pallet.color.baseMedium};
 `;
+
+export const HeroCanvas = styled.canvas`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background-color: transparent;
+`;
