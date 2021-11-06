@@ -45,6 +45,6 @@ export const BarInternal = styled.div<BarProps>`
   width: ${(props) => props.width};
   height: 100%;
   background-color: ${(props) => props.theme.pallet.color.primary};
-  transition: transform 1.5s;
+  transition: transform 1.5s ease-out;
   transform-origin: left;
 `;

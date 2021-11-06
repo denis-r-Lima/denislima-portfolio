@@ -19,7 +19,6 @@ export const FromContainer = styled.form`
   margin: 5rem auto;
   position: relative;
   transform: rotate(180deg);
-  transform-origin: top left;
   opacity: 0;
   transition: transform 0.7s, opacity 1s;
 
