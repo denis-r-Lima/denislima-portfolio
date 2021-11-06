@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import navigateTo from "../../../utils/scroll";
-import start from "../../../utils/shootingStars";
+import ShootingStar from "../../../utils/shootingStars";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 
 import {
@@ -14,7 +14,15 @@ import {
 
 const Header: React.FC = () => {
   useEffect(() => {
-    start();
+    const canvas = document.querySelector("canvas");
+    const shootingStartEffect = new ShootingStar(canvas);
+    shootingStartEffect.defineSize();
+    shootingStartEffect.start();
+
+    window.addEventListener("resize", shootingStartEffect.defineSize);
+
+    return () =>
+      window.removeEventListener("resize", shootingStartEffect.defineSize);
   }, []);
   return (
     <Container>

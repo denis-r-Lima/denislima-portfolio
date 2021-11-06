@@ -18,13 +18,19 @@ export const FromContainer = styled.form`
   max-width: 500px;
   margin: 5rem auto;
   position: relative;
-  transform: rotate(180deg);
-  opacity: 0;
-  transition: transform 0.7s, opacity 1s;
+
+  & > fieldset,
+  & > div {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.8s;
+  }
 
   &.show {
-    transform: rotate(0);
-    opacity: 1;
+    & > fieldset,
+    & > div {
+      transform: scaleY(1);
+    }
   }
 
   @media only screen and (max-width: 450px) {
