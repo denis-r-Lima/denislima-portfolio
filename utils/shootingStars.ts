@@ -59,6 +59,7 @@ export default class ShootingStar {
   private shootingStarEmittingInterval: { min: number; max: number };
   private shootingStarLifeTime: number;
   private maxTrailLength: number;
+  private stopped: boolean;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -75,6 +76,7 @@ export default class ShootingStar {
     this.shootingStarEmittingInterval = { min: 500, max: 1500 };
     this.shootingStarLifeTime = 500;
     this.maxTrailLength = 300;
+    this.stopped = false;
   }
 
   private lineToAngle = (
@@ -177,12 +179,14 @@ export default class ShootingStar {
 
   public start = () => {
     this.update();
-    setInterval(
-      this.createShootingStar,
-      this.randomRange(
-        this.shootingStarEmittingInterval.min,
-        this.shootingStarEmittingInterval.max
-      )
-    );
+    setInterval(() => {
+      if (!this.stopped) {
+        this.createShootingStar();
+      }
+    }, this.randomRange(this.shootingStarEmittingInterval.min, this.shootingStarEmittingInterval.max));
+  };
+
+  public setStop = (value: boolean) => {
+    this.stopped = value;
   };
 }

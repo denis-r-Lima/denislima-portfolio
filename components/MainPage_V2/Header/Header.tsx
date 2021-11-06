@@ -20,9 +20,18 @@ const Header: React.FC = () => {
     shootingStartEffect.start();
 
     window.addEventListener("resize", shootingStartEffect.defineSize);
+    window.addEventListener("blur", () => shootingStartEffect.setStop(true));
+    window.addEventListener("focus", () => shootingStartEffect.setStop(false));
 
-    return () =>
+    return () => {
       window.removeEventListener("resize", shootingStartEffect.defineSize);
+      window.removeEventListener("blur", () =>
+        shootingStartEffect.setStop(true)
+      );
+      window.removeEventListener("focus", () =>
+        shootingStartEffect.setStop(true)
+      );
+    };
   }, []);
   return (
     <Container>
