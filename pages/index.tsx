@@ -38,13 +38,7 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
       threshold: 0.3,
       rootMargin: "0px 0px -15% 0px",
     };
-    const targets = [
-      "#ContactTitle",
-      "#AboutTitle",
-      "#PortfolioTitle",
-      "#Me",
-      "#Skills",
-    ];
+    const targets = [".title", ".card", ".project", ".email"];
     const observer = IntersectionObserverRegister(
       targets,
       callBack,

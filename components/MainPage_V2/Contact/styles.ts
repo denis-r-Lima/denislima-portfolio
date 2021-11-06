@@ -18,6 +18,15 @@ export const FromContainer = styled.form`
   max-width: 500px;
   margin: 5rem auto;
   position: relative;
+  transform: rotate(180deg);
+  transform-origin: top left;
+  opacity: 0;
+  transition: transform 0.7s, opacity 1s;
+
+  &.show {
+    transform: rotate(0);
+    opacity: 1;
+  }
 
   @media only screen and (max-width: 450px) {
     max-width: 300px;

@@ -15,8 +15,8 @@ export const IntersectionObserverRegister = (
   }, options);
 
   for (let selector of selectors) {
-    const target = document.querySelector(selector);
-    observer.observe(target);
+    const targets = document.querySelectorAll(selector);
+    targets.forEach((target) => observer.observe(target));
   }
   return observer;
 };

@@ -54,8 +54,8 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
   return (
     <Container>
       <InnerContainer>
-        <Title id="ContactTitle">Contact</Title>
-        <FromContainer onSubmit={onSubmit}>
+        <Title className="title">Contact</Title>
+        <FromContainer onSubmit={onSubmit} className="email">
           <NormalText>Have a question or want to work together?</NormalText>
           <StyledInput
             title="Name"

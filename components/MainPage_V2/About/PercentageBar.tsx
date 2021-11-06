@@ -1,6 +1,11 @@
 import React from "react";
 
-import { BarContainer, BarName, BarExternal, BarInternal } from "./styles";
+import {
+  BarContainer,
+  BarName,
+  BarExternal,
+  BarInternal,
+} from "./PercentageBarStyle";
 
 interface Props {
   name: string;

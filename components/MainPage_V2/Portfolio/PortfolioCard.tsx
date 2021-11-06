@@ -14,7 +14,7 @@ interface Props {
 const PortfolioCard: React.FC<Props> = ({ src, text, link }) => {
   const theme = useTheme();
   return (
-    <Container>
+    <Container className="project">
       <Image src={src} />
       <Door className="top" />
       <Door className="bottom" />

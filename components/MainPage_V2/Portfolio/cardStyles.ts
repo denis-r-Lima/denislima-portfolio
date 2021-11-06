@@ -5,6 +5,11 @@ export const Container = styled.div`
   width: 35rem;
   height: 35rem;
   overflow: hidden;
+  transform: scale(0);
+  transition: transform 0.6s;
+  &.show {
+    transform: scale(1);
+  }
 
   &:hover {
     & > .top {

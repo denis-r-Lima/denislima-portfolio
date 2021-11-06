@@ -11,7 +11,7 @@ const Portfolio: React.FC<Props> = ({ portfolio }) => {
   return (
     <Container>
       <InnerContainer>
-        <Title id="PortfolioTitle">Projects</Title>
+        <Title className="title">Projects</Title>
         <PortfolioContainer>
           {portfolio.map((item) => (
             <PortfolioCard

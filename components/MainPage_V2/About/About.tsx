@@ -18,14 +18,14 @@ interface Props {
 const About: React.FC<Props> = ({ content }) => {
   return (
     <Container>
-      <Title id="AboutTitle">About</Title>
+      <Title className="title">About</Title>
       <InnerContainer>
-        <Card id="Me">
+        <Card className="card" id="Me">
           <ImgContainer />
           <Question>Who am I?</Question>
           <Text>{content?.about}</Text>
         </Card>
-        <Card id="Skills">
+        <Card className="card" id="Skills">
           {content?.frontEndTech.map((tech) => (
             <PercentageBar
               key={tech.name}
