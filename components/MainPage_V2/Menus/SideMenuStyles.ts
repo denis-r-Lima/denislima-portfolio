@@ -20,14 +20,14 @@ export const BurgerMenuContainer = styled.div`
   transition: transform 0.2s linear;
   z-index: 1000;
   &.show {
-    transition: transform 0.2s linear 0.1s;
+    transition: transform 0.2s linear 0.1s, background-color 0.4s;
     transform: scale(1);
   }
 
   & > :first-child {
     transition: transform ${burgerAnimationTime} linear ${burgerAnimationDelay};
     & > div {
-      transition: transform ${burgerAnimationTime};
+      transition: transform ${burgerAnimationTime}, background-color 0.4s;
     }
   }
   & > :nth-child(2) {
@@ -36,16 +36,22 @@ export const BurgerMenuContainer = styled.div`
   & > :last-child {
     transition: transform ${burgerAnimationTime} linear ${burgerAnimationDelay};
     & > div {
-      transition: transform ${burgerAnimationTime};
+      transition: transform ${burgerAnimationTime}, background-color 0.4s;
     }
   }
+
   &.opened {
+    & > div > div {
+      background-color: ${(props) => props.theme.typography.color};
+    }
+    background-color: ${(props) => props.theme.pallet.color.background};
     & > :first-child {
       transition: transform ${burgerAnimationTime};
       transform: translateY(0.7rem);
       & > div {
         transition: transform ${burgerAnimationTime} linear
-          ${burgerAnimationDelay};
+            ${burgerAnimationDelay},
+          background-color 0.4s;
         transform: rotate(45deg);
       }
     }
@@ -57,7 +63,8 @@ export const BurgerMenuContainer = styled.div`
       transform: translateY(-0.7rem);
       & > div {
         transition: transform ${burgerAnimationTime} linear
-          ${burgerAnimationDelay};
+            ${burgerAnimationDelay},
+          background-color 0.4s;
         transform: rotate(-45deg);
       }
     }
