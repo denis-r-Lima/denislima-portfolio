@@ -87,6 +87,12 @@ const HomeV2: React.FC<HomeProps> = ({ content, portfolio }) => {
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
+  useEffect(() => {
+    fetch("/api/visitors", {
+      method: "PUT",
+    });
+  }, []);
+
   return (
     <div id="Home">
       <Head>

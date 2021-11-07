@@ -54,7 +54,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       };
       await transport.sendMail(mailOptions);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return response
         .status(500)
         .send(JSON.stringify({ message: "Failed to send email" }));

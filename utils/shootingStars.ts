@@ -124,9 +124,6 @@ export default class ShootingStar {
       currentTrailLength = this.maxTrailLength * particle.trailLengthDelta,
       pos = this.lineToAngle(x, y, -currentTrailLength, particle.getHeading());
 
-    this.context.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
-
-    //trail
     this.context.fillStyle = `rgba(255, 221, 157, ${particle.opacity})`;
     this.context.beginPath();
     this.context.moveTo(x - 1, y - 1);

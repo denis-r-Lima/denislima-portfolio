@@ -21,6 +21,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       const resp = { items };
       return response.status(200).send(JSON.stringify(resp));
     } catch (e) {
+      console.error(e);
       return response.status(404).send("Collection not found!");
     }
   }
@@ -34,6 +35,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         await db.doc(process.env.NEXT_PUBLIC_PORTFOLIO_ID).set(data);
         return response.status(204).send("");
       } catch (e) {
+        console.error(e);
         return response.status(401).send("Not authorized");
       }
     }

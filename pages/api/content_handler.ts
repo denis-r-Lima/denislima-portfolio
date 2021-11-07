@@ -20,6 +20,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       const content = contentCollection.data();
       return response.status(200).send(JSON.stringify(content));
     } catch (e) {
+      console.error(e);
       return response.status(404).send("Collection not found!");
     }
   }
@@ -31,7 +32,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         const db = admin.firestore().collection("pageContent");
         await db.doc("vpFB3jeiSpTt2gjkjizl").update(data);
         return response.status(204).send("");
-      } catch {
+      } catch (e) {
+        console.error(e);
         return response.status(401).send("Not authorized");
       }
     }
