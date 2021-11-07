@@ -55,4 +55,12 @@ export const PortfolioContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.3rem;
+
+  @media only screen and (min-width: 450px) {
+    &.show {
+      & > div {
+        transform: scale(1);
+      }
+    }
+  }
 `;

@@ -9,12 +9,13 @@ interface Props {
   src: string;
   text: string;
   link: string;
+  delay: number;
 }
 
-const PortfolioCard: React.FC<Props> = ({ src, text, link }) => {
+const PortfolioCard: React.FC<Props> = ({ src, text, link, delay }) => {
   const theme = useTheme();
   return (
-    <Container className="project">
+    <Container className="project" delay={delay * 0.4}>
       <Image src={src} />
       <Door className="top" />
       <Door className="bottom" />

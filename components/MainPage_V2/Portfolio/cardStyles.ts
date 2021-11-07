@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+type CardProps = {
+  delay: number;
+};
+export const Container = styled.div<CardProps>`
   position: relative;
   width: 35rem;
   height: 35rem;
   overflow: hidden;
   transform: scale(0);
-  transition: transform 0.6s;
-  &.show {
-    transform: scale(1);
+  transition: transform 0.6s linear ${(props) => props.delay}s;
+
+  @media only screen and (max-width: 450px) {
+    transition: transform 0.6s;
+    &.show {
+      transform: scale(1);
+    }
   }
 
   &:hover {
