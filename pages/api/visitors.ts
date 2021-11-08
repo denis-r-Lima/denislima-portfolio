@@ -6,7 +6,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === "PUT") {
     if (!request.cookies.previous_visitor) {
       response.setHeader("Set-Cookie", [
-        "previous_visitor=true; Path=/; HttpOnly",
+        "previous_visitor=true; Path=/; Max-Age=31536000 ; HttpOnly", // Max-Age for 1 year
       ]);
       if (!admin.apps.length) {
         admin.initializeApp({
