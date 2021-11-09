@@ -14,6 +14,9 @@ interface DraggableDiv extends CleanDivType {
 
 const DraggableDiv: React.FC<DraggableDiv> = (props) => {
   const { children } = props;
+  const cleanProps = { ...props };
+  delete cleanProps.action;
+  delete cleanProps.startDrag;
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -41,7 +44,7 @@ const DraggableDiv: React.FC<DraggableDiv> = (props) => {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDragStart={onDragStart}
-      {...props}
+      {...cleanProps}
     >
       {children}
     </Draggable>

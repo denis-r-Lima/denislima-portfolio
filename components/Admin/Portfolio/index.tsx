@@ -4,9 +4,8 @@ import { getAuth, getIdToken } from "firebase/auth";
 import { useLoading } from "../../../context/LoadingContext";
 import { uploadFile } from "../../../utils/fetchDatabase";
 
-import { Container, HalfGrid, AddButton } from "./styles";
+import { Container, HalfGrid } from "./styles";
 import PortfolioCard from "./portfolioItemCard";
-import { SaveButton } from "./styles";
 import EditModal from "./EditModal";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import DraggableDiv from "../../StyledComponents/DraggableDiv/DraggableDiv";
@@ -63,14 +62,18 @@ const Portfolio: React.FC = () => {
     if (fileRef.current!.files[0]?.type.startsWith("image")) {
       const { files, value } = fileRef.current!;
       try {
+        setLoadingData(true);
         const downloadUrl = await uploadFile(value, files[0]);
         setPortfolioItems((prevState) => ({
           ...prevState,
           items: [...prevState.items, { ...newItem, image: downloadUrl }],
         }));
         setNewItem({} as PortfolioItemType);
+        fileRef.current.value = "";
       } catch (e) {
         console.error(e);
+      } finally {
+        setLoadingData(false);
       }
     }
   };

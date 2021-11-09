@@ -139,14 +139,18 @@ export async function getStaticProps(
   let content = {} as ContentType;
   let portfolio = [] as PortfolioItemType[];
   try {
-    const resultContent = await fetchApi(
+    const contentRequest = await fetchApi(
       "pageContent",
       process.env.NEXT_PUBLIC_CONTENT_ID
     );
-    const resultPortfolio = await fetchApi(
+    const portfolioRequest = await fetchApi(
       "portfolioItems",
       process.env.NEXT_PUBLIC_PORTFOLIO_ID
     );
+    const [resultContent, resultPortfolio] = await Promise.all([
+      contentRequest,
+      portfolioRequest,
+    ]);
     if (resultContent) {
       content = resultContent.data() as ContentType;
     }
