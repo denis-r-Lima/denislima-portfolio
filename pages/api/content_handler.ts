@@ -1,15 +1,9 @@
-import * as admin from "firebase-admin";
 import { VercelRequest, VercelResponse } from "@vercel/node";
+import connectFirebaseAdmin from "../../utils/firebaseAdmin";
 import isAuthorized from "../../utils/isAuthorized";
-import getCredentials from "../../utils/constants";
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  if (!admin.apps.length) {
-    admin.initializeApp({
-      credential: admin.credential.cert(getCredentials()),
-    });
-  }
-
+  const admin = connectFirebaseAdmin();
   if (request.method === "GET") {
     const db = admin.firestore();
     try {
@@ -39,4 +33,6 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     }
     return response.status(401).send("Not authorized");
   }
+
+  return response.status(405).send("Method not allowed");
 };

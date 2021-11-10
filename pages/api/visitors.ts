@@ -1,6 +1,5 @@
-import * as admin from "firebase-admin";
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import getCredentials from "../../utils/constants";
+import connectFirebaseAdmin from "../../utils/firebaseAdmin";
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === "PUT") {
@@ -8,11 +7,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       response.setHeader("Set-Cookie", [
         "previous_visitor=true; Path=/; Max-Age=31536000 ; HttpOnly", // Max-Age for 1 year
       ]);
-      if (!admin.apps.length) {
-        admin.initializeApp({
-          credential: admin.credential.cert(getCredentials()),
-        });
-      }
+      const admin = connectFirebaseAdmin();
       const db = admin.firestore();
       try {
         const docVisitors = db.collection("singleVisitors").doc("visitors");

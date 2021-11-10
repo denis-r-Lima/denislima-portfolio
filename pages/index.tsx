@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { GetStaticPropsResult } from "next";
 
 import { Container } from "../styles/indexV2/styles";
-import { fetchApi } from "../utils/fetchDatabase";
 import TopMenu from "../components/MainPage_V2/Menus/TopMenu";
 import SideMenu from "../components/MainPage_V2/Menus/SideMenu";
 import Header from "../components/MainPage_V2/Header/Header";
@@ -13,6 +12,7 @@ import Portfolio from "../components/MainPage_V2/Portfolio/Portfolio";
 import { IntersectionObserverRegister } from "../utils/IntersectionObserver";
 import SnackBar from "../components/StyledComponents/SnackBar/SnackBar";
 import useAlert from "../utils/hooks/setAlert";
+import connectFirebaseAdmin from "../utils/firebaseAdmin";
 
 type HomeProps = {
   content: ContentType;
@@ -136,20 +136,23 @@ export default HomeV2;
 export async function getStaticProps(
   _context
 ): Promise<GetStaticPropsResult<HomeProps>> {
+  const admin = connectFirebaseAdmin();
+
   let content = {} as ContentType;
   let portfolio = [] as PortfolioItemType[];
   try {
-    const contentRequest = await fetchApi(
-      "pageContent",
-      process.env.NEXT_PUBLIC_CONTENT_ID
-    );
-    const portfolioRequest = await fetchApi(
-      "portfolioItems",
-      process.env.NEXT_PUBLIC_PORTFOLIO_ID
-    );
+    const db = admin.firestore();
+    const contentCollection = db
+      .collection("pageContent")
+      .doc(process.env.NEXT_PUBLIC_CONTENT_ID)
+      .get();
+    const portfolioCollection = db
+      .collection("portfolioItems")
+      .doc(process.env.NEXT_PUBLIC_PORTFOLIO_ID)
+      .get();
     const [resultContent, resultPortfolio] = await Promise.all([
-      contentRequest,
-      portfolioRequest,
+      contentCollection,
+      portfolioCollection,
     ]);
     if (resultContent) {
       content = resultContent.data() as ContentType;
