@@ -19,7 +19,6 @@ export const FromContainer = styled.form`
   margin: 5rem auto;
   position: relative;
 
-  & > fieldset,
   & > div {
     transform: scaleY(0);
     transform-origin: top;
@@ -27,7 +26,6 @@ export const FromContainer = styled.form`
   }
 
   &.show {
-    & > fieldset,
     & > div {
       transform: scaleY(1);
     }
