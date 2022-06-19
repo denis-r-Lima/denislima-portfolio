@@ -16,6 +16,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     let text = decipher.update(TO_DECIPHER, "base64", "utf-8");
     text += decipher.final("utf-8");
     const credentials = JSON.parse(text);
+    console.log(credentials);
     const authClient = new google.auth.OAuth2(
       credentials.clientID,
       credentials.clientSecret,

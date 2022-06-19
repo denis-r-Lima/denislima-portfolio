@@ -44,6 +44,8 @@ const Contact: React.FC<Props> = ({ email, setAlert }) => {
       if (res.status === 200) {
         setEmailSend(EMAIL_DEFAULT_VALUES);
         setAlert("Email successfully sent", "success");
+      } else {
+        throw new Error();
       }
     } catch (error) {
       setAlert("Email not sent", "error");
