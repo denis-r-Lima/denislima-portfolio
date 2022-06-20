@@ -13,26 +13,26 @@ import {
 } from "./styles";
 
 const Header: React.FC = () => {
-  useEffect(() => {
-    const canvas = document.querySelector("canvas");
-    const shootingStartEffect = new ShootingStar(canvas);
-    shootingStartEffect.defineSize();
-    shootingStartEffect.start();
+  // useEffect(() => {
+  //   const canvas = document.querySelector("canvas");
+  //   const shootingStartEffect = new ShootingStar(canvas);
+  //   shootingStartEffect.defineSize();
+  //   shootingStartEffect.start();
 
-    window.addEventListener("resize", shootingStartEffect.defineSize);
-    window.addEventListener("blur", () => shootingStartEffect.setStop(true));
-    window.addEventListener("focus", () => shootingStartEffect.setStop(false));
+  //   window.addEventListener("resize", shootingStartEffect.defineSize);
+  //   window.addEventListener("blur", () => shootingStartEffect.setStop(true));
+  //   window.addEventListener("focus", () => shootingStartEffect.setStop(false));
 
-    return () => {
-      window.removeEventListener("resize", shootingStartEffect.defineSize);
-      window.removeEventListener("blur", () =>
-        shootingStartEffect.setStop(true)
-      );
-      window.removeEventListener("focus", () =>
-        shootingStartEffect.setStop(true)
-      );
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", shootingStartEffect.defineSize);
+  //     window.removeEventListener("blur", () =>
+  //       shootingStartEffect.setStop(true)
+  //     );
+  //     window.removeEventListener("focus", () =>
+  //       shootingStartEffect.setStop(true)
+  //     );
+  //   };
+  // }, []);
   return (
     <Container>
       <ImageContainer />
