@@ -7,7 +7,11 @@ import StyledInput from "../StyledComponents/StyledInput/StyledInput";
 import { useTheme } from "styled-components";
 import StyledButton from "../StyledComponents/StyledButton/StyledButton";
 
-const Login: React.FC = () => {
+type LoginProps = {
+  target: string;
+};
+
+const Login: React.FC<LoginProps> = ({ target }) => {
   const theme = useTheme();
   const [alert, setAlert] = useState<string>("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -18,7 +22,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       await signIn(loginData.email, loginData.password);
-      router.push("/admin");
+      router.push(target);
     } catch (e) {
       console.log(e.response);
       setAlert("Invalid email or password!");

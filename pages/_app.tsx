@@ -6,20 +6,23 @@ import smoothscroll from "smoothscroll-polyfill";
 
 import { theme } from "../styles/theme";
 import { useEffect } from "react";
+import ResumeDataProvider from "../context/ResumeDataContext";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     smoothscroll.polyfill();
   }, []);
   return (
-    <AuthUserProvider>
-      <LoadingProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </ThemeProvider>
-      </LoadingProvider>
-    </AuthUserProvider>
+    <ResumeDataProvider>
+      <AuthUserProvider>
+        <LoadingProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+            <GlobalStyle />
+          </ThemeProvider>
+        </LoadingProvider>
+      </AuthUserProvider>
+    </ResumeDataProvider>
   );
 }
 
