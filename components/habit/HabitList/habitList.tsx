@@ -11,11 +11,16 @@ const HabitList: React.FC = () => {
     date: "",
     habits: [],
   });
-  const { getTodayData, updateToday, fetched, resetToday } = useHabitContext();
+  const { getTodayData, updateToday, fetched, resetToday, fetchFromStore } =
+    useHabitContext();
   const today = new Date();
   const month = today.getMonth() + 1;
   const day = today.getDate();
   const year = today.getFullYear();
+
+  useEffect(() => {
+    if (!fetched) fetchFromStore();
+  }, []);
 
   useEffect(() => {
     const data = getTodayData();

@@ -6,11 +6,15 @@ import { useHabitContext } from "../../../context/HabitContext";
 type HabitListType = { baseYear: number; habits: { [name: string]: number } };
 
 const TrackHabit: React.FC = () => {
-  const { getList, fetched } = useHabitContext();
+  const { getList, fetched, fetchFromStore } = useHabitContext();
   const [habits, setHabits] = useState<HabitListType>({
     baseYear: 0,
     habits: {},
   });
+
+  useEffect(() => {
+    if (!fetched) fetchFromStore();
+  }, []);
 
   useEffect(() => {
     const data = getList();

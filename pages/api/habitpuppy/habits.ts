@@ -11,6 +11,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const admin = connectFirebaseAdmin();
 
   if (request.method === "GET") {
+    console.log("pegando dados");
     const { token, user } = request.query;
     if (await isAuthorized(token as string)) {
       try {

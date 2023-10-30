@@ -26,9 +26,7 @@ const Wrapper: React.FC = ({ children }) => {
         backgroundColor: theme.pallet.color.backgroundSecondary,
       }}
     >
-      {!loading && authUser && (
-        <HabitContextProvider>{children}</HabitContextProvider>
-      )}
+      {!loading && authUser && <div>{children}</div>}
       {(loadingData || loading) && <Loading />}
     </div>
   );

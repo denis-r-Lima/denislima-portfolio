@@ -20,6 +20,7 @@ type HabitContextType = {
   ) => void;
   resetToday: (newDate: string) => TodayDataType;
   fetched: boolean;
+  fetchFromStore: () => void;
 };
 
 const habitContext = createContext({} as HabitContextType);
@@ -28,10 +29,10 @@ const HabitContextProvider: React.FC = ({ children }) => {
   const [habit, setHabit] = useState({} as HabitsType);
   const [fetched, setFetched] = useState(false);
   const { setLoadingData } = useLoading();
-  const auth = getAuth();
-  const userEmail = auth.currentUser.email;
 
   const fetchFromStore = async () => {
+    const auth = getAuth();
+    const userEmail = auth.currentUser.email;
     try {
       setLoadingData(true);
       const token = await getIdToken(auth.currentUser);
@@ -49,10 +50,6 @@ const HabitContextProvider: React.FC = ({ children }) => {
       setLoadingData(false);
     }
   };
-
-  useEffect(() => {
-    fetchFromStore();
-  }, []);
 
   useEffect(() => {
     if (!habit.habitList) return;
@@ -76,6 +73,8 @@ const HabitContextProvider: React.FC = ({ children }) => {
   };
 
   const updateList = async (data: HabitListType) => {
+    const auth = getAuth();
+    const userEmail = auth.currentUser.email;
     const temp = { ...habit, habitList: data };
     try {
       setLoadingData(true);
@@ -101,6 +100,8 @@ const HabitContextProvider: React.FC = ({ children }) => {
     completed: boolean,
     habitCompleted: string
   ) => {
+    const auth = getAuth();
+    const userEmail = auth.currentUser.email;
     const temp: HabitsType = { ...habit, today: data };
     if (completed) {
       temp.habitList.habits[habitCompleted]++;
@@ -144,6 +145,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
         updateToday,
         resetToday,
         fetched,
+        fetchFromStore,
       }}
     >
       {children}

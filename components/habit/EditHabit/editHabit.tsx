@@ -10,14 +10,24 @@ import { useHabitContext } from "../../../context/HabitContext";
 type HabitListType = { baseYear: number; habits: { [name: string]: number } };
 
 const AddHabit: React.FC = () => {
-  const { getList, updateList, fetched, getTodayData, updateToday } =
-    useHabitContext();
+  const {
+    getList,
+    updateList,
+    fetched,
+    getTodayData,
+    updateToday,
+    fetchFromStore,
+  } = useHabitContext();
   const theme = useTheme();
   const [newHabit, setNewHabit] = useState<string>("");
   const [habits, setHabits] = useState<HabitListType>({
     baseYear: 0,
     habits: {},
   });
+
+  useEffect(() => {
+    if (!fetched) fetchFromStore();
+  }, []);
 
   useEffect(() => {
     const data = getList();
