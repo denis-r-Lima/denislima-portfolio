@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useLoading } from "../../context/LoadingContext";
 import Loading from "../StyledComponents/Loading";
 import { useTheme } from "styled-components";
+import HabitContextProvider from "../../context/HabitContext";
 
 const Wrapper: React.FC = ({ children }) => {
   const { authUser, loading } = useAuth();
@@ -25,7 +26,9 @@ const Wrapper: React.FC = ({ children }) => {
         backgroundColor: theme.pallet.color.backgroundSecondary,
       }}
     >
-      {!loading && authUser && <div>{children}</div>}
+      {!loading && authUser && (
+        <HabitContextProvider>{children}</HabitContextProvider>
+      )}
       {(loadingData || loading) && <Loading />}
     </div>
   );

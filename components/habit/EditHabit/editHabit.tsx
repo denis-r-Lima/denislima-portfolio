@@ -5,36 +5,26 @@ import { Card, Container, HabitCard } from "./styles";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
 import { useTheme } from "styled-components";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
-import { useLoading } from "../../../context/LoadingContext";
-import { getIdToken, getAuth } from "firebase/auth";
-type HabitType = {
-  habit: string;
-  completed: number;
-}[];
+import { useHabitContext } from "../../../context/HabitContext";
+
+type HabitListType = { baseYear: number; habits: { [name: string]: number } };
 
 const AddHabit: React.FC = () => {
-  const auth = getAuth();
+  const { getList, updateList, fetched, getTodayData, updateToday } =
+    useHabitContext();
   const theme = useTheme();
   const [newHabit, setNewHabit] = useState<string>("");
-  const { setLoadingData } = useLoading();
-  const [habits, setHabits] = useState<HabitType>([]);
-
-  const fetchFromStore = async () => {
-    try {
-      setLoadingData(true);
-      const result = await fetch("/api/habitpuppy/habits");
-      const data = await result.json();
-      setHabits(data.items);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoadingData(false);
-    }
-  };
+  const [habits, setHabits] = useState<HabitListType>({
+    baseYear: 0,
+    habits: {},
+  });
 
   useEffect(() => {
-    fetchFromStore();
-  }, []);
+    const data = getList();
+    if (!data) return;
+
+    setHabits(data);
+  }, [fetched]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -44,43 +34,28 @@ const AddHabit: React.FC = () => {
   };
 
   const addHabit = async () => {
-    const tempHabits = [...habits, { habit: newHabit, completed: 0 }];
-    setHabits(tempHabits);
-    setNewHabit("");
-
-    const token = await getIdToken(auth.currentUser);
-    try {
-      setLoadingData(true);
-      await fetch("/api/habitpuppy/habits", {
-        method: "PUT",
-        body: JSON.stringify({
-          data: { items: tempHabits, baseYear: new Date().getFullYear() },
-          token,
-        }),
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoadingData(false);
-    }
-  };
-
-  const removeHabit = async (index: number) => {
-    const temp = habits.filter((_, idx) => index != idx);
+    const temp: HabitListType = {
+      ...habits,
+      habits: { ...habits.habits, [newHabit]: 0 },
+    };
     setHabits(temp);
-    const token = await getIdToken(auth.currentUser);
-    try {
-      setLoadingData(true);
-      await fetch("/api/habitpuppy/habits", {
-        method: "PUT",
-        body: JSON.stringify({ data: { items: temp }, token }),
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoadingData(false);
-    }
+    updateList(temp);
+    const today = getTodayData();
+    today.habits.push(newHabit);
+    updateToday(today, false, "");
+    setNewHabit("");
   };
+
+  const removeHabit = async (habit: string) => {
+    const temp = { ...habits, habits: { ...habits.habits } };
+    delete temp.habits[habit];
+    const today = getTodayData();
+    today.habits = today.habits.filter((val) => val != habit);
+    updateToday(today, false, "");
+    setHabits(temp);
+    updateList(temp);
+  };
+
   return (
     <Container>
       <Card>
@@ -104,13 +79,13 @@ const AddHabit: React.FC = () => {
           add
         </StyledButton>
       </Card>
-      {habits.map((habit, index) => (
-        <HabitCard key={habit.habit}>
-          <h3>{habit.habit}</h3>
+      {Object.keys(habits.habits).map((habit) => (
+        <HabitCard key={habit}>
+          <h3>{habit}</h3>
           <div>
             <TbTrashXFilled
               size={"2.5rem"}
-              onClick={(_) => removeHabit(index)}
+              onClick={(_) => removeHabit(habit)}
             />
           </div>
         </HabitCard>

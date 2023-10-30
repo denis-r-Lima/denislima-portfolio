@@ -14,7 +14,7 @@ const Login: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <LoginPage target="/admin" />
+      <LoginPage target="/habitpuppy" />
     </>
   );
 };
