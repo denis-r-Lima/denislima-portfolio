@@ -10,14 +10,7 @@ import { useHabitContext } from "../../../context/HabitContext";
 type HabitListType = { baseYear: number; habits: { [name: string]: number } };
 
 const AddHabit: React.FC = () => {
-  const {
-    getList,
-    updateList,
-    fetched,
-    getTodayData,
-    updateToday,
-    fetchFromStore,
-  } = useHabitContext();
+  const { getList, updateList, fetched, fetchFromStore } = useHabitContext();
   const theme = useTheme();
   const [newHabit, setNewHabit] = useState<string>("");
   const [habits, setHabits] = useState<HabitListType>({
@@ -44,26 +37,25 @@ const AddHabit: React.FC = () => {
   };
 
   const addHabit = async () => {
+    if (habits.habits[newHabit]) {
+      console.log("Repetido animal");
+      setNewHabit("");
+      return;
+    }
     const temp: HabitListType = {
       ...habits,
       habits: { ...habits.habits, [newHabit]: 0 },
     };
     setHabits(temp);
-    updateList(temp);
-    const today = getTodayData();
-    today.habits.push(newHabit);
-    updateToday(today, false, "");
+    updateList(temp, newHabit);
     setNewHabit("");
   };
 
   const removeHabit = async (habit: string) => {
     const temp = { ...habits, habits: { ...habits.habits } };
     delete temp.habits[habit];
-    const today = getTodayData();
-    today.habits = today.habits.filter((val) => val != habit);
-    updateToday(today, false, "");
     setHabits(temp);
-    updateList(temp);
+    updateList(temp, habit);
   };
 
   return (

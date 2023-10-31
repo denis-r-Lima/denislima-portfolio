@@ -12,7 +12,7 @@ type HabitContextType = {
   today: TodayDataType;
   getTodayData: () => TodayDataType;
   getList: () => HabitListType;
-  updateList: (data: HabitListType) => void;
+  updateList: (data: HabitListType, value?: string) => void;
   updateToday: (
     data: TodayDataType,
     completed: boolean,
@@ -32,12 +32,13 @@ const HabitContextProvider: React.FC = ({ children }) => {
 
   const fetchFromStore = async () => {
     const auth = getAuth();
-    const userEmail = auth.currentUser.email;
+    const userId = auth.currentUser.uid;
+    console.log(auth.currentUser.uid);
     try {
       setLoadingData(true);
       const token = await getIdToken(auth.currentUser);
       const result = await fetch(
-        `/api/habitpuppy/habits?token=${token}&user=${userEmail}`
+        `/api/habitpuppy/habits?token=${token}&user=${userId}`
       );
       const data: HabitsType = await result.json();
 
@@ -72,10 +73,18 @@ const HabitContextProvider: React.FC = ({ children }) => {
     return habit.habitList;
   };
 
-  const updateList = async (data: HabitListType) => {
+  const updateList = async (data: HabitListType, value?: string) => {
     const auth = getAuth();
-    const userEmail = auth.currentUser.email;
+    const userId = auth.currentUser.uid;
     const temp = { ...habit, habitList: data };
+    if (value) {
+      if (habit.habitList.habits[value] != undefined) {
+        temp.today.habits = temp.today.habits.filter((val) => val != value);
+      } else {
+        temp.today.habits.push(value);
+      }
+    }
+
     try {
       setLoadingData(true);
       const token = await getIdToken(auth.currentUser);
@@ -84,7 +93,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
         body: JSON.stringify({
           data: temp,
           token,
-          user: userEmail,
+          user: userId,
         }),
       });
       setHabit(temp);
@@ -101,7 +110,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
     habitCompleted: string
   ) => {
     const auth = getAuth();
-    const userEmail = auth.currentUser.email;
+    const userId = auth.currentUser.uid;
     const temp: HabitsType = { ...habit, today: data };
     if (completed) {
       temp.habitList.habits[habitCompleted]++;
@@ -114,7 +123,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
         body: JSON.stringify({
           data: temp,
           token,
-          user: userEmail,
+          user: userId,
         }),
       });
       setHabit(temp);
