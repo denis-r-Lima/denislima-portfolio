@@ -6,7 +6,6 @@ import smoothscroll from "smoothscroll-polyfill";
 
 import { theme } from "../styles/theme";
 import { useEffect } from "react";
-import ResumeDataProvider from "../context/ResumeDataContext";
 import HabitContextProvider from "../context/HabitContext";
 
 function MyApp({ Component, pageProps }) {
@@ -14,7 +13,6 @@ function MyApp({ Component, pageProps }) {
     smoothscroll.polyfill();
   }, []);
   return (
-    <ResumeDataProvider>
       <AuthUserProvider>
         <LoadingProvider>
           <HabitContextProvider>
@@ -25,7 +23,6 @@ function MyApp({ Component, pageProps }) {
           </HabitContextProvider>
         </LoadingProvider>
       </AuthUserProvider>
-    </ResumeDataProvider>
   );
 }
 
