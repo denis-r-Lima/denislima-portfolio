@@ -44,7 +44,7 @@ const HabitList: React.FC = () => {
     completed: boolean = true
   ) => {
     const card = e.currentTarget.parentElement.parentElement;
-    card.classList.add("remove");
+    card.classList.add("remove", completed ? "completed" : "incomplete");
     const temp: TodayDataType = {
       ...habitData,
       habits: habitData.habits.filter((_, idx) => idx != index),
