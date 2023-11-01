@@ -36,18 +36,27 @@ export const Card = styled.div`
   justify-content: space-between;
 
   transition: margin-left 0.3s linear 0.35s, transform 0.3s linear 0s,
-    opacity 0.6s linear 0s;
+    background-color 0.2s linear 0s, opacity 0.6s linear 0s;
 
   &.remove {
     opacity: 0;
     transform: scale(90%);
     margin: 0;
-    margin-left: 200rem;
+
     animation: ${RemoveCard};
     animation-duration: 0.3s;
     animation-delay: 0.72s;
   }
 
+  &.completed {
+    background-color: ${(props) => props.theme.pallet.color.primary};
+    margin-left: 200rem;
+  }
+
+  &.incomplete {
+    background-color: ${(props) => props.theme.pallet.color.secondary};
+    margin-left: -200rem;
+  }
   & div {
     display: flex;
     gap: 2rem;
