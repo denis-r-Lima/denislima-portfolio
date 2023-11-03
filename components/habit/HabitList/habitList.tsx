@@ -4,12 +4,13 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import { Card, CardTextBox, Container } from "./styles";
 import { useHabitContext } from "../../../context/HabitContext";
 
-type TodayDataType = { date: string; habits: string[] };
+type TodayDataType = { date: string; habits: string[]; completed: string[] };
 
 const HabitList: React.FC = () => {
   const [habitData, setHabitData] = useState<TodayDataType>({
     date: "",
     habits: [],
+    completed: [],
   });
   const { getTodayData, updateToday, fetched, resetToday, fetchFromStore } =
     useHabitContext();
@@ -48,6 +49,9 @@ const HabitList: React.FC = () => {
     const temp: TodayDataType = {
       ...habitData,
       habits: habitData.habits.filter((_, idx) => idx != index),
+      completed: completed
+        ? [...habitData.completed, habitData.habits[index]]
+        : [...habitData.completed],
     };
     const habitClosed = habitData.habits[index];
     setTimeout(() => {
@@ -72,6 +76,13 @@ const HabitList: React.FC = () => {
               onClick={(e) => handleCompleted(index, e, false)}
             />
           </div>
+        </Card>
+      ))}
+      <br />
+      <h1>Completed Tasks:</h1>
+      {habitData.completed.map((habit) => (
+        <Card key={habit}>
+          <CardTextBox>{habit}</CardTextBox>
         </Card>
       ))}
     </Container>
