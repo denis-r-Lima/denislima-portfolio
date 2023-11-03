@@ -10,7 +10,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* gap: 1.5rem; */
+  & h1 {
+    color: ${(props) => props.theme.pallet.color.primaryVeryLight};
+    margin: 2rem;
+  }
 `;
 
 const RemoveCard = keyframes`
@@ -66,7 +69,7 @@ export const Card = styled.div`
   }
 `;
 
-export const CardTextBox = styled.h1`
+export const CardTextBox = styled.h2`
   max-width: 70%;
   font-size: 2rem;
 `;
