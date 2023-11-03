@@ -60,6 +60,11 @@ export const Card = styled.div`
     background-color: ${(props) => props.theme.pallet.color.secondary};
     margin-left: -200rem;
   }
+
+  &.fixed {
+    margin: 0.75rem 0;
+  }
+
   & div {
     display: flex;
     gap: 2rem;
