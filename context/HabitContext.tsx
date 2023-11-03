@@ -2,7 +2,12 @@ import { getAuth, getIdToken } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLoading } from "./LoadingContext";
 
-type TodayDataType = { date: string; habits: string[]; completed: string[] };
+type TodayDataType = {
+  date: string;
+  habits: string[];
+  completed: string[];
+  notCompleted: string[];
+};
 type HabitListType = { baseYear: number; habits: { [name: string]: number } };
 
 type HabitsType = { habitList: HabitListType; today: TodayDataType };
@@ -139,6 +144,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
       date: newDate,
       habits: Object.keys(getList().habits),
       completed: [],
+      notCompleted: [],
     };
     setHabit((prevState) => ({ ...prevState, today: temp }));
     updateToday(temp, false, "");
