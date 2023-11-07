@@ -8,7 +8,11 @@ type TodayDataType = {
   completed: string[];
   notCompleted: string[];
 };
-type HabitListType = { baseYear: number; habits: { [name: string]: number } };
+type HabitListType = {
+  baseYear: number;
+  habits: { [name: string]: { [year: string]: { [month: string]: number } } };
+  perfectDays: number;
+};
 
 type HabitsType = { habitList: HabitListType; today: TodayDataType };
 
@@ -34,11 +38,13 @@ const HabitContextProvider: React.FC = ({ children }) => {
   const [habit, setHabit] = useState({} as HabitsType);
   const [fetched, setFetched] = useState(false);
   const { setLoadingData } = useLoading();
+  const date = new Date();
+  const month = date.getMonth();
+  const year = date.getFullYear();
 
   const fetchFromStore = async () => {
     const auth = getAuth();
     const userId = auth.currentUser.uid;
-    console.log(auth.currentUser.uid);
     try {
       setLoadingData(true);
       const token = await getIdToken(auth.currentUser);
@@ -59,12 +65,12 @@ const HabitContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!habit.habitList) return;
-    const currentYear = new Date().getFullYear();
-    if (habit.habitList.baseYear != currentYear) {
+    if (habit.habitList.baseYear != year) {
       Object.keys(habit.habitList.habits).map(
-        (val) => (habit.habitList.habits[val] = 0)
+        (val) => (habit.habitList.habits[val][`${year}`][`${month}`] = 0)
       );
-      habit.habitList.baseYear = currentYear;
+      habit.habitList.baseYear = year;
+      habit.habitList.perfectDays = 0;
 
       updateList(habit.habitList);
     }
@@ -118,7 +124,27 @@ const HabitContextProvider: React.FC = ({ children }) => {
     const userId = auth.currentUser.uid;
     const temp: HabitsType = { ...habit, today: data };
     if (completed) {
-      temp.habitList.habits[habitCompleted]++;
+      if (temp.habitList.habits[habitCompleted] === undefined) {
+        return;
+      } else if (
+        temp.habitList.habits[habitCompleted][`${year}`] === undefined
+      ) {
+        temp.habitList.habits[habitCompleted][`${year}`] = {};
+        temp.habitList.habits[habitCompleted][`${year}`][`${month}`] = 1;
+      } else if (
+        temp.habitList.habits[habitCompleted][`${year}`][`${month}`] ==
+        undefined
+      ) {
+        temp.habitList.habits[habitCompleted][`${year}`][`${month}`] = 1;
+      } else {
+        temp.habitList.habits[habitCompleted][`${year}`][`${month}`]++;
+      }
+      if (
+        temp.today.completed.length ===
+        Object.keys(temp.habitList.habits).length
+      ) {
+        temp.habitList.perfectDays++;
+      }
     }
     try {
       setLoadingData(true);
