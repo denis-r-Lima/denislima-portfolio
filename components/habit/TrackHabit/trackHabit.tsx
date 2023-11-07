@@ -4,14 +4,12 @@ import { Container, HabitCard } from "../EditHabit/styles";
 import { useHabitContext } from "../../../context/HabitContext";
 
 type HabitListType = {
-  baseYear: number;
   habits: { [name: string]: { [year: string]: { [month: string]: number } } };
 };
 
 const TrackHabit: React.FC = () => {
   const { getList, fetched, fetchFromStore } = useHabitContext();
   const [habits, setHabits] = useState<HabitListType>({
-    baseYear: 0,
     habits: {},
   });
   const date = new Date();
