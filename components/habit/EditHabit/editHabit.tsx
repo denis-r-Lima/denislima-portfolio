@@ -7,7 +7,11 @@ import { useTheme } from "styled-components";
 import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 import { useHabitContext } from "../../../context/HabitContext";
 
-type HabitListType = { baseYear: number; habits: { [name: string]: number } };
+type HabitListType = {
+  baseYear: number;
+  habits: { [name: string]: { [year: string]: { [month: string]: number } } };
+  perfectDays: number;
+};
 
 const AddHabit: React.FC = () => {
   const { getList, updateList, fetched, fetchFromStore } = useHabitContext();
@@ -16,6 +20,7 @@ const AddHabit: React.FC = () => {
   const [habits, setHabits] = useState<HabitListType>({
     baseYear: 0,
     habits: {},
+    perfectDays: 0,
   });
 
   useEffect(() => {
@@ -38,13 +43,12 @@ const AddHabit: React.FC = () => {
 
   const addHabit = async () => {
     if (habits.habits[newHabit]) {
-      console.log("Repetido animal");
       setNewHabit("");
       return;
     }
     const temp: HabitListType = {
       ...habits,
-      habits: { ...habits.habits, [newHabit]: 0 },
+      habits: { ...habits.habits, [newHabit]: {} },
     };
     setHabits(temp);
     updateList(temp, newHabit);
