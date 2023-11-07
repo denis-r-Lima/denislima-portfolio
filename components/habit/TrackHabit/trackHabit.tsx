@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Container, HabitCard } from "../EditHabit/styles";
 import { useHabitContext } from "../../../context/HabitContext";
 
-type HabitListType = { baseYear: number; habits: { [name: string]: number } };
+type HabitListType = {
+  baseYear: number;
+  habits: { [name: string]: { [year: string]: { [month: string]: number } } };
+};
 
 const TrackHabit: React.FC = () => {
   const { getList, fetched, fetchFromStore } = useHabitContext();
@@ -11,6 +14,9 @@ const TrackHabit: React.FC = () => {
     baseYear: 0,
     habits: {},
   });
+  const date = new Date();
+  const month = date.getMonth();
+  const year = date.getFullYear();
 
   useEffect(() => {
     if (!fetched) fetchFromStore();
@@ -28,7 +34,13 @@ const TrackHabit: React.FC = () => {
         <HabitCard key={val}>
           <h3>{val}</h3>
           <div>
-            <h3>{habits.habits[val]}</h3>
+            <h3>
+              {habits.habits[val][`${year}`]
+                ? habits.habits[val][`${year}`][`${month}`]
+                  ? habits.habits[val][`${year}`][`${month}`]
+                  : 0
+                : 0}
+            </h3>
           </div>
         </HabitCard>
       ))}
