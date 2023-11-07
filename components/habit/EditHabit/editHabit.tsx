@@ -8,7 +8,6 @@ import StyledButton from "../../StyledComponents/StyledButton/StyledButton";
 import { useHabitContext } from "../../../context/HabitContext";
 
 type HabitListType = {
-  baseYear: number;
   habits: { [name: string]: { [year: string]: { [month: string]: number } } };
   perfectDays: number;
 };
@@ -18,7 +17,6 @@ const AddHabit: React.FC = () => {
   const theme = useTheme();
   const [newHabit, setNewHabit] = useState<string>("");
   const [habits, setHabits] = useState<HabitListType>({
-    baseYear: 0,
     habits: {},
     perfectDays: 0,
   });
