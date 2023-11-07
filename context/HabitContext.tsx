@@ -9,7 +9,6 @@ type TodayDataType = {
   notCompleted: string[];
 };
 type HabitListType = {
-  baseYear: number;
   habits: { [name: string]: { [year: string]: { [month: string]: number } } };
   perfectDays: number;
 };
@@ -62,19 +61,6 @@ const HabitContextProvider: React.FC = ({ children }) => {
       setLoadingData(false);
     }
   };
-
-  useEffect(() => {
-    if (!habit.habitList) return;
-    if (habit.habitList.baseYear != year) {
-      Object.keys(habit.habitList.habits).map(
-        (val) => (habit.habitList.habits[val][`${year}`][`${month}`] = 0)
-      );
-      habit.habitList.baseYear = year;
-      habit.habitList.perfectDays = 0;
-
-      updateList(habit.habitList);
-    }
-  }, [habit]);
 
   const getTodayData = () => {
     return habit.today;
