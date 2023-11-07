@@ -132,7 +132,7 @@ const HabitContextProvider: React.FC = ({ children }) => {
         temp.habitList.habits[habitCompleted][`${year}`] = {};
         temp.habitList.habits[habitCompleted][`${year}`][`${month}`] = 1;
       } else if (
-        temp.habitList.habits[habitCompleted][`${year}`][`${month}`] ==
+        temp.habitList.habits[habitCompleted][`${year}`][`${month}`] ===
         undefined
       ) {
         temp.habitList.habits[habitCompleted][`${year}`][`${month}`] = 1;
