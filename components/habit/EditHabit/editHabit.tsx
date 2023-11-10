@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { TbTrashXFilled } from "react-icons/tb";
+import { TbTrashXFilled, TbPencil } from "react-icons/tb";
+import { GiConfirmed, GiCancel, GiVacuumCleaner } from "react-icons/gi";
 
 import { Card, Container, HabitCard } from "./styles";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
@@ -19,6 +20,10 @@ const AddHabit: React.FC = () => {
   const [habits, setHabits] = useState<HabitListType>({
     habits: {},
     perfectDays: 0,
+  });
+  const [editing, setEditing] = useState<{ editing: string; changed: string }>({
+    editing: "",
+    changed: "",
   });
 
   useEffect(() => {
@@ -60,6 +65,34 @@ const AddHabit: React.FC = () => {
     updateList(temp, habit);
   };
 
+  const clickEdit = (habit: string) => {
+    setEditing({ editing: habit, changed: habit });
+  };
+
+  const handleEdit = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { value } = e.currentTarget;
+    setEditing((prevState) => ({ ...prevState, changed: value }));
+  };
+
+  const saveCancel = (save: boolean = true) => {
+    if (save) {
+      const temp = {
+        ...habits,
+        habits: {
+          ...habits.habits,
+          [editing.changed]: habits.habits[editing.editing],
+        },
+      };
+      delete temp.habits[editing.editing];
+      setHabits(temp);
+      updateList(temp, editing.changed);
+    }
+
+    setEditing({ editing: "", changed: "" });
+  };
+
   return (
     <Container>
       <Card>
@@ -85,13 +118,36 @@ const AddHabit: React.FC = () => {
       </Card>
       {Object.keys(habits.habits).map((habit) => (
         <HabitCard key={habit}>
-          <h3>{habit}</h3>
-          <div>
-            <TbTrashXFilled
-              size={"2.5rem"}
-              onClick={(_) => removeHabit(habit)}
-            />
-          </div>
+          {editing.editing === habit ? (
+            <>
+              <StyledInput
+                title="Habit"
+                name="Habit"
+                onChange={handleEdit}
+                value={editing.changed}
+                backgroundColor={theme.pallet.color.primaryVeryLight}
+                color={theme.pallet.color.backgroundSecondary}
+                colorHover={theme.pallet.color.backgroundSecondary}
+                focusColor={theme.pallet.color.backgroundSecondary}
+                required
+              ></StyledInput>
+              <div>
+                <GiConfirmed size={"2.5rem"} onClick={(_) => saveCancel()} />
+                <GiCancel size={"2.5rem"} onClick={(_) => saveCancel(false)} />
+              </div>
+            </>
+          ) : (
+            <>
+              <h3>{habit}</h3>
+              <div>
+                <TbPencil size={"2.5rem"} onClick={(_) => clickEdit(habit)} />
+                <TbTrashXFilled
+                  size={"2.5rem"}
+                  onClick={(_) => removeHabit(habit)}
+                />
+              </div>
+            </>
+          )}
         </HabitCard>
       ))}
     </Container>
