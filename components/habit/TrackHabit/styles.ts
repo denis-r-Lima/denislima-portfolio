@@ -9,7 +9,7 @@ export const ExpandedContainer = styled.div`
   overflow: hidden;
   margin-top: -0.75rem;
   margin-bottom: -0.75rem;
-  width: 65rem;
+  width: 95rem;
   max-width: 80%;
   &.expanded {
     max-height: 400rem;
@@ -19,7 +19,7 @@ export const ExpandedContainer = styled.div`
 export const HabitCard = styled.div`
   padding: 2rem 3rem;
   background-color: ${(props) => props.theme.pallet.color.primaryVeryLight};
-  width: 70rem;
+  width: 100rem;
   max-width: 90%;
   border-radius: 0.3rem;
 

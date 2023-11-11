@@ -16,7 +16,7 @@ export const Card = styled.div`
   flex-direction: column;
   padding: 2rem 3rem;
   background-color: ${(props) => props.theme.pallet.color.primaryVeryLight};
-  width: 70rem;
+  width: 100rem;
   max-width: 90%;
   border-radius: 0.3rem;
   gap: 2rem;
@@ -25,7 +25,7 @@ export const Card = styled.div`
 export const HabitCard = styled.div`
   padding: 2rem 3rem;
   background-color: ${(props) => props.theme.pallet.color.primaryVeryLight};
-  width: 70rem;
+  width: 100rem;
   max-width: 90%;
   border-radius: 0.3rem;
 
@@ -36,6 +36,8 @@ export const HabitCard = styled.div`
 
   & div {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 2rem;
     & svg {
       cursor: pointer;
