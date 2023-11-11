@@ -70,6 +70,13 @@ export const Card = styled.div`
     gap: 2rem;
     & svg {
       cursor: pointer;
+      transition: color linear 0.2s;
+      &:hover {
+        color: ${(props) => props.theme.pallet.color.secondary};
+      }
+      &:first-of-type:hover {
+        color: ${(props) => props.theme.pallet.color.primary};
+      }
     }
   }
 `;
