@@ -50,13 +50,23 @@ const TrackHabit: React.FC = () => {
     setHabits(data);
   }, [fetched]);
 
-  const handleExpand = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-    const { currentTarget } = e;
-    currentTarget.classList.contains("rotate")
-      ? currentTarget.classList.remove("rotate")
-      : currentTarget.classList.add("rotate");
-    const toExpand =
-      currentTarget.parentElement.parentElement.nextElementSibling;
+  const handleExpandMain = (e: React.MouseEvent) => {
+    const svg = e.currentTarget.children[1].children[1];
+    svg.classList.contains("rotate")
+      ? svg.classList.remove("rotate")
+      : svg.classList.add("rotate");
+    const toExpand = e.currentTarget.nextElementSibling;
+    toExpand.classList.contains("expanded")
+      ? toExpand.classList.remove("expanded")
+      : toExpand.classList.add("expanded");
+  };
+
+  const handleExpandYear = (e: React.MouseEvent) => {
+    const svg = e.currentTarget.children[0].children[1].children[1];
+    svg.classList.contains("rotate")
+      ? svg.classList.remove("rotate")
+      : svg.classList.add("rotate");
+    const toExpand = e.currentTarget.children[1];
     toExpand.classList.contains("expanded")
       ? toExpand.classList.remove("expanded")
       : toExpand.classList.add("expanded");
@@ -66,7 +76,7 @@ const TrackHabit: React.FC = () => {
     <Container>
       {Object.keys(habits.habits).map((val) => (
         <>
-          <HabitCard key={val}>
+          <HabitCard key={val} onClick={handleExpandMain}>
             <h3>{val}</h3>
             <div>
               <h3>
@@ -78,14 +88,17 @@ const TrackHabit: React.FC = () => {
                     )
                   : 0}
               </h3>
-              <RiArrowUpSFill onClick={handleExpand} size={"2rem"} />
+              <RiArrowUpSFill size={"2rem"} />
             </div>
           </HabitCard>
           <ExpandedContainer>
             {Object.keys(habits.habits[val])
               .sort((a, b) => parseInt(b) - parseInt(a))
               .map((y) => (
-                <ExpandedSectionYears key={`${val} - ${y}`}>
+                <ExpandedSectionYears
+                  key={`${val} - ${y}`}
+                  onClick={handleExpandYear}
+                >
                   <Year>
                     <div>{y}</div>
                     <div>
@@ -96,7 +109,7 @@ const TrackHabit: React.FC = () => {
                           0
                         )}
                       </h3>
-                      <RiArrowUpSFill onClick={handleExpand} size={"1.5rem"} />
+                      <RiArrowUpSFill size={"1.5rem"} />
                     </div>
                   </Year>
                   <ExpandedContainerMonth>
