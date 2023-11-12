@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TbTrashXFilled, TbPencil } from "react-icons/tb";
-import { GiConfirmed, GiCancel, GiVacuumCleaner } from "react-icons/gi";
+import { GiConfirmed, GiCancel } from "react-icons/gi";
 
 import { Card, Container, HabitCard } from "./styles";
 import StyledInput from "../../StyledComponents/StyledInput/StyledInput";
