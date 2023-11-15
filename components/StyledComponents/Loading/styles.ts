@@ -22,8 +22,8 @@ const rotate = keyframes`
 export const Loader = styled.div`
   position: fixed;
   z-index: 1001;
-  top: 50%;
-  left: 50%;
+  top: calc(50% - 2.5rem);
+  left: calc(50% - 2.5rem);
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
