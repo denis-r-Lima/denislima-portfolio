@@ -9,14 +9,14 @@ import AddHabit from "../../../components/habit/EditHabit/editHabit";
 const Habitracker: React.FC = () => {
   return (
     <Wrapper>
-      <>
+      <div style={{overflowX: "hidden"}}>
         <Head>
           <title>Habit Puppy: Track your habits and improve your life!</title>
         </Head>
         <Header />
         <AddHabit />
         <SideMenu />
-      </>
+      </div>
     </Wrapper>
   );
 };
