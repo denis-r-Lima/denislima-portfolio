@@ -19,6 +19,11 @@ export const BurgerMenuContainer = styled.div`
   cursor: pointer;
   transition: transform 0.2s linear;
   z-index: 1000;
+
+  & div{
+    overflow: visible;
+  }
+
   &.show {
     transition: transform 0.2s linear 0.1s, background-color 0.4s;
     transform: scale(1);
