@@ -32,23 +32,17 @@ const Months = {
 };
 
 const TrackHabit: React.FC = () => {
-  const { getList, fetched, fetchFromStore } = useHabitContext();
-  const [habits, setHabits] = useState<HabitListType>({
-    habits: {},
-  });
+  const { habit, fetched, fetchFromStore, checkDate } = useHabitContext();
   const date = new Date();
-  // const month = date.getMonth();
   const year = date.getFullYear();
 
   useEffect(() => {
-    if (!fetched) fetchFromStore();
+    if (!fetched) {
+      fetchFromStore();
+      return;
+    }
+    checkDate();
   }, []);
-
-  useEffect(() => {
-    const data = getList();
-    if (!data) return;
-    setHabits(data);
-  }, [fetched]);
 
   const handleExpandMain = (e: React.MouseEvent) => {
     const svg = e.currentTarget.children[1].children[1];
@@ -74,59 +68,63 @@ const TrackHabit: React.FC = () => {
 
   return (
     <Container>
-      {Object.keys(habits.habits).map((val) => (
-        <>
-          <HabitCard key={val} onClick={handleExpandMain}>
-            <h3>{val}</h3>
-            <div>
-              <h3>
-                {habits.habits[val][`${year}`]
-                  ? Object.keys(habits.habits[val][`${year}`]).reduce(
-                      (acc, current) =>
-                        acc + habits.habits[val][`${year}`][current],
-                      0
-                    )
-                  : 0}
-              </h3>
-              <RiArrowUpSFill size={"2rem"} />
-            </div>
-          </HabitCard>
-          <ExpandedContainer>
-            {Object.keys(habits.habits[val])
-              .sort((a, b) => parseInt(b) - parseInt(a))
-              .map((y) => (
-                <ExpandedSectionYears
-                  key={`${val} - ${y}`}
-                  onClick={handleExpandYear}
-                >
-                  <Year>
-                    <div>{y}</div>
-                    <div>
-                      <h3>
-                        {Object.keys(habits.habits[val][y]).reduce(
-                          (acc, current) =>
-                            acc + habits.habits[val][y][current],
-                          0
-                        )}
-                      </h3>
-                      <RiArrowUpSFill size={"1.5rem"} />
-                    </div>
-                  </Year>
-                  <ExpandedContainerMonth>
-                    {Object.keys(habits.habits[val][y])
-                      .sort((a, b) => parseInt(b) + parseInt(a))
-                      .map((m) => (
-                        <ExpandedSectionMonth>
-                          <div>{Months[m]}</div>
-                          <div>{habits.habits[val][y][m]}</div>
-                        </ExpandedSectionMonth>
-                      ))}
-                  </ExpandedContainerMonth>
-                </ExpandedSectionYears>
-              ))}
-          </ExpandedContainer>
-        </>
-      ))}
+      {habit?.habitList &&
+        Object.keys(habit.habitList.habits).map((val) => (
+          <>
+            <HabitCard key={val} onClick={handleExpandMain}>
+              <h3>{val}</h3>
+              <div>
+                <h3>
+                  {habit.habitList.habits[val][`${year}`]
+                    ? Object.keys(
+                        habit.habitList.habits[val][`${year}`]
+                      ).reduce(
+                        (acc, current) =>
+                          acc + habit.habitList.habits[val][`${year}`][current],
+                        0
+                      )
+                    : 0}
+                </h3>
+                <RiArrowUpSFill size={"2rem"} />
+              </div>
+            </HabitCard>
+            <ExpandedContainer>
+              {habit?.habitList &&
+                Object.keys(habit.habitList.habits[val])
+                  .sort((a, b) => parseInt(b) - parseInt(a))
+                  .map((y) => (
+                    <ExpandedSectionYears
+                      key={`${val} - ${y}`}
+                      onClick={handleExpandYear}
+                    >
+                      <Year>
+                        <div>{y}</div>
+                        <div>
+                          <h3>
+                            {Object.keys(habit.habitList.habits[val][y]).reduce(
+                              (acc, current) =>
+                                acc + habit.habitList.habits[val][y][current],
+                              0
+                            )}
+                          </h3>
+                          <RiArrowUpSFill size={"1.5rem"} />
+                        </div>
+                      </Year>
+                      <ExpandedContainerMonth>
+                        {Object.keys(habit.habitList.habits[val][y])
+                          .sort((a, b) => parseInt(b) + parseInt(a))
+                          .map((m) => (
+                            <ExpandedSectionMonth>
+                              <div>{Months[m]}</div>
+                              <div>{habit.habitList.habits[val][y][m]}</div>
+                            </ExpandedSectionMonth>
+                          ))}
+                      </ExpandedContainerMonth>
+                    </ExpandedSectionYears>
+                  ))}
+            </ExpandedContainer>
+          </>
+        ))}
     </Container>
   );
 };

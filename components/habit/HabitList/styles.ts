@@ -45,10 +45,10 @@ export const Card = styled.div`
     opacity: 0;
     transform: scale(90%);
     margin: 0;
-
     animation: ${RemoveCard};
     animation-duration: 0.3s;
     animation-delay: 0.72s;
+    animation-fill-mode: forwards;
   }
 
   &.completed {

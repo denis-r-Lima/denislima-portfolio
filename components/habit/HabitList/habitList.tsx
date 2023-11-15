@@ -12,13 +12,7 @@ type TodayDataType = {
 };
 
 const HabitList: React.FC = () => {
-  const [habitData, setHabitData] = useState<TodayDataType>({
-    date: "",
-    habits: [],
-    completed: [],
-    notCompleted: [],
-  });
-  const { getTodayData, updateToday, fetched, resetToday, fetchFromStore } =
+  const { habit, updateToday, fetched, resetToday, fetchFromStore, checkDate } =
     useHabitContext();
   const today = new Date();
   const month = today.getMonth() + 1;
@@ -26,22 +20,22 @@ const HabitList: React.FC = () => {
   const year = today.getFullYear();
 
   useEffect(() => {
-    if (!fetched) fetchFromStore();
+    if (!fetched) {
+      fetchFromStore();
+      return;
+    }
+    checkDate();
   }, []);
 
   useEffect(() => {
-    const data = getTodayData();
-    if (!data) return;
-    const date = data.date.split("-");
+    if (!habit?.today) return;
+    const date = habit.today.date.split("-");
     if (
       parseInt(date[0]) != month ||
       parseInt(date[1]) != day ||
       parseInt(date[2]) != year
     ) {
-      const newData = resetToday(`${month}-${day}-${year}`);
-      setHabitData(newData);
-    } else {
-      setHabitData(data);
+      resetToday(`${month}-${day}-${year}`);
     }
   }, [fetched]);
 
@@ -53,26 +47,22 @@ const HabitList: React.FC = () => {
     const card = e.currentTarget.parentElement.parentElement;
     card.classList.add("remove", completed ? "completed" : "incomplete");
     const temp: TodayDataType = {
-      ...habitData,
-      habits: habitData.habits.filter((_, idx) => idx != index),
+      ...habit.today,
+      habits: habit.today.habits.filter((_, idx) => idx != index),
       completed: completed
-        ? [...habitData.completed, habitData.habits[index]]
-        : [...habitData.completed],
+        ? [...habit.today.completed, habit.today.habits[index]]
+        : [...habit.today.completed],
       notCompleted: completed
-        ? [...habitData.notCompleted]
-        : [...habitData.notCompleted, habitData.habits[index]],
+        ? [...habit.today.notCompleted]
+        : [...habit.today.notCompleted, habit.today.habits[index]],
     };
-    const habitClosed = habitData.habits[index];
-    setTimeout(() => {
-      setHabitData(temp);
-    }, 1000);
-
+    const habitClosed = habit.today.habits[index];
     updateToday(temp, completed, habitClosed);
   };
 
   return (
     <Container>
-      {habitData.habits.map((habit, index) => (
+      {habit?.today?.habits?.map((habit, index) => (
         <Card key={habit}>
           <CardTextBox>{habit}</CardTextBox>
           <div>
@@ -88,20 +78,20 @@ const HabitList: React.FC = () => {
         </Card>
       ))}
       <br />
-      {habitData.completed?.length > 0 && (
+      {habit?.today?.completed?.length > 0 && (
         <>
-          <h1>Completed Tasks ({habitData.completed?.length})</h1>
-          {habitData.completed.map((habit) => (
+          <h1>Completed Tasks ({habit.today.completed?.length})</h1>
+          {habit.today.completed.map((habit) => (
             <Card key={habit} className="completed fixed">
               <CardTextBox>{habit}</CardTextBox>
             </Card>
           ))}
         </>
       )}
-      {habitData.notCompleted?.length > 0 && (
+      {habit?.today?.notCompleted?.length > 0 && (
         <>
-          <h1>Not Completed Tasks ({habitData.notCompleted?.length})</h1>
-          {habitData.notCompleted.map((habit) => (
+          <h1>Not Completed Tasks ({habit.today.notCompleted?.length})</h1>
+          {habit.today.notCompleted.map((habit) => (
             <Card key={habit} className="incomplete fixed">
               <CardTextBox>{habit}</CardTextBox>
             </Card>
