@@ -73,7 +73,8 @@ export const Year = styled.div`
   position: relative;
   border-bottom: 1px dotted
     ${(props) => props.theme.pallet.color.primaryVeryLight};
-
+  overflow-x: visible;
+  
   &::before {
     content: " ";
     width: 1.5rem;
