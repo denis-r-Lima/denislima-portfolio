@@ -27,7 +27,7 @@ const Wrapper: React.FC = ({ children }) => {
         overflowX: "hidden",
       }}
     >
-      {!loading && authUser && <div>{children}</div>}
+      {!loading && authUser && <>{children}</>}
       {(loadingData || loading) && <Loading />}
     </div>
   );

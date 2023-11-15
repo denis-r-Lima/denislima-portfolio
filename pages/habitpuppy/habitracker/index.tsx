@@ -9,14 +9,12 @@ import HabitList from "../../../components/habit/HabitList/habitList";
 const Habitracker: React.FC = () => {
   return (
     <Wrapper>
-      <div style={{overflowX: "hidden"}}>
         <Head>
           <title>Habit Puppy: Track your habits and improve your life!</title>
         </Head>
         <Header />
         <HabitList />
         <SideMenu />
-      </div>
     </Wrapper>
   );
 };
