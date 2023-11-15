@@ -7,10 +7,15 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
+  div{
+    overflow-x: hidden;
+  }
+
   html{
     scroll-behavior: smooth;
     box-sizing: border-box;
     font-size: 62.5%;
+    overflow-x: hidden;
     @media only screen and (max-width: 770px){
       font-size: 40%
     }
