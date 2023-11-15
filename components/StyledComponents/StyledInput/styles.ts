@@ -40,6 +40,7 @@ export const InputField = styled.fieldset<InputField>`
     padding: 0 0.5rem;
     position: absolute;
     top: 0;
+    left: 0;
     transform: translateY(-50%) scale(0.8);
     z-index: 20;
     transition: all 0.3s;
@@ -50,6 +51,7 @@ export const InputField = styled.fieldset<InputField>`
 
   & > input:placeholder-shown ~ legend {
     top: 50%;
+    left: 0;
     font-size: 1.5rem;
     transform: translate(1rem, -50%);
     user-select: none;
@@ -59,6 +61,7 @@ export const InputField = styled.fieldset<InputField>`
 
   & > textarea:placeholder-shown ~ legend {
     top: 0;
+    left: 0;
     font-size: 1.5rem;
     transform: translate(1rem, 50%);
     user-select: none;
@@ -69,6 +72,7 @@ export const InputField = styled.fieldset<InputField>`
   & > input:focus ~ legend,
   & > textarea:focus ~ legend {
     top: 0;
+    left: 0;
     transform: translateY(-50%) scale(0.8);
     z-index: 20;
     color: ${(props) => props.focusColor || props.theme.pallet.color.primary};
