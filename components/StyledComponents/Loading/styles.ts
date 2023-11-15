@@ -6,8 +6,6 @@ export const Container = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  display: grid;
-  place-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1000;
 `;
@@ -22,8 +20,11 @@ const rotate = keyframes`
 `;
 
 export const Loader = styled.div`
-  height: 80%;
-  max-height: 5rem;
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  height: 5rem;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 5px solid ${(props) => props.theme.pallet.color.background};

@@ -21,6 +21,7 @@ const Wrapper: React.FC = ({ children }) => {
       style={{
         width: "100vw",
         minHeight: "100vh",
+        position: "relative",
         padding: "1rem",
         backgroundColor: theme.pallet.color.backgroundSecondary,
         overflowX: "hidden",
