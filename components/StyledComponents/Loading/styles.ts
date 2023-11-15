@@ -25,7 +25,7 @@ export const Loader = styled.div`
   top: 50%;
   left: 50%;
   height: 5rem;
-  aspect-ratio: 1;
+  width: 5rem;
   border-radius: 50%;
   border: 5px solid ${(props) => props.theme.pallet.color.background};
   border-bottom: 5px solid ${(props) => props.theme.pallet.color.primary};
